@@ -1,0 +1,18 @@
+---
+title: "Introduction to R Exercises"
+output: html_notebook
+---
+
+# Basic Data Structures
+
+## Vectors
+
+#. Count the number of `NA` elements in this vector `c(34, 56, 55, 87, NA, 4, 77, NA, 21, NA, 39)`
+```{r}
+x <- c(34, 56, 55, 87, NA, 4, 77, NA, 21, NA, 39)
+length(which(is.na(x)))
+
+## This also works!
+sum(is.na(x))
+```
+

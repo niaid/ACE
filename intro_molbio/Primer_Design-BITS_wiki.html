@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-nojs">
+<head>
+<meta charset="UTF-8" />
+<title>Primer Design - BITS wiki</title>
+<meta name="generator" content="MediaWiki 1.25.2" />
+<link rel="shortcut icon" href="/favicon.png" />
+<link rel="search" type="application/opensearchdescription+xml" href="/opensearch_desc.php" title="BITS wiki (en)" />
+<link rel="EditURI" type="application/rsd+xml" href="https://wiki.bits.vib.be/api.php?action=rsd" />
+<link rel="alternate" hreflang="x-default" href="/index.php/Primer_Design" />
+<link rel="copyright" href="/index.php/License" />
+<link rel="alternate" type="application/atom+xml" title="BITS wiki Atom feed" href="/index.php?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="https://wiki.bits.vib.be/load.php?debug=false&amp;lang=en&amp;modules=ext.rtlcite%7Cmediawiki.legacy.commonPrint%2Cshared%7Cmediawiki.sectionAnchor%7Cmediawiki.skinning.interface%7Cmediawiki.ui.button%7Cskins.vector.styles&amp;only=styles&amp;skin=vector&amp;*" />
+<meta name="ResourceLoaderDynamicStyles" content="" />
+<link rel="stylesheet" href="https://wiki.bits.vib.be/load.php?debug=false&amp;lang=en&amp;modules=site&amp;only=styles&amp;skin=vector&amp;*" />
+<style>a:lang(ar),a:lang(kk-arab),a:lang(mzn),a:lang(ps),a:lang(ur){text-decoration:none}
+/* cache key: wikidb:resourceloader:filter:minify-css:7:b36fd1c042133c9c9b60260f7c29b237 */</style>
+<script src="https://wiki.bits.vib.be/load.php?debug=false&amp;lang=en&amp;modules=startup&amp;only=scripts&amp;skin=vector&amp;*"></script>
+<script>if(window.mw){
+mw.config.set({"wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Primer_Design","wgTitle":"Primer Design","wgCurRevisionId":21101,"wgRevisionId":21101,"wgArticleId":2531,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Training"],"wgBreakFrames":false,"wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgMonthNamesShort":["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"wgRelevantPageName":"Primer_Design","wgRelevantArticleId":2531,"wgIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[]});
+}</script><script>if(window.mw){
+mw.loader.implement("user.options",function($,jQuery){mw.user.options.set({"variant":"en"});});mw.loader.implement("user.tokens",function($,jQuery){mw.user.tokens.set({"editToken":"+\\","patrolToken":"+\\","watchToken":"+\\"});});
+/* cache key: wikidb:resourceloader:filter:minify-js:7:a5c52c063dc436c1ca7c9f456936a5e9 */
+}</script>
+<script>if(window.mw){
+mw.loader.load(["mediawiki.page.startup","mediawiki.legacy.wikibits","mediawiki.legacy.ajax","skins.vector.js"]);
+}</script>
+<!--[if lt IE 7]><style type="text/css">body{behavior:url("/skins/Vector/csshover.min.htc")}</style><![endif]-->
+</head>
+<body class="mediawiki ltr sitedir-ltr ns-0 ns-subject page-Primer_Design skin-vector action-view">
+		<div id="mw-page-base" class="noprint"></div>
+		<div id="mw-head-base" class="noprint"></div>
+		<div id="content" class="mw-body" role="main">
+			<a id="top"></a>
+
+						<div class="mw-indicators">
+</div>
+			<h1 id="firstHeading" class="firstHeading" lang="en">Primer Design</h1>
+						<div id="bodyContent" class="mw-body-content">
+									<div id="siteSub">From BITS wiki</div>
+								<div id="contentSub"></div>
+												<div id="jump-to-nav" class="mw-jump">
+					Jump to:					<a href="#mw-head">navigation</a>, 					<a href="#p-search">search</a>
+				</div>
+				<div id="mw-content-text" lang="en" dir="ltr" class="mw-content-ltr"><div id="toc" class="toc"><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Selecting_primers_for_PCR"><span class="tocnumber">1</span> <span class="toctext">Selecting primers for PCR</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#.2ADesigning_regular_PCR_primers_using_Primer3"><span class="tocnumber">1.1</span> <span class="toctext">*Designing regular PCR primers using Primer3</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#.2ADesigning_regular_PCR_primers_using_PrimerBLAST"><span class="tocnumber">1.2</span> <span class="toctext">*Designing regular PCR primers using PrimerBLAST</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Designing_primers_for_amplifying_microbial_genomes_for_sequencing_using_Primer_Blast"><span class="tocnumber">1.3</span> <span class="toctext">Designing primers for amplifying microbial genomes for sequencing using Primer Blast</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Designing_primers_for_qPCR"><span class="tocnumber">1.4</span> <span class="toctext">Designing primers for qPCR</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#Analyzing_primer_characteristics_using_OligoAnalyzer"><span class="tocnumber">2</span> <span class="toctext">Analyzing primer characteristics using OligoAnalyzer</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Obtaining_the_reverse_complement_of_a_sequence"><span class="tocnumber">3</span> <span class="toctext">Obtaining the reverse complement of a sequence</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#In_silico_PCR_in_the_UCSC_Browser"><span class="tocnumber">4</span> <span class="toctext">In silico PCR in the UCSC Browser</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Selecting_primers_for_PCR">Selecting primers for PCR</span></h2>
+<h3><span class="mw-headline" id=".2ADesigning_regular_PCR_primers_using_Primer3">*Designing regular PCR primers using Primer3</span></h3>
+<p>The RefSeq entry NM_079400 contains the sequence of the <i>D. melanogaster</i> mRNA coding for tap, the target of Poxn. Tap encodes a bHLH protein expressed in larval chemosensory organs and involved in the response to sugar and salt. We wish to amplify by PCR the region coding for the HLH motif. 
+</p>
+<table class="collapsed collapsible wikitable">
+<tr>
+<th align="left"> Search NCBIs RefSeq database to find out the location of the coding sequence in the sequence.
+</th></tr>
+<tr>
+<td>
+<p><br />
+</p>
+<div class="externalimage-holder" style="width:400px; margin-left: 0px;"><img src="http://data.bits.vib.be/hidden/jhslbjcgnchjdgksqngcvgqdlsjcnv/BasicBioI/Genbank22.png" alt="Genbank22.png" /></div>
+</td></tr></table>
+<table class="collapsed collapsible wikitable">
+<tr>
+<th align="left"> Search NCBIs Gene database to find the location of the Helix-loop-helix domain.
+</th></tr>
+<tr>
+<td>
+<p>In the RefSeq record and click on the <b>Gene</b> link.<br />
+In the <b>NCBI Reference Sequences</b> section of the Gene record you can find the location of the domain: 155-211.
+</p><p><br />
+</p>
+<div class="externalimage-holder" style="width:600px; margin-left: 0px;"><img src="http://data.bits.vib.be/hidden/jhslbjcgnchjdgksqngcvgqdlsjcnv/BasicBioI/Genbank23.png" alt="Genbank23.png" /></div>
+</td></tr></table>
+<p>This location applies to the protein sequence so it's expressed in amino acids. 
+</p>
+<table class="collapsed collapsible wikitable">
+<tr>
+<th align="left"> Calculate the corresponding positions in the nucleotide sequence.
+</th></tr>
+<tr>
+<td>
+<ul>
+<li>amino acids are encoded by codons of 3 nucleotides so you have to multiply the amino acid positions by three: 155 * 3 = 465 and 211 * 3 = 633</li>
+<li>the sequence of the Genbank record contains more than the CDS: the CDS starts at position 112 (green box on figure) meaning that the start codon is located at position 112 in the sequence of the Genbank record. So you have to add 112 to the nucleotide positions: 465 + 112 = 577 and 633 + 112 = 745</li>
+</ul>
+<p>In the nucleotide sequence of the RefSeq mRNA record, the domain is located between position +577 and +745.
+</p>
+</td></tr></table>
+<p>The Primer3 program can help to select suitable primers.</p>
+<p>Go to <a rel="nofollow" target="_blank" class="external text" href="http://bioinfo.ut.ee/primer3/">Primer3</a> <sup id="cite_ref-1" class="reference"><a href="#cite_note-1">[1]</a></sup> or use the nicer interface at <a rel="nofollow" target="_blank" class="external text" href="http://primer3plus.com/cgi-bin/dev/primer3plus.cgi">Primer3Plus</a> <sup id="cite_ref-2" class="reference"><a href="#cite_note-2">[2]</a></sup> (in the solution below Primer3Plus was used).</p>
+<div style="background-color: #b1d4f4; border-style: thin black; font-style:italic; margin-left: 0px;">
+<p><a href="/index.php/File:Handicon.png" class="image"><img alt="Handicon.png" src="/images/8/8e/Handicon.png" width="48" height="48" /></a>  Note the many configurable parameters of Primer3!
+</p>
+</div>
+<table class="collapsed collapsible wikitable">
+<tr>
+<th align="left"> Set the location of the primers so that they amplify the HLH motif of tap.
+</th></tr>
+<tr>
+<td>
+<ul>
+<li>Copy the full sequence from <a rel="nofollow" target="_blank" class="external text" href="http://www.ncbi.nlm.nih.gov/nuccore/NM_079400">the Genbank record</a> and paste in the sequence input box (green).</li>
+<li>Type in the <b>Targets</b> box <b>577,168</b> (blue) for targeting the hlh domain. You see that you can very specifically define the location of the primers:<br />
+<b>Excluded regions</b> define the region in the sequence that is discarded for primer selection: primers will not lie in this region.<br />
+<b>Targets</b> defines the region that you want to amplify: primers must surround this region closely.<br />
+<b>Included region</b> defines the region that should be used to search for primers: primers must lie in this region.</li>
+</ul>
+<p><br />
+</p>
+<div class="externalimage-holder" style="width:600px; margin-left: 0px;"><img src="http://data.bits.vib.be/hidden/jhslbjcgnchjdgksqngcvgqdlsjcnv/BasicBioI/Primer3c1.png" alt="Primer3c1.png" /></div>
+</td></tr></table>
+<table class="collapsed collapsible wikitable">
+<tr>
+<th align="left"> Set the Tm difference of the primers to a maximum of 2 degrees.
+</th></tr>
+<tr>
+<td>
+<p>Go to the <b>General Settings</b> tab and set <b>Maximum Tm Difference</b> to <b>2.0</b>
+</p>
+</td></tr></table>
+<p>Note the <b>Product Size Ranges</b> box: given these settings Primer3 will first try to find primer pairs that amplify a product with length between 500 and 600 and if this is not possible it will go for a larger product etc...<br />
+This is, however, not what we want: we want to amplify the hlh region only so we aim for a much smaller product. 
+</p>
+<table class="collapsed collapsible wikitable">
+<tr>
+<th align="left"> Set the minimum size of the product to the length of the hlh region and the maximum to 300.
+</th></tr>
+<tr>
+<td>
+<p>Since the hlh region is 168 bp long we set this as the lower limit for the product size range. 
+</p><p><br />
+</p>
+<div class="externalimage-holder" style="width:500px; margin-left: 0px;"><img src="http://data.bits.vib.be/hidden/jhslbjcgnchjdgksqngcvgqdlsjcnv/BasicBioI/Primer3d1.png" alt="Primer3d1.png" /></div>
+</td></tr></table>
+<p>Click <b>Pick Primers</b>
+</p><p><br />
+</p>
+<div class="externalimage-holder" style="width:500px; margin-left: 0px;"><img src="http://data.bits.vib.be/hidden/jhslbjcgnchjdgksqngcvgqdlsjcnv/BasicBioI/Primer3e.png" alt="Primer3e.png" /></div><br />
+<p>In the results page you can see the following:<br />
+The program has selected 5 primer pairs, with <i>the best</i> at the top. <br />
+For each primer you can find:
+</p>
+<ul> 
+<li>the location on the sequence where the first base of the primer binds (for the forward/left primer this is on the complementary strand)</li>
+<li>its length</li>
+<li>its melting temperature</li> 
+<li>its&#160;%GC</li>
+<li>the score of an alignment of the primer with the other primer and with itself</li>
+</ul>
+<p>The program first considers all possible primers and retains those that satisfy a series of criteria, then considers all possible pairs of these primers and retains those who satisfy a series of criteria. At the bottom of the page you can see information about how many primers were considered and rejected/retained.<br /><br />
+</p>
+<table class="collapsed collapsible wikitable">
+<tr>
+<th align="left"> Send the first set of primers to PrimerManager.
+</th></tr>
+<tr>
+<td>
+<p>Click the <b>Send to Primer3Manager</b> button (red) for the first primer pair. 
+</p><p><br />
+</p>
+<div class="externalimage-holder" style="width:500px; margin-left: 0px;"><img src="http://data.bits.vib.be/hidden/jhslbjcgnchjdgksqngcvgqdlsjcnv/BasicBioI/Primer3q1.png" alt="Primer3q1.png" /></div>
+</td></tr></table>
+<p>This leads to a form for further evaluating the primers.
+</p>
+<table class="collapsed collapsible wikitable">
+<tr>
+<th align="left"> Send the primers to BLAST.
+</th></tr>
+<tr>
+<td>
+<p><br />
+</p>
+<div class="externalimage-holder" style="width:500px; margin-left: 0px;"><img src="http://data.bits.vib.be/hidden/jhslbjcgnchjdgksqngcvgqdlsjcnv/BasicBioI/Primer3q.png" alt="Primer3q.png" /></div><br />
+<p>Click the <b>BLAST!</b> link to check the specificity of the primers.
+</p>
+</td></tr></table>
+<p>The primers are sent to a blastn form allowing you to iniate a BLAST search to find potential targets of the primers. By default the nr database is selected. Of course you are only interested in targets in the organism you are working with. Hits in other organisms will not influence your PCR. 
+</p>
+<table class="collapsed collapsible wikitable">
+<tr>
+<th align="left"> Check the specificity of the primers.
+</th></tr>
+<tr>
+<td>
+<ul>
+<li>Set the <b>Organism</b> to <b>Drosophila melanogaster</b> (remember that the sequence we want to amplify comes from fruitfly).</li>
+<li>Click the <b>BLAST</b> button.</li>
+</ul>
+<p><br />
+</p>
+<div class="externalimage-holder" style="width:500px; margin-left: 0px;"><img src="http://data.bits.vib.be/hidden/jhslbjcgnchjdgksqngcvgqdlsjcnv/BasicBioI/BLAST32.png" alt="BLAST32.png" /></div>
+</td></tr></table>
+<p>Look at the 9 highest scoring hits for the forward primer. 
+</p>
+<table class="collapsed collapsible wikitable">
+<tr>
+<th align="left"> Is the forward primer really identical to 9 different locations of the Drosophila genome&#160;?
+</th></tr>
+<tr>
+<td>
+<p><br />
+</p>
+<div class="externalimage-holder" style="width:550px; margin-left: 0px;"><img src="http://data.bits.vib.be/hidden/jhslbjcgnchjdgksqngcvgqdlsjcnv/BasicBioI/BLAST33.png" alt="BLAST33.png" /></div><br />
+<p>No what you see here are 9 records that all contain the tap sequence (mRNA, chromosome, synthetic constructs...) Remarkably some of them are annotated as the biparous TF, but if you take a closer look you will see that tap and biparous are the same gene. This is the problem when working with the nr database which in contrast to whats it's name lets you believe is not non-redundant at all.
+</p>
+</td></tr></table>
+<p>So it's always a better idea to Blast against Refseq sequences unless they are not available for the organism you work with or you have reasons to believe that they are not complete (i.e. they do not represent the full genome). However, for model organisms, full chromosome sequences are available so you can use Refseq for BLAST.
+</p>
+<table class="collapsed collapsible wikitable">
+<tr>
+<th align="left"> Repeat the Blast on RefSeq
+</th></tr>
+<tr>
+<td>
+<ul>
+<li>you are going to do PCR on genomic DNA of Drosophila so you want your primers to specifically amplify the poxn domain from the genomic DNA. This means that you have to select <b>refseq_genomic</b> as the database to search in</li>
+<li>Set the <b>Organism</b> to <b>Drosophila melanogaster</b></li>
+<li>Click the <b>BLAST</b> button</li>
+</ul>
+<p>Now you see that the redundancy has disappeared.
+</p>
+</td></tr></table>
+<p>To go to the results of the reverse primer change <b>Results for</b> at the top of the page
+</p><p><br />
+</p>
+<div class="externalimage-holder" style="width:350px; margin-left: 0px;"><img src="http://data.bits.vib.be/hidden/jhslbjcgnchjdgksqngcvgqdlsjcnv/BasicBioI/BLAST34.png" alt="BLAST34.png" /></div><br />
+<p>When evaluating the specificity of the primers, it is especially important to check that the primers are specific at the 3' end because that's the site where the polymerase will attach nucleotides.<br />
+So generally, it is recommended to not use primers that contain long identical stretches (&gt;15 nt for primers of 20 nt long) to other regions in the genome apart from the one you want to amplify/measure, and certainly not if these stretches comprise the last nucleotide at the 3' end of the primer.<br />
+</p>
+<h3><span class="mw-headline" id=".2ADesigning_regular_PCR_primers_using_PrimerBLAST">*Designing regular PCR primers using PrimerBLAST</span></h3>
+<p>It's a lot of work to design primers using Primer3/CLC Main Workbench especially if you discover during the BLAST that the suggested primers are not specific and you have to start all over again.</p>
+<p>Therefore, we will design primers using <a rel="nofollow" target="_blank" class="external text" href="http://www.ncbi.nlm.nih.gov/tools/primer-blast/index.cgi?LINK_LOC=BlastHome">the PrimerBLAST tool</a> <sup id="cite_ref-3" class="reference"><a href="#cite_note-3">[3]</a></sup>. PrimerBLAST uses the Primer3 algorithm to find primers allowing you to set all the parameters related to effciency of the primers (e.g. secondary structure and dimer formation, Tm, difference in Tm...). On top of this, PrimerBLAST uses the BLAST algorithm to find specific primers, that will only bind to the intended target. It is the only tool that incorporates BLAST in the primer search.</p>
+<p>For some applications, it is vital to have specific primers. This is for instance the case when you use PCR for quantification (qPCR) or when you want to amplify a commonly occurring sequence from the genome.</p>
+<p>As an example, we will design primers to amplify a region of RefSeq entry NM_079400, which represents the <i>D. melanogaster</i> mRNA coding for tap. Tap encodes a bHLH protein expressed in larval chemosensory organs and involved in the response to sugar and salt. We wish to amplify the region encoding the Helix-loop-helix domain. In the sequence of the RefSeq record, the domain is located between position +577 and +745.</p>
+<p>So, let's go to the <a rel="nofollow" target="_blank" class="external text" href="http://www.ncbi.nlm.nih.gov/tools/primer-blast/index.cgi?LINK_LOC=BlastHome">PrimerBLAST page</a>.</p>
+<table class="collapsed collapsible wikitable">
+<tr>
+<th align="left"> Find primers to amplify the hlh region, with maximum Tm difference of 2° and maximum product size of 300 bp.
+</th></tr>
+<tr>
+<td>Fill in the first two sections of the BLAST form as follows:
+<p><br />
+</p>
+<div class="externalimage-holder" style="width:550px; margin-left: 0px;"><img src="http://data.bits.vib.be/hidden/jhslbjcgnchjdgksqngcvgqdlsjcnv/BasicBioI/PrimerBLAST1.png" alt="PrimerBLAST1.png" /></div><br />
+<p>Note that you do not have to paste the sequence, you can directly enter the RefSeq ID (red).</p>
+<p>To amplify the helix-loop-helix domain you need a primer at both sides of the domain. To accomplish this you need to define the regions in the sequence that you want to use for selecting primers in by defining a range for both primers as shown in green.</p>
+<p>Set the product size (blue) and the maximum difference in anneal temperatures of the primers of a pair (purple) to reasonable values (e.g. take the same values as in Primer3).</p>
+</td></tr></table>
+<p>Remember that PrimerBLAST also allows you to set the parameters related to specificity of the primers.</p>
+<table class="collapsed collapsible wikitable">
+<tr>
+<th align="left"> Set database to search in and specify a minimum of 4 mismatches, the last 2 nucleotides of the primers have to be specific
+</th></tr>
+<tr>
+<td>Fill in the first two sections of the BLAST form as follows:
+<p><br />
+</p>
+<div class="externalimage-holder" style="width:650px; margin-left: 0px;"><img src="http://data.bits.vib.be/hidden/jhslbjcgnchjdgksqngcvgqdlsjcnv/BasicBioI/PrimerBLAST4.png" alt="PrimerBLAST4.png" /></div><br />
+<p>Compare the primers to the <i>Drosophila</i> (green) genome (red). You see that you can easily define the specifity that you want to obtain (blue): you can set
+</p>
+<ul>
+<li>the minimum number of nucleotides that should differ between the primers and the rest of the <i>Drosophila</i> genome</li>
+<li>the minimum difference at the 3' end of the primers</li>
+</ul>
+</td></tr></table>
+<p>Only primers that fulfill the specificity criteria that you have set will be shown.</p>
+<p>Expand the <b>Advanced parameters</b> section:
+
+
+
+<div class="externalimage-holder" style="width:400px; margin-left: 0px;"><img src="http://data.bits.vib.be/hidden/jhslbjcgnchjdgksqngcvgqdlsjcnv/BasicBioI/PrimerBLAST4b.png" alt="PrimerBLAST4b.png" /></div><br />
+This shows a set of parameters concerning primer specificity. I normally keep these at their default settings. If you want a more stringent search you can decrease the <b>Blast word size</b>. This is the minimum number of consecutive nucleotides that have to exactly match between the primer and a sequence from the database to consider it a hit. The lower you set it, the faster BLAST will consider a sequence from the database a hit.</p>
+<p>After that follow the <b>Primer parameters</b>. At the top you have a set of general parameters that are self-explanatory.</p>
+<p><br />
+</p>
+<div class="externalimage-holder" style="width:650px; margin-left: 0px;"><img src="http://data.bits.vib.be/hidden/jhslbjcgnchjdgksqngcvgqdlsjcnv/BasicBioI/PrimerBLAST4c.png" alt="PrimerBLAST4c.png" /></div>
+<p>Then parameters concerning the likelihood that the primers will form hairpins and dimers. By default Primer-BLAST uses secondary structure alignment to predict these characteristics but you can choose more advanced and accurate thermodynamic models. Calculations will be slow when you choose these models. Basically, instead of looking at individual nucleotide matches you use the stability of nucleotide matches, e.g. the stability of CT hybridized to GA is different from that of CA hybridized to GT.</p>
+<p>The scores for self and pair complementarity in the default secondary structure model are local alignment scores: the scoring system uses 1.00 for complementary bases, -1.00 for a mismatch, and -2.00 for a gap. So a score of 8 corresponds to 8 consecutive matches or 9 aligned nucleotides with 8 matches and 1 mismatch...</p>
+<p><br />
+</p>
+<div class="externalimage-holder" style="width:750px; margin-left: 0px;"><img src="http://data.bits.vib.be/hidden/jhslbjcgnchjdgksqngcvgqdlsjcnv/BasicBioI/PrimerBLAST4d.png" alt="PrimerBLAST4d.png" /></div>
+<table class="collapsed collapsible wikitable">
+<tr>
+<th align="left"> Perform the search using default settings for the advanced parameters.
+</th></tr>
+<tr>
+<td>
+<p>Click the <b>Get Primers</b> button (purple) to start the search.
+</p>
+</td></tr></table>
+<p>The tool will first ask you to indicate the intended target. Thereafter it will return 5 specific high quality primer pairs:
+</p><p><br />
+</p>
+<div class="externalimage-holder" style="width:650px; margin-left: 0px;"><img src="http://data.bits.vib.be/hidden/jhslbjcgnchjdgksqngcvgqdlsjcnv/BasicBioI/PrimerBLAST3b.png" alt="PrimerBLAST3b.png" /></div><br />
+<p>Knowing that <a rel="nofollow" target="_blank" class="external text" href="http://www.ncbi.nlm.nih.gov/tools/primer-blast/primerinfo.html">PrimerBLAST uses the same algorithm to pick primers as Primer3</a> <sup id="cite_ref-4" class="reference"><a href="#cite_note-4">[4]</a></sup>, PrimerBLAST will save you a lot of work and time when you have to design primers.<br /><br />
+</p>
+<h3><span class="mw-headline" id="Designing_primers_for_amplifying_microbial_genomes_for_sequencing_using_Primer_Blast">Designing primers for amplifying microbial genomes for sequencing using Primer Blast</span></h3>
+<p>In Ugene get 20 complete norovirus genomes from NCBI <br />
+Tip: <ul>
+<li>try searching the “nucleotide” database, using norovirus in the Organism field AND “complete genome” in All Fields</li>
+<li>select all 20 results and Download in fasta format</li>
+<li>select all sequences (the shift key is your best friend), right click and export as norovirus.fa</li>
+</ul></p>
+<p>
+In Ugene make a MSA of these sequences (they're long so ClustalO might be a good choice) and save as norovirus.aln<br />
+select the consensus, right click and Copy consensus with gaps</p>
+<p>Go to Primer-Blast and paste the consensus in the PCR template box. We want to see 10 primer combinations that generate a product of 1000-2000 bp.</p>
+<p>Search in the Genomes (chromosomes from all organisms) database and make sure the primers do not amplify human DNA</p><br />
+<h3><span class="mw-headline" id="Designing_primers_for_qPCR">Designing primers for qPCR</span></h3>
+<p>Exercises on qPCR primer design can be found on our <a rel="nofollow" target="_blank" class="external text" href="http://wiki.bits.vib.be/index.php/Exercises_on_primer_design">primer design wiki page</a>.<br />
+</p>
+<h2><span class="mw-headline" id="Analyzing_primer_characteristics_using_OligoAnalyzer">Analyzing primer characteristics using OligoAnalyzer</span></h2>
+<p><a rel="nofollow" target="_blank" class="external text" href="https://eu.idtdna.com/calc/analyzer">OligoAnalyzer</a> is a tool implemented by ID&amp;T (who sell primers) to check the characteristics of your primers. 
+</p>
+<table class="collapsed collapsible wikitable">
+<tr>
+<th align="left"> How to check the Tm of a primer&#160;?
+</th></tr>
+<tr>
+<td>Copy the sequence of the primer in the <b>Sequence</b> box, adjust the concentrations to these that are used by Primer3 (see slides) and click <b>Analyze</b>:
+<p><br />
+</p>
+<div class="externalimage-holder" style="width:650px; margin-left: 0px;"><img src="http://data.bits.vib.be/hidden/jhslbjcgnchjdgksqngcvgqdlsjcnv/BasicBioI/OligoAnalyzer1b.png" alt="OligoAnalyzer1b.png" /></div>
+</td></tr></table>
+<p>Predicted melting temperature might be slightly different depending on the tool used. There are many methods to predict Tm and each method will give a different result. Concentrations of primers and ions have an enormous impact on the Tm prediction. Don't worry about the differences: the only way to determine Tm values is by doing actual PCR. Just make sure the difference in Tm between the two primers is small.
+</p>
+<table class="collapsed collapsible wikitable">
+<tr>
+<th align="left"> How to check the self-complementarity of a primer in OligoAnalyzer&#160;?
+</th></tr>
+<tr>
+<td>Click <b>Self-Dimer</b>:
+<p><br />
+</p>
+<div class="externalimage-holder" style="width:100px; margin-left: 0px;"><img src="http://data.bits.vib.be/hidden/jhslbjcgnchjdgksqngcvgqdlsjcnv/BasicBioI/OligoAnalyzer2.png" alt="OligoAnalyzer2.png" /></div><br />
+<p>It will align the primer to itself looking for the highest scoring alignment and counting the number of matches in that alignment, this is the score that is returned.
+</p>
+</td></tr></table>
+<p>Complementarity will only cause problems when located at the 3' end of the primer. Since polymerases add bases at the 3’ end of the primer, the primer dimer can only be extended when it occurs at the 3'end of the primer giving rise to aspecific products. <a rel="nofollow" target="_blank" class="external text" href="https://eu.idtdna.com/pages/docs/default-source/default-document-library/idt_self-dimer_and_hetero-dimer_results_guide.pdf">ID&amp;T recommends to avoid complementary stretches of more than 2 bp at the 3’ end</a>.</p>
+<p>However, even if the primer dimer cannot be extended, it could interfere when its formation competes with the annealing of primer and target. This is only the case when the stability of the dimer is similar to the stability of a perfectly matched primer-target duplex. The stability of the perfectly matched duplex is shown as a Maximum Delta G at the top of the results. So non-extendable dimer structures that are much shorter than the intended duplex are not going to disrupt the PCR reaction. </p>
+<p>It is advised to review all possible interactions between primers so both Self-Dimer (primers binding to themselves) and Hetero-Dimer (primers binding to each other) interactions between primers are examined.</p>
+<table class="collapsed collapsible wikitable">
+<tr>
+<th align="left"> How to check the likelihood that the primers will bind to each other&#160;?
+</th></tr>
+<tr>
+<td>Click <b>Hetero-Dimer</b>:
+<p><br />
+</p>
+<div class="externalimage-holder" style="width:100px; margin-left: 0px;"><img src="http://data.bits.vib.be/hidden/jhslbjcgnchjdgksqngcvgqdlsjcnv/BasicBioI/OligoAnalyzer3.png" alt="OligoAnalyzer3.png" /></div><br />
+<p>This opens a text box to enter the second primer. Click <b>Analyze</b>.<br />
+</p>
+</td></tr></table>
+<p>Again, it's only problematic when you have a stretch of 3 matching nucleotides at the 3'end of one of the primers.</p>
+<p>If you have complementarity at the 3'end of your primers you might consider taking a look at the other pairs of primers that Primer3 or PrimerBLAST suggests.</p>
+<p><br />
+</p>
+<h2><span class="mw-headline" id="Obtaining_the_reverse_complement_of_a_sequence">Obtaining the reverse complement of a sequence</span></h2>
+<p>Use <a rel="nofollow" target="_blank" class="external text" href="http://www.bioinformatics.org/sms/rev_comp.html">this tool</a> to obtain the reverse complement of a sequence.</p>
+<h2><span class="mw-headline" id="In_silico_PCR_in_the_UCSC_Browser">In silico PCR in the UCSC Browser</span></h2>
+<p>You can visualize a PCR product (and additional annotation) in the UCSC Genome Browser using <a rel="nofollow" target="_blank" class="external text" href="http://genome.ucsc.edu/cgi-bin/hgPcr">the In Silico PCR tool</a>.</p>
+<p>Select the most recent version of the human genome and paste the sequences of forward and reverse primers in their respective boxes. Click <b>submit</b></p>
+<p>This returns the location and the sequence of the PCR product:
+
+
+<div class="externalimage-holder" style="width:500px; margin-left: 0px;"><img src="http://data.bits.vib.be/hidden/jhslbjcgnchjdgksqngcvgqdlsjcnv/BasicBioI/qPCRprimer7b.png" alt="qPCRprimer7b.png" /></div><br />
+<p>Clicking the link of the location visualizes the PCR product in the UCSC genome browser. If necessary you can emove unnecessary tracks by right clicking the tack's name and selecting <b>hide</b>. 
+</p><p><br />
+</p>
+<div class="externalimage-holder" style="width:700px; margin-left: 0px;"><img src="http://data.bits.vib.be/hidden/jhslbjcgnchjdgksqngcvgqdlsjcnv/BasicBioI/qPCRprimer8b.png" alt="qPCRprimer8b.png" /></div><br />
+<p>if necessary, add tracks showing relevant annotations like positions of SNPs by scrolling down to the <b>Variation</b> section. Select the tracks you want to visualize and click <b>refresh</b>.
+</p><p><br />
+</p>
+<div class="externalimage-holder" style="width:700px; margin-left: 0px;"><img src="http://data.bits.vib.be/hidden/jhslbjcgnchjdgksqngcvgqdlsjcnv/BasicBioI/qPCRprimer9.png" alt="qPCRprimer9.png" /></div><br />
+<p>Setting the SNPs track from <b>hide</b> to <b>full</b> or <b>dense</b> shows the SNPs in the browser. Zoom in on the primer in the same way as in the Ensembl Genome Browser.
+</p><p><br />
+</p>
+<div class="externalimage-holder" style="width:650px; margin-left: 0px;"><img src="http://data.bits.vib.be/hidden/jhslbjcgnchjdgksqngcvgqdlsjcnv/BasicBioI/qPCRprimer11.png" alt="qPCRprimer11.png" /></div><br />
+<p>You will often see that a primer matches SNPs but as long as they are not located near the 3'end of the primer it does not pose a problem. <br /><br />
+</p><p><br />
+</p>
+<hr /><b>References:</b>
+<ol class="references">
+<li id="cite_note-1"><span class="mw-cite-backlink"><a href="#cite_ref-1">↑</a></span> <span class="reference-text"><a rel="nofollow" target="_blank" class="external free" href="http://bioinfo.ut.ee/primer3/">http://bioinfo.ut.ee/primer3/</a></span>
+</li>
+<li id="cite_note-2"><span class="mw-cite-backlink"><a href="#cite_ref-2">↑</a></span> <span class="reference-text"><a rel="nofollow" target="_blank" class="external free" href="http://primer3plus.com/cgi-bin/dev/primer3plus.cgi">http://primer3plus.com/cgi-bin/dev/primer3plus.cgi</a></span>
+</li>
+<li id="cite_note-3"><span class="mw-cite-backlink"><a href="#cite_ref-3">↑</a></span> <span class="reference-text"><a rel="nofollow" target="_blank" class="external free" href="http://www.ncbi.nlm.nih.gov/tools/primer-blast/index.cgi?LINK_LOC=BlastHome">http://www.ncbi.nlm.nih.gov/tools/primer-blast/index.cgi?LINK_LOC=BlastHome</a></span>
+</li>
+<li id="cite_note-4"><span class="mw-cite-backlink"><a href="#cite_ref-4">↑</a></span> <span class="reference-text"><a rel="nofollow" target="_blank" class="external free" href="http://www.ncbi.nlm.nih.gov/tools/primer-blast/primerinfo.html">http://www.ncbi.nlm.nih.gov/tools/primer-blast/primerinfo.html</a></span>
+</li>
+</ol></p>
+
+<!-- 
+NewPP limit report
+CPU time usage: 0.139 seconds
+Real time usage: 0.145 seconds
+Preprocessor visited node count: 484/1000000
+Preprocessor generated node count: 1124/1000000
+Post‐expand include size: 6411/2097152 bytes
+Template argument size: 850/2097152 bytes
+Highest expansion depth: 3/40
+Expensive parser function count: 0/100
+-->
+
+<!-- 
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   52.015      1 - -total
+ 41.16%   21.409     23 - Template:Wiki-img
+ 19.54%   10.165      1 - Template:References
+  3.76%    1.957      1 - Template:Tip
+-->
+
+<!-- Saved in parser cache with key wikidb:pcache:idhash:2531-0!*!*!!en!5!* and timestamp 20180822151413 and revision id 21101
+ -->
+</div>									<div class="printfooter">
+						Retrieved from "<a dir="ltr" href="https://wiki.bits.vib.be/index.php?title=Primer_Design&amp;oldid=21101">https://wiki.bits.vib.be/index.php?title=Primer_Design&amp;oldid=21101</a>"					</div>
+													<div id='catlinks' class='catlinks'><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/index.php/Special:Categories" title="Special:Categories">Category</a>: <ul><li><a href="/index.php/Category:Training" title="Category:Training">Training</a></li></ul></div></div>												<div class="visualClear"></div>
+							</div>
+		</div>
+		<div id="mw-navigation">
+			<h2>Navigation menu</h2>
+
+			<div id="mw-head">
+									<div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+						<h3 id="p-personal-label">Personal tools</h3>
+						<ul>
+							<li id="pt-login"><a href="/index.php?title=Special:UserLogin&amp;returnto=Primer+Design" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>						</ul>
+					</div>
+									<div id="left-navigation">
+										<div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+						<h3 id="p-namespaces-label">Namespaces</h3>
+						<ul>
+															<li  id="ca-nstab-main" class="selected"><span><a href="/index.php/Primer_Design"  title="View the content page [c]" accesskey="c">Page</a></span></li>
+															<li  id="ca-talk" class="new"><span><a href="/index.php?title=Talk:Primer_Design&amp;action=edit&amp;redlink=1"  title="Discussion about the content page [t]" accesskey="t">Discussion</a></span></li>
+													</ul>
+					</div>
+										<div id="p-variants" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-variants-label">
+												<h3 id="p-variants-label"><span>Variants</span><a href="#"></a></h3>
+
+						<div class="menu">
+							<ul>
+															</ul>
+						</div>
+					</div>
+									</div>
+				<div id="right-navigation">
+										<div id="p-views" role="navigation" class="vectorTabs" aria-labelledby="p-views-label">
+						<h3 id="p-views-label">Views</h3>
+						<ul>
+															<li id="ca-view" class="selected"><span><a href="/index.php/Primer_Design" >Read</a></span></li>
+															<li id="ca-viewsource"><span><a href="/index.php?title=Primer_Design&amp;action=edit"  title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></span></li>
+															<li id="ca-history" class="collapsible"><span><a href="/index.php?title=Primer_Design&amp;action=history"  title="Past revisions of this page [h]" accesskey="h">View history</a></span></li>
+													</ul>
+					</div>
+										<div id="p-cactions" role="navigation" class="vectorMenu emptyPortlet" aria-labelledby="p-cactions-label">
+						<h3 id="p-cactions-label"><span>More</span><a href="#"></a></h3>
+
+						<div class="menu">
+							<ul>
+															</ul>
+						</div>
+					</div>
+										<div id="p-search" role="search">
+						<h3>
+							<label for="searchInput">Search</label>
+						</h3>
+
+						<form action="/index.php" id="searchform">
+														<div id="simpleSearch">
+															<input type="search" name="search" placeholder="Search" title="Search BITS wiki [f]" accesskey="f" id="searchInput" /><input type="hidden" value="Special:Search" name="title" /><input type="submit" name="fulltext" value="Search" title="Search the pages for this text" id="mw-searchButton" class="searchButton mw-fallbackSearchButton" /><input type="submit" name="go" value="Go" title="Go to a page with this exact name if exists" id="searchButton" class="searchButton" />								</div>
+						</form>
+					</div>
+									</div>
+			</div>
+			<div id="mw-panel">
+				<div id="p-logo" role="banner"><a class="mw-wiki-logo" href="/index.php/Main_Page"  title="Visit the main page"></a></div>
+						<div class="portal" role="navigation" id='p-Navigation' aria-labelledby='p-Navigation-label'>
+			<h3 id='p-Navigation-label'>Navigation</h3>
+
+			<div class="body">
+									<ul>
+													<li id="n-Training"><a href="/index.php/Category:Training">Training</a></li>
+													<li id="n-Hands-On"><a href="/index.php/Category:HandsOn">Hands-On</a></li>
+													<li id="n-How-To"><a href="/index.php/Category:Howto">How-To</a></li>
+													<li id="n-White-Papers"><a href="/index.php/Category:Whitepapers">White Papers</a></li>
+											</ul>
+							</div>
+		</div>
+			<div class="portal" role="navigation" id='p-Resources' aria-labelledby='p-Resources-label'>
+			<h3 id='p-Resources-label'>Resources</h3>
+
+			<div class="body">
+									<ul>
+													<li id="n-Q.26A"><a href="/index.php/Category:Q%26A">Q&amp;A</a></li>
+													<li id="n-Tool-Boxes"><a href="/index.php/Category:Toolbox">Tool-Boxes</a></li>
+													<li id="n-Overview-Pages"><a href="/index.php/Category:Overview">Overview Pages</a></li>
+													<li id="n-Scripts"><a href="/index.php/Category:Script">Scripts</a></li>
+													<li id="n-File-Formats"><a href="/index.php/Category:Formats">File Formats</a></li>
+													<li id="n-Browse-Categories"><a href="/index.php/Special:Categories">Browse Categories</a></li>
+											</ul>
+							</div>
+		</div>
+			<div class="portal" role="navigation" id='p-tb' aria-labelledby='p-tb-label'>
+			<h3 id='p-tb-label'>Toolbox</h3>
+
+			<div class="body">
+									<ul>
+													<li id="t-whatlinkshere"><a href="/index.php/Special:WhatLinksHere/Primer_Design" title="A list of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+													<li id="t-recentchangeslinked"><a href="/index.php/Special:RecentChangesLinked/Primer_Design" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+													<li id="t-specialpages"><a href="/index.php/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q">Special pages</a></li>
+													<li id="t-print"><a href="/index.php?title=Primer_Design&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>
+													<li id="t-permalink"><a href="/index.php?title=Primer_Design&amp;oldid=21101" title="Permanent link to this revision of the page">Permanent link</a></li>
+													<li id="t-info"><a href="/index.php?title=Primer_Design&amp;action=info" title="More information about this page">Page information</a></li>
+											</ul>
+							</div>
+		</div>
+				</div>
+		</div>
+		<div id="footer" role="contentinfo">
+							<ul id="footer-info">
+											<li id="footer-info-lastmod"> This page was last modified on 13 February 2018, at 10:20.</li>
+											<li id="footer-info-copyright">Content is available under the <a href="/index.php/License" title="License">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</li>
+									</ul>
+							<ul id="footer-places">
+											<li id="footer-places-privacy"><a href="/index.php/BITS_wiki:Privacy_policy" title="BITS wiki:Privacy policy">Privacy policy</a></li>
+											<li id="footer-places-about"><a href="/index.php/BITS_wiki:About" title="BITS wiki:About">About BITS wiki</a></li>
+											<li id="footer-places-disclaimer"><a href="/index.php/BITS_wiki:General_disclaimer" title="BITS wiki:General disclaimer">Disclaimers</a></li>
+									</ul>
+										<ul id="footer-icons" class="noprint">
+											<li id="footer-copyrightico">
+															<a href="https://creativecommons.org/licenses/by-sa/3.0/"><img src="https://i.creativecommons.org/l/by-sa/3.0/88x31.png" alt="Creative Commons Attribution-ShareAlike 3.0 Unported License" width="88" height="31" /></a>
+													</li>
+											<li id="footer-poweredbyico">
+															<a href="//www.mediawiki.org/"><img src="/resources/assets/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki" srcset="/resources/assets/poweredby_mediawiki_132x47.png 1.5x, /resources/assets/poweredby_mediawiki_176x62.png 2x" width="88" height="31" /></a>
+													</li>
+									</ul>
+						<div style="clear:both"></div>
+		</div>
+		<script>if(window.jQuery)jQuery.ready();</script><script>if(window.mw){
+mw.loader.state({"site":"loading","user":"ready","user.groups":"ready"});
+}</script>
+<script>if(window.mw){
+mw.loader.load(["ext.cite","mediawiki.toc","mediawiki.action.view.postEdit","mediawiki.user","mediawiki.hidpi","mediawiki.page.ready","mediawiki.searchSuggest"],null,true);
+}</script>
+<script>if(window.mw){
+document.write("\u003Cscript src=\"https://wiki.bits.vib.be/load.php?debug=false\u0026amp;lang=en\u0026amp;modules=site\u0026amp;only=scripts\u0026amp;skin=vector\u0026amp;*\"\u003E\u003C/script\u003E");
+}</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-61194136-4', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<script>if(window.mw){
+mw.config.set({"wgBackendResponseTime":359});
+}</script>
+	</body>
+</html>

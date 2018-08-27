@@ -1,0 +1,434 @@
+---
+title: "Introduction to R"
+output: html_notebook
+---
+
+<!-- https://www.stat.berkeley.edu/~nolan/stat133/Fall05/lectures/DataTypes4.pdf -->
+
+# Getting Started
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. To execute a single line in the chunk, do *Ctrl+Enter*.
+
+```{r, eval=FALSE}
+plot(cars)
+```
+
+## Basic Syntax
+
+Variables are assigned using an arrow `<-` or an equals sign `=`.  `<-` is more common. Enter variable by itself to print, or use print statement.
+
+```{r}
+a <- 5
+b <- 7
+c_variable_1 <- a + b
+print(c_variable_1)
+```
+
+
+Variable names have to follow some rules.
+- allowed characters: alphanumeric, '.' and '_' - *no spaces*
+- must start with a letter or '.'
+- if it starts with '.', the second character cannot be a number
+- of any length - easiest if you use meaningful names, so your code is readable by others
+
+
+In an R session, objects are created in a workspace.
+
+```{r}
+ls()
+rm(a,b)
+ls()
+```
+
+## Saving your work
+By default the session is saved in a file called `.RData`.  This file is a special R binary format.  Because it starts with a '.', you won't see it if you do `ls` in your terminal, but it does show up in the RStudio Files browser.
+RStudio will also ask you if you want to save your workspace when you quit (can turn this off in Tools > Global Options).
+```{r, eval=F}
+x <- 1:5
+save.image()
+rm(c_variable_1)
+ls()
+load('.RData')
+ls()
+```
+
+Non-default save location and saving single objects (also in same R binary format)
+```{r, eval=F}
+save.image("my.RData")
+ls()
+saveRDS(x, "x.rds")
+y <- readRDS("x.rds")
+```
+
+### Saving commands to a script
+For reproducibility, it is also wise to save all of the commands that you use to a script.  In RStudio, the History pane shows the commands you have executed.
+
+Open a new R Script File (Green plus icon in top left), and put some commands in it (maybe from the first chunk above) and Save As *script1.R*.  Then, from within R, you can `source` the script to run the commands.
+
+```{r, eval=F}
+source('script1.R')
+```
+
+You can also run the script from the unix command line/terminal.  RStudio has a convenient terminal window as well.
+
+```{bash, eval=F}
+Rscript script1.R
+```
+
+## Add-on packages
+Most of the time, you will not be able to do all of your analysis with plain base R.  You will need some additional packages.  In RStudio, you can use the *Packages* pane to see what packages are on your system and install new ones.  But, you can also install through the console.
+```{r, eval=F}
+sessionInfo()
+install.packages('wesanderson')
+library(wesanderson)
+```
+
+### Public Repositories for packages
+- CRAN
+- Bioconductor
+- GitHub, GitLab, Bitbucket
+  - Increasingly, GitHub and Bitbucket repositories are where R package developers (and other bioinformatics tool devs) interact with their users and where users interact with each other
+  
+**Example**: [autoshiny](https://github.com/alekrutkowski/autoshiny)
+```{r}
+
+```
+
+## Help!
+You can get help on an r object using `?` or by searching in the help window in RStudio.
+```{r}
+?rep
+?sample
+```
+
+Sometimes you will get an error or warning message when you run your code. [Common errors](http://varianceexplained.org/courses/errors/) that you may see. [^3]
+```{r, eval=F}
+foo(5,3)
+```
+
+Sometimes, the error will be more cryptic to you.  In this case, copy the error message, and try searching for it online either in a general search, or on the Stack Exchange sites like https://stackoverflow.com/questions/tagged/r or https://stats.stackexchange.com/ or the Biostar sites https://support.bioconductor.org/ and https://www.biostars.org/.
+
+# Vectors
+
+The basic data structures in R are vectors, data frames, matrices, lists, and functions.  Add-on packages may implement their own classes of data structures as well.
+
+- Vectors are the simplest data structures in R.
+- Different types of vectors: numeric, character, logical, factor,...
+
+## Vector basics
+
+- **numeric** vectors are collections of decimal numbers
+- **character** vectors are collections of strings which should be in single or double quotes to differentiate from variables in the workspace
+
+```{r}
+num_vector <- c(7,3,4,6,2)
+char_vector <- c("volleyball", "  badminton", "netball", "tennis")
+```
+
+
+### Accessing elements
+- vectors are 1-D
+- access their elements by their index with 1-based numbering
+- access multiple elements with index vector notation
+- negative indexes remove elements
+- `:` symbol makes a vector of a regular sequence
+- combine indexing with assignment
+
+```{r}
+num_vector[3]
+num_vector[c(2,5)]
+num_vector[2:5]
+num_vector[-4]
+num_vector[4] <- 37.5
+```
+
+
+### Getting info about vectors
+
+*Check* which type of vector (or any data structure you have) with `class` or `typeof`.  In general, checking for class is sufficient.
+```{r}
+y_float <- c(5, sqrt(7), 3/21)
+y_float
+class(y_float)
+typeof(y_float)
+```
+
+
+*Check* the beginning or end of a vector with `head` and `tail`
+```{r}
+months <- month.name #constant in R
+head(months)
+tail(months)
+```
+
+
+
+### Vector operations
+Most operators/functions are vectorized - meaning they can take a vector of any length and perform the same operation element-wise.
+
+*Example*: manipulate strings (useful for data cleanup) - substitute, trim
+```{r}
+char_vector
+gsub("a", "ae", char_vector)
+char_vector <- trimws(char_vector)
+char_vector
+```
+
+
+*Example*: arithmetic operations
+```{r}
+x <- -1:12
+x
+5 + x/2
+x %% 2
+y <- c(0.2, 0.5)
+x+y
+```
+
+- What happened with `x+y`??
+  - shorter vectors are "recycled" in arithmetic operations, so *be careful* if this is not what you intend.
+  - *Check* the length of vectors
+```{r}
+length(x)
+length(y)
+```
+
+
+
+# File IO, Data Frames, and Data Cleanup
+
+## Reading in tabular data
+### Excel file
+In RStudio, File > Import Dataset > From Excel
+
+### Text file
+In RStudio, File > Import Dataset > From Text (readr) . Import *brauer2007_messy.csv*.  The `View` command shows you the table in a spreadsheet view. 
+```{r}
+library(readr)
+orig <- read_delim("brauer2007_dataset.txt",  "\t", escape_double = FALSE, trim_ws = TRUE)
+View(orig)
+```
+
+### Dataset
+- From [Brauer et al. Coordination of Growth Rate, Cell Cycle, Stress Response, and Metabolic Activity in Yeast (2008) Mol Biol Cell 19:352-367](http://www.molbiolcell.org/content/19/1/352.abstract).  
+- Examined the relationship between growth rate and gene expression in yeast cultures limited by one of six different nutrients (glucose, leucine, ammonium, sulfate, phosphate, uracil).
+- More here [^4]. 
+- Gene expression microarray dataset where every row represents a gene, and (some of) the columns represent the gene's expression in a different sample.
+- **Our goal** is to clean up this dataset, so we can analyse how the genes respond to the nutrient restriction and growth rates.
+
+
+## Data frames (and lists)
+
+```{r}
+class(orig)
+```
+
+- A data frame is a specific type of **list**.
+- A **list** is a general type of vector.  It can hold items from any data types or class, and the items can have different dimensions.
+- Data frames have some restrictions:
+  - can only hold vectors, other data frames, and matrices - we will just discuss data frames made up of vectors
+  - the vectors must all have the *same length*
+
+
+### Accessing elements
+- data frames are 2-D
+- access elements by specifying indexes `[row,column]`
+- access multiple rows or columns by vector of indexes
+- with `[` notation, leaving a field blank means selecting 'all'
+- access columns by using `$` notation and column names
+
+```{r}
+orig[3,4]
+orig[4:6,4:6]
+orig[500,]
+head(orig$NAME)
+```
+
+The `NAME` column actually represents multiple variables in a single element!
+- gene name
+- biologic process
+- molecular function
+- systematic id
+- another numerical id (not mentioned in the paper)
+
+In R, it's best if each column represents a single variable.  So, let's *clean this up*.
+
+We will use `%>%` from **magrittr** to successively cleanup `orig` with functions from **tidyr** and **dplyr**.
+
+```{r}
+library(magrittr)
+library(tidyr)
+library(dplyr)
+
+clean <- orig %>%
+  separate(NAME, c("name", "bp", "mf", "systematic_id", "numerical_id"), sep="\\|\\|")
+```
+
+- The LHS of the `%>%` becomes the first argument of the RHS.
+
+```{r}
+head(clean$bp)
+head(clean$systematic_id)
+```
+
+- Extra whitespace!  *Clean this* and replace empty elements with `NA`.
+
+```{r}
+clean <- orig %>%
+  separate(NAME, c("name", "bp", "mf", "systematic_id", "numerical_id"), sep="\\|\\|") %>%
+  mutate_at(.vars=vars(name:systematic_id), trimws) %>% 
+  na_if("")
+head(clean$name)
+```
+
+Also, let's *clean up* columns that we aren't going to use with `select`.
+
+```{r}
+clean <- orig %>%
+  separate(NAME, c("name", "bp", "mf", "systematic_id", "numerical_id"), sep="\\|\\|") %>%
+  mutate_at(.vars=vars(name:systematic_id), trimws) %>%
+  na_if("") %>%
+  select(name, G0.05)
+head(clean)
+```
+
+
+### Inspecting the data
+
+Get the dimensions of the data frame.
+
+```{r}
+dim(clean)
+nrow(clean)
+ncol(clean)
+colnames(clean)
+```
+
+Sample names
+- First letter is nutrient
+- Number is the growth rate
+- elements are the expression 
+
+**Wide** format  
+- one row per gene; columns 1 to 4 identify the gene  
+- one column per sample - measurements/observations of the gene expression
+
+**Long** format  
+- every row represents a single observation  
+- every column represents a variable
+
+Let's convert to *long* by using `gather` to "gather up" the observation columns.  The syntax is `gather(key, value, columns)`.
+```{r}
+clean <- orig %>%
+  separate(NAME, c("name", "bp", "mf", "systematic_id", "numerical_id"), sep="\\|\\|") %>%
+  mutate_at(.vars=vars(name:systematic_id), trimws) %>%
+  na_if("") %>%
+  select(-GID, -YORF, -GWEIGHT, -numerical_id) %>%
+  gather(sample,expression, G0.05:U0.3)
+```
+
+The sample names now contain 2 pieces of information - the nutrient and the growth rate?  How do we *clean* this up?
+```{r}
+clean <- orig %>%
+  separate(NAME, c("name", "bp", "mf", "systematic_id", "numerical_id"), sep="\\|\\|") %>%
+  mutate_at(.vars=vars(name:systematic_id), trimws) %>%
+  na_if("") %>%
+  select(-GID, -YORF, -GWEIGHT, -numerical_id) %>%
+  gather(sample,expression, G0.05:U0.3) %>%
+  separate(sample, c("nutrient", "rate"), sep = 1, convert = TRUE)
+```
+
+### Saving a data frame
+
+The most portable way to save a data frame is to use one of the `write` functions to save it as plain text.
+
+```{r eval=FALSE}
+write.csv(clean, "brauer2007_cleaned.csv", row.names = F)
+write.table(clean, 'brauer2007_cleaned.txt', sep='\t', row.names = F, quote=F, na="") ## tab delimited
+```
+
+- If the data frame is very large, and you are only going to use it within R (i.e., you are not sharing it with others, just using it to produce some processed output), it may be more efficient to save it as an R binary object.  How would you do that?
+
+# Summarizing and Plotting Data
+
+We have a clean dataset, but it's still A LOT of data.
+
+## Aggregating data
+
+We can use `aggregate` from base stats or `group_by` `summarise` from dplyr
+```{r}
+head(aggregate(clean$expression, by=list( clean$name), mean))
+# or
+group_by(clean, name) %>%
+  summarise(mean=mean(expression)) %>%
+  head
+```
+
+
+### Subsetting
+We saw with vectors that we could ask questions about data and get logical values in return.  Since data frames are made up of vectors, we can use these logical values to filter the data - this is much easier now that the data is in *long* format.
+
+Two functions commonly used are `subset` and `filter`.  We will use `filter` from dplyr as it is more robust.
+```{r}
+filter(clean, nutrient == 'L' & rate == 0.05 & expression > 3)
+```
+
+## Plotting with ggplot2
+```{r}
+library(ggplot2)
+
+filter(clean, name=="LEU1") %>%
+  ggplot(aes(x=rate, y=expression, color=nutrient)) + geom_point()
+```
+
+```{r}
+filter(clean, bp=="leucine biosynthesis") %>%
+  ggplot(aes(x=rate, y=expression, color=nutrient)) + geom_point() + facet_wrap(~name)
+```
+
+```{r}
+filter(clean, bp=="leucine biosynthesis") %>%
+  ggplot(aes(x=rate, y=expression, color=nutrient)) + geom_point() + facet_wrap(~name) + geom_smooth(method="lm", se=F)
+```
+
+(Remember that *wesanderson* package?)
+```{r}
+filter(clean, bp=="leucine biosynthesis") %>%
+  ggplot(aes(x=rate, y=expression, color=nutrient)) + geom_point() + facet_wrap(~name) + geom_smooth(method="lm", se=F) + scale_color_manual(values=wes_palette("IsleofDogs1"))
+```
+
+
+# Shiny!
+
+- [Example app for annotation of copy number variations](https://github.com/gzhmat/ShinyCNV)
+
+- Simple example modified from https://bookdown.org/yihui/rmarkdown/shiny-widgets.html#the-shinyapp-function
+
+```{r}
+library(shiny)
+clean <- read_csv("brauer2007_cleaned.csv")
+
+shinyApp(
+  ui = fluidPage(
+    fluidRow(style = "padding-bottom: 20px;",
+             column(4, selectInput('bp', 'Biologic Process', sort(unique(clean$bp))))
+    ),
+    fluidRow(
+      plotOutput('gexplot', height = "400px")  
+    )
+  ),
+  
+  server = function(input, output, session) {
+    fdata <- reactive({
+      filter(clean, bp==input$bp)
+    })
+    output$gexplot = renderPlot(height = 400, {
+      fdata() %>%
+        ggplot(aes(x=rate, y=expression, color=nutrient)) + geom_point() + facet_wrap(~name) + geom_smooth(method="lm", se=F)
+    })
+  }
+)
+
+```

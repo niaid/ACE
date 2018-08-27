@@ -1,0 +1,53 @@
+name: 'seandavi(s12): Courses and Tutorials for Data Science, Genomics, and Big Data'
+navbar:
+  title: 'seandavi(s12): Courses and Tutorials'
+  icon: fa-home
+  type: inverse
+  left:
+  - text: Home
+    href: index.html
+  - text: About
+    href: about.html
+  right:
+  - icon: fa-cogs
+    text: setup
+    href: setup.html
+  - icon: ion-easel
+    text: Slides
+    menu:
+    - text: Motivation for using R
+      href: motivation_for_R_slides.html
+    - text: Introduction to Bioconductor
+      href: http://bit.ly/bioc_cshl_2018
+    - text: Machine Learning hands-on
+      href: MachineLearningSlides.html
+  - icon: fa-question fa-lg
+    text: Misc.
+    menu:
+    - text: Further resources
+      href: further_resources.html
+    - text: Source code for this site
+      href: https://github.com/seandavi/ITR
+    - text: Download materials
+      href: https://github.com/seandavi/ITR/archive/master.zip
+output:
+  html_document:
+    theme: default
+    highlight: textmate
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: no
+    fig_align: center
+    css: https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css
+    include:
+      after_body: google_analytics.html
+    lib_dir: site_libs
+    self_contained: no
+exclude: 
+  - F_epigenomic_ranges.Rmd
+  - "*sqlite"
+  - "*gtf.gz"
+include: "*.Rmd"
+output_dir: _site
+
