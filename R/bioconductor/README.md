@@ -28,4 +28,7 @@ Each topic has 2 (4) files (except for ggplot2).
 
   ```R
   install.packages("/path/to/packagefile.gz", repos=NULL)
+  ## for the ACE Uganda workshops the path and commands should be:
+  install.packages("/home/ace/ace_workshop/ace_bioconductor/pasillaBamSubset_0.18.0.tar.gz", repos=NULL)
+  install.packages("/home/ace/ace_workshop/ace_bioconductor/TxDb.Dmelanogaster.UCSC.dm3.ensGene_3.2.2.tar.gz", repos=NULL)
   ```
