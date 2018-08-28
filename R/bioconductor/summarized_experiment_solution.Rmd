@@ -101,13 +101,17 @@ se[1:2,]
 
 These exercises are more advanced!
 
-The purpose of this exercise is to count the number of reads overlapping genes.  This is a typical first step in an RNA-seq differential expression analysis.
+### Preliminaries
 
-Annotations (gene models) can come from different sources.  We’ll use a pre-packaged source here; a later exercise/example retrieves  similar  information from a GFF file.  We will install the package first, then load it into memory.
+This exercise requires the **GenomicFeatures** package which is a standard part of Bioconductor.  However, it may not be installed on your computer.  To check, try loading the library in your workspace:
+```{r}
+library(GenomicFeatures)
+```
 
-```{r, eval=F}
-install.packages("/home/ace/ace_workshop/ace_bioconductor/TxDb.Dmelanogaster.UCSC.dm3.ensGene_3.2.2.tar.gz", repos=NULL)
-library("TxDb.Dmelanogaster.UCSC.dm3.ensGene")
+If you get an error, then you will need to install it.  This may take a few minutes
+```{r}
+source("https://bioconductor.org/biocLite.R")
+biocLite("GenomicFeatures")
 ```
 
 ### Exercises

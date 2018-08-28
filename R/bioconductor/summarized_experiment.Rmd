@@ -71,6 +71,8 @@ Type `??RangedSummarizedExperiment` in the Console to see the help and parameter
 
 ## II. Count the Number of Reads Overlapping Genes
 
+These exercises are more advanced!
+
 ### Preliminaries
 
 This exercise requires the **GenomicFeatures** package which is a standard part of Bioconductor.  However, it may not be installed on your computer.  To check, try loading the library in your workspace:
