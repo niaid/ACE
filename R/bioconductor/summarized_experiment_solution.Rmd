@@ -124,9 +124,7 @@ chr4 <- exByGn[ all(seqnames(exByGn) == "chr4") ]
 ```
 
 
-2. Create a character vector of file paths, using the helper functions `untreated1_chr4` and `untreated3_chr4`.  Name
-the vector with an abbreviated name derived from the file name, and use this to invoke
-BamFileList, creating a list of paths to files that are known to be BAM files.
+2. Create a character vector of file paths, using the helper functions `untreated1_chr4` and `untreated3_chr4`.  Name the vector with an abbreviated name derived from the file name, and use this to invoke BamFileList, creating a list of paths to files that are known to be BAM files.
 
 We'll give the first part of the solution which is to make the vector of file paths:
 ```{r}
