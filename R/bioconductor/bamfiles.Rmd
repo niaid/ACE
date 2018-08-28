@@ -39,8 +39,11 @@ what=c(’seq’, ’qual’).  You might also find this page useful: [Decoding 
 ‘convenience’ function from the **pasillaBamSubset** package) and the ScanBamParam object created in the previous
 question.
 
-3. Use `alphabetByCycle` to summarize nucleotide use by cycle; plot the relationship between cycle and use. Were
-you expecting this? What is going on?
+3. Use `alphabetByCycle` to summarize nucleotide use by cycle; plot the relationship between cycle and use.  Use alphabetByCycle to summarize nucleotide use by cycle; plot the relationship between cycle and use. Were you expecting this result? What is going on?
+
+Might be a little tricky! Try examining the res object and its `elementMetadata` attribute; also see `?attributes`. 
+
+
 
 
 4. Coerce the quality scores to a matrix, and summarize the distribution of qualities across cycle. Is this expected?

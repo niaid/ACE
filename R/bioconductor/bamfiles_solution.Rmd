@@ -48,7 +48,10 @@ res <- readGAlignments(fl, param=param)
 ```
 
 
-3. Use `alphabetByCycle` to summarize nucleotide use by cycle; plot the relationship between cycle and use. Might be a little tricky!  Try examining the `res` object.  Were you expecting this? What is going on?
+3. Use `alphabetByCycle` to summarize nucleotide use by cycle; plot the relationship between cycle and use.  Use alphabetByCycle to summarize nucleotide use by cycle; plot the relationship between cycle and use. Were you expecting this result? What is going on?
+
+Might be a little tricky! Try examining the res object and its `elementMetadata` attribute; also see `?attributes`. 
+
 ```{r}
 library(magrittr)
 library(tidyr)
