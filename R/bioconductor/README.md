@@ -26,6 +26,6 @@ Each topic has 2 (4) files (except for ggplot2).
 
 - To install from the gzipped file within R:
 
-- ```R
+  ```R
   install.packages("/path/to/packagefile.gz", repos=NULL)
   ```
