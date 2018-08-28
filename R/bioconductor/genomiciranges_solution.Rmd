@@ -1,0 +1,67 @@
+---
+title: "Genomics Ranges Solutions"
+output: html_notebook
+---
+
+
+## GenomicRanges
+
+GRanges is a vector of genome positions and their annotations.  Each element has a name, an interval (also called `ranges` - see `??IRanges` if you would like to know more), strand (`+` or `-`), optional metadata, and seqinfo (`Seqinfo` object - mainly just tells you sequence length).
+
+Let's construct a pretend GRanges object, and open up the help:
+
+```{r}
+library(GenomicRanges)
+gr <-
+ GRanges(seqnames = paste0("chr", c(1:22, tail(letters, 11))),
+ ranges = IRanges(start=1:33, width = 1000 ),
+ strand = c(rep("+", 10), rep("-", 23)),
+ score = 1:33,
+ GC = seq(1, 0, length=33))
+
+help(GRanges)
+```
+
+
+### Exercises
+You may need to refer to the "Accessors" and "Subsetting" sections of the help.  You can also refer to the examples below. You can also ask me for help ;).
+
+1. Extract ranges only from chromosome 3
+```{r}
+ch3 <- gr[which(seqnames(gr) == "chr3"),]
+```
+
+2. Extract the first five ranges from the GRanges.
+```{r}
+firstfive <- gr[1:5,]
+```
+
+3. Extract the score and GC column of the GRanges
+```{r}
+mcols(gr)
+```
+
+4. Keep only the standard chromosomes (i.e.) from chromosome 1 to 22, X,Y,M.
+```{r}
+keepStandardChromosomes(gr)
+```
+
+6. How do you find out the ranges contained in the gaps of this GRanges object?
+7. How do you find out the degree of overlap for all the ranges in a GRanges object ? ( Hint: ?coverage)
+
+### Examples
+These examples don't use the same dataset as the exercises.  They are just here to help you, if you need them.
+
+Import gff (annotation) file and properly assign the sequence lengths.
+```{r}
+gff <- import.gff("/home/ace/ace_workshop/ace_bioconductor/gff3.gff")
+seqlengths(gff) <- end(ranges(gff[which(values(gff)[,"type"]=="chromosome"),])) 
+names(gff) <- 1:length(gff) # Assigns names to corresponding slot
+```
+
+Access sequence lengths in Seqinfo and modify them.
+```{r}
+
+gff[1:4,]
+```
+

@@ -1,0 +1,158 @@
+---
+title: "Summarized Experiment and Genomic Solutions"
+author: "Poorani Subramanian"
+date: "8/27/2018"
+output: 
+  html_notebook: 
+    code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, hide=TRUE)
+```
+
+
+
+## I. Create and Manipulate a SummarizeExperiment Object
+
+
+```{r}
+library(GenomicRanges)
+library(SummarizedExperiment)
+```
+
+A Summarized Experiment object has 3 parts:
+1. Assays - matrices (or data frames) - sometimes this is count data
+2. The rows represent genomic ranges of interest
+3. The columns represent samples
+4. (optional) metadata about the samples
+
+In this small exercise, we have (fake) data for 20 genes from 9 highly talented individuals and we will create our first SummarizedExperiment object.
+
+The data for 20 genes from 9 individuals results in a matrix:
+
+```{r}
+data <- matrix(1:180, ncol=9,  byrow=TRUE)
+```
+
+The data from the 20 genes can be represented as a GRanges object
+
+```{r}
+gr_20gene <-
+    GRanges(seqnames = paste0("gene", 1:20),   
+    ranges = IRanges(start=1:20, width = 1000 ),  
+    strand = c(rep("+", 10), rep("-", 10)),  
+    score = 1:20,  
+    GC = seq(1, 0, length=20))
+```
+
+The data describing the 20 individuals is stored in a data.frame
+
+```{r}
+sample_df <- data.frame( names=c("Martin", "Herve", "Dan",   
+    "Marc", "Valerie", "Jim", "Nate","Paul", "Sonali"),   
+    sex=c(rep("Male", 4), "Female", rep("Male", 3), "Female"))
+```
+
+### Exercises
+
+1. Create a SummarizedExperiment from the three objects listed above.
+Type `?RangedSummarizedExperiment` in the Console to see the help and parameters for the `SummarizedExperiment` function.
+```{r}
+se <- SummarizedExperiment(assays=data, rowRanges=gr_20gene, colData=sample_df)
+```
+
+2. Check the dimensions of the created SummarizedExperiment (see notes from yesterday!)
+```{r}
+dim(se)
+```
+
+3. How would you access the data matrix containing numbers?
+```{r}
+assay(se)
+```
+
+4. How would you access the information about the genes?
+```{r}
+rowRanges(se)
+```
+
+5. How would you access the information about the samples?
+```{r}
+colData(se)
+```
+
+6. Subset the SummarizedExperiment to create a new one which contains information only about the female core team.
+```{r}
+femalecoreteam <- subset(se, colData(se)$sex == "Female")
+```
+
+7. Subset the SummarizedExperiment to create a new one containing only the first two genes.
+```{r}
+se[1:2,]
+```
+
+
+
+## II. Count the Number of Reads Overlapping Genes
+
+The purpose of this exercise is to count the number of reads overlapping genes.  This is a typical first step in an RNA-seq
+differential expression analysis.
+
+Annotations (gene models) can come from different sources.  We’ll use a pre-packaged source here; a later exercise
+retrieves  similar  information  from  a  GFF  file.  We will install the package first, then load it into memory.
+
+```{r, eval=F}
+install.packages("/home/ace/ace_workshop/ace_bioconductor/TxDb.Dmelanogaster.UCSC.dm3.ensGene_3.2.2.tar.gz", repos=NULL)
+library("TxDb.Dmelanogaster.UCSC.dm3.ensGene")
+```
+
+### Exercises
+
+1. Use `exonsBy` from the **GenomicFeatures** pkg to retrieve all exons, grouped by gene from TxDb.Dmelanogaster.UCSC.dm3.ensGene.  Subset the result to contain just those annotations relevant to chromosome 4.
+```{r}
+library(GenomicFeatures)
+exByGn <- exonsBy(TxDb.Dmelanogaster.UCSC.dm3.ensGene, "gene")
+chr4 <- exByGn[ all(seqnames(exByGn) == "chr4") ]
+```
+
+
+2. Create a character vector of file paths, using the helper functions `untreated1_chr4` and `untreated3_chr4`.  Name
+the vector with an abbreviated name derived from the file name, and use this to invoke
+BamFileList, creating a list of paths to files that are known to be BAM files.
+
+We'll give the first part of the solution which is to make the vector of file paths:
+```{r}
+fls <- c(untreated1_chr4(), untreated3_chr4())
+```
+
+```{r}
+library(Rsamtools)
+names(fls) <- sub("_chr4.bam", "", basename(fls))
+bfl <- BamFileList(fls)
+```
+
+
+
+3.  Use `summarizeOverlaps` to  count  the  number  of  reads  in  each  region  of  interest of the BamFileList.   The  RNA-seq  protocol  was not  strand  aware,  so  choose `ignore.strand=TRUE`.  The  object  returned  by `summarizeOverlaps` is  an  instance of class `SummarizedExperiment`.  Explore it, and the counts that have been generate.
+
+```{r}
+library(GenomicAlignments)
+counts <- summarizeOverlaps(chr4, bfl, ignore.strand=TRUE)
+head(assay(counts))
+```
+
+4. Plot  the  counts  in  the  two  samples, on on the x-axis and the other on the y-axis  perhaps  transforming  the  counts  with asinh (a  log-like  transform  that deals with 0’s better).
+```{r}
+countsdf <- data.frame(assay(counts))
+countsdf <- dplyr::mutate_all(countsdf, asinh)
+ ggplot(countsdf, aes(x=untreated1, y=untreated3)) + geom_point()
+```
+
+In the plot, why  are  the  points  generally  below  the  diagonal?  Why  do  they  have  a  funnel  shape,  with
+lots of variability between samples at low counts but very predictable numbers at high counts?
+
+5.  As an additional exercise, use the rtracklayer package to retrieve and parse a GFF file containing similar annotations.
+How would this source of annotation tie into the work flow we have just performed?
+
+

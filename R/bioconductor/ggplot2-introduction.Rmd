@@ -1,0 +1,332 @@
+---
+title: "ggplot2 Introduction"
+output:
+  html_notebook:
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE, warning=FALSE, message=FALSE)
+```
+
+## Load file & tidyverse
+
+Let's consider visualizations. Let's call [`tidyverse`](http://tidyverse.org/) and read in our file. For more details, check out [this great blog post on `tidyverse`](https://www.r-bloggers.com/what-is-the-tidyverse/).
+
+```{r Load Data}
+#install.packages("tidyverse")
+library(tidyverse)
+
+d <- read_csv("./Data/data.csv")
+```
+
+## Intro to ggplot2
+
+`ggplot2` is based on the grammar of graphics, a flexible graph framework that includes three major parts:
+
+1.  dataset
+2.  geoms (visual markers)
+3.  coordinate system
+
+It's a phenomenal framework that allows a wide range of polished, publication-ready graphs including:
+
+* scatter plots
+* bar plots
+* histograms
+* maps
+* many other plots (e.g., heatmaps, box plots, contour plots)
+
+There is a handy [`ggplot` cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf) that is very helpful in summarizing the flexibility `ggplot` offers. 
+
+Alternatively, you can access this cheatsheet through RStudio simply through Help > Cheatsheets.
+
+Also, **aethestic properties** are very important to know. Sometimes just called aethestics, these are parameters like size, color or location that provide information about properties about geoms. These are typically used within the main `ggplot` function with the properties wrapped within the function `aes()`.
+
+### Histogram / Density
+
+So let's use our dataset to run a simple histogram plot to explore the range of Mortality rates by country.
+
+Given our data is panel data, let's simplify and only keep records in 2014.
+
+```{r filter}
+# here are two ways to keep only 2014
+pop2014 <- filter(d, year == 2014)
+pop2014 <- d[d$year==2014,]
+```
+
+We can use `ggplot2` simply with the function `ggplot()`. 
+
+This function includes two major inputs: data and mapping.
+
+Also, the functions also includes the **geoms** that specify ways to represent the data.
+
+For example, to represent a histogram, we'll use [`geom_histogram()`](http://ggplot2.tidyverse.org/reference/geom_histogram.html).
+
+```{r simple histogram}
+#?ggplot
+
+ggplot(pop2014, mapping = aes(MOR)) + # Pro tip: ggplot can have multiple layers.
+  geom_histogram()                    # A best practice is to organize them by line to aid in reading
+```
+
+This gets us started but far from perfect. Alternatively, perhaps we can to use a plot/density instead.
+
+```{r simple density}
+ggplot(pop2014, mapping = aes(MOR)) + 
+  geom_density()
+```
+
+Ah, that's much better. However, these plots are subject to the bandwidth (density). 
+
+We can create more granular plots by modifying the `adjust` parameter. For example, a value of `adjust` = 0.5 means we'll use half the default bandwidth.
+
+Let's go with a very granular bandwidth by setting `adjust` = 0.2.
+
+```{r adjust}
+ggplot(pop2014, mapping = aes(MOR)) + 
+  geom_density(adjust = 0.2)
+```
+
+This looks too granular. Instead, let's consider using `adjust` = 0.5.
+
+```{r}
+ggplot(pop2014, mapping = aes(MOR)) + 
+  geom_density(adjust = 0.75)
+```
+
+This is much better. However, let's consider how this distribution differs by region.
+
+To analyze by region, we'll use the `color` aes parameter.
+
+```{r}
+ggplot(pop2014, mapping = aes(MOR, color = region)) + 
+  geom_density(adjust = 0.75) +
+  labs(title = "2014 Population by Region", x = "Country Population", y = "Count")
+```
+
+One initial observation is that North America is finely distributed, leading to a very high spike.
+
+Let's remove North America using a subset function.
+
+```{r}
+ggplot(pop2014[pop2014$region != "North America",], mapping = aes(MOR, color = region)) + 
+  geom_density(adjust = 0.75) 
+```
+
+Last, let's clean up the labels and legend.
+
+```{r}
+ggplot(pop2014[pop2014$region != "North America",], mapping = aes(MOR, fill = region)) + 
+  geom_density(adjust = 0.75, alpha = 0.3) +
+  labs(x = "Mortality Rate", y = "Density") +
+  ggtitle("Mortality Rate Distribution by Region") +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  scale_fill_discrete(guide = guide_legend(title = "Region")) # Changes the Legend Title
+```
+
+```{r}
+ggplot(pop2014[pop2014$region != "North America",], mapping = aes(MOR, fill = region)) + 
+  geom_density(adjust = 0.75, alpha = 0.3) +
+  facet_wrap(~region) +
+  labs(x = "Mortality Rate", y = "Density") +
+  ggtitle("Mortality Rate Distribution by Region") +
+  theme(plot.title = element_text(hjust = 0.5), legend.position = "none")
+```
+
+Alternatively, another graph we could create could be a box plot. To create a box plot, we will use the `box_plot()` geom.
+
+See this [tutorial](http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/) for more details.
+
+```{r}
+ggplot(data=pop2014, aes(x=region, y=MOR, fill=region)) + 
+  geom_boxplot()
+```
+
+```{r}
+pop2014$region <- factor(pop2014$region, 
+                         levels = c("Sub-Saharan Africa",
+                                    "South Asia",
+                                    "East Asia & Pacific",
+                                    "Latin America & Caribbean",
+                                    "Middle East & North Africa",
+                                    "Europe & Central Asia",
+                                    "North America"
+                                    ))
+
+ggplot(data=pop2014, aes(x=region, y=MOR, fill=region)) + 
+  geom_boxplot() +
+  geom_jitter(width = 0.1) +
+  labs(x = "Region", y = "Mortality Rate") +
+  ggtitle("Mortality Rate Distribution by Region") +
+  theme(plot.title = element_text(hjust = 0.5), legend.position = "none")
+  
+```
+
+However, what can we do about the x-axis labels? We can add a new line for each point.
+
+```{r}
+levels(pop2014$region) <- gsub("&", "\n &", levels(pop2014$region))
+
+ggplot(data=pop2014, aes(x=region, y=MOR, fill=region)) + 
+  geom_boxplot() +
+  geom_jitter(width = 0.1) +
+  labs(x = "Region", y = "Mortality Rate") +
+  ggtitle("Mortality Rate Distribution by Region") +
+  theme(plot.title = element_text(hjust = 0.5), legend.position = "none")
+```
+
+So we started very simply and immediately were able to add multiple layers to add a variety of complexity.
+
+### Scatter Plots
+
+Another popular geom is to use [`geom_point()`](http://ggplot2.tidyverse.org/reference/geom_point.html) to produce scatter plots.
+
+In this case, let's consider the relationship between GDP per capita and Health Expenditures as a % of GDP.
+
+First, recall that our dataset does not have a variable for GDP per capita but does have the variables to create it.
+
+```{r}
+ggplot(d, aes(x = HEX, y = MOR)) +
+  geom_point()
+```
+
+But one problem we can immediately see is that this includes multiple years.
+
+One way to overcome this is facet (sometimes called trellis) using [`facet_wrap()`](http://ggplot2.tidyverse.org/reference/facet_wrap.html) 
+
+```{r}
+ggplot(d, aes(x = HEX, y = MOR)) +
+  geom_point() +
+  facet_wrap(~year)
+```
+
+Oh - so we have many years. Maybe we want to simplify our plot to only consider four years: 2001, 2005, 2009, and 2013.
+
+What would we use?
+
+```{r}
+years <- c(2001, 2005, 2009, 2013)
+
+d1 <- d[d$year %in% years,]
+
+ggplot(d1, aes(x = HEX, y = MOR)) +
+  geom_point() +
+  facet_wrap(~year) + 
+  labs(x = "Health Expenditure as % of GDP", y = "Mortality Rates")
+```
+
+Let's also modify each axis to log scale...
+
+```{r}
+ggplot(d1, aes(x = HEX, y = MOR)) +
+  geom_point() +
+  facet_wrap(~year) + 
+  scale_x_log10() +
+  scale_y_log10() +
+  labs(x = "Health Expenditure as a Percent of GDP (Log)", y = "Mortality Rate (Log)")
+```
+
+Now, we can add regressions (with confidence interval) by adding the `geom_smooth(method=lm)` level...
+
+```{r}
+ggplot(d1, aes(x = HEX, y = MOR)) +
+  geom_point() +
+  facet_wrap(~year) + 
+  scale_x_log10() +
+  scale_y_log10() +
+  labs(x = "Health Expenditure as a Percent of GDP (Log)", y = "Mortality Rate (Log)") +
+  geom_smooth(method=lm)
+```
+
+So there appears to be a negative relationship between Mortality Rate and Health Expenditures. This could make sense: the more money a country spends on health care, yields better health outcomes like a lower mortality rate.
+
+However, how does this relationship hold by region?
+
+To test the effect of region on this relationship, let's add `region` as a `color` parameter.
+
+```{r}
+ggplot(d1, aes(x = HEX, y = MOR, color = region)) +
+  geom_point() +
+  facet_wrap(~year) + 
+  scale_x_log10() +
+  scale_y_log10() +
+  labs(x = "Health Expenditure as a Percent of GDP (Log)", y = "Mortality Rate (Log)") +
+  scale_color_discrete(guide = guide_legend(title = "Region")) +
+  geom_smooth(method=lm, se=FALSE)  # Don't add shaded confidence region
+```
+
+Interesting. This negative relationship does not hold on a regional basis. This will be critical to remember when we consider more formal regression modeling tomorrow.
+
+### Line Plots (Time Series)
+
+Another important plot we can use is a line plot to show time series data.
+
+For this plot, we'll use the [`geom_line()`](http://ggplot2.tidyverse.org/reference/geom_path.html) function.
+
+For example, let's consider we want to see the trend of GDP per capita by each of the six regions.
+
+But recall, our dataset is on the country-level, yet we're looking for a measure on a region-level.
+
+Yet we can use our trusty friend `dplyr` (also included in `tidyverse`) to create a data manipulation.
+
+```{r}
+d$r.MOR <- d$MOR * (d$POP) / 1000
+
+d2 <- d %>% 
+  na.omit() %>% # note the na.omit is very important!
+  group_by(region, year) %>% 
+  summarise(t.MOR=sum(r.MOR),
+            t.POP=sum(POP)) %>%
+  mutate(MOR.rate = t.MOR / (t.POP / 1000))
+```
+
+With this new dataset, we can plot the trend of GDP per capita by region.
+
+```{r}
+ggplot(d2, aes(year, MOR.rate, color = region)) + 
+  geom_line() +
+  labs(x = "Year", y = "Mortality Rate")
+```
+
+We can also adding points by including `geom_point()`.
+
+```{r}
+ggplot(d2, aes(year, MOR.rate, color = region)) + 
+  geom_line() +
+  geom_point() + 
+  labs(x = "Year", y = "Mortality Rate") +
+  scale_color_discrete(guide = guide_legend(title = "Region"))
+```
+
+However, the legends/labels are difficult to connect which line is which.
+
+Therefore, let's move the legend to the bottom.
+
+```{r}
+g <- ggplot(d2, aes(year, MOR.rate, color = region)) + 
+  geom_line() +
+  geom_point() + 
+  labs(x = "Year", y = "Mortality Rate") +
+  theme(legend.position="bottom") +
+  guides(col = guide_legend(ncol = 4, title = " "))
+
+g   #new ggplot2 object g
+```
+```
+
+These plots help show that, on average, mortality rates across regions have been declining over the past 15 years.
+
+However, they're still not great. How could they be improved?
+
+### Practice Problems
+
+Now it's time for you to try problems on your own.
+
+One down side of the region-level mortality rate plot above, is that it ignores the distribution of mortality rates across region.
+
+To explore this, let's recall the box plots we created previously; however, this time our x-axis will be year.
+
+1.  Create a box plot with the x-axis as year.
+2.  Next, use a `facet` layer to trellis the box plots by region so that each region has its own temporal box plots. Then create a new plot with only Sub-Saharan Africa and South Asia.
+3.  Clean up the plot with Sub-Saharan Africa & South Asia by adding x, y, and title labels; moving the legend to the bottom; and color each region by a unique color.

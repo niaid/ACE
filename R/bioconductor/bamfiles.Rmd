@@ -1,0 +1,46 @@
+---
+title: "BAM Files"
+author: "Poorani Subramanian"
+date: "8/27/2018"
+output: html_notebook
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## GenomicAlignments
+The purpose of this exercise is to explore BAM files and the data they contain. We’ll extract the sequences and qualities
+of aligned reads, and draw simple plots to illustrate their properties.
+
+The dataset is actually part of an R package, [PasillaBamSubset](http://bioconductor.org/packages/release/data/experiment/html/pasillaBamSubset.html).  
+
+"Conservation of an RNA regulatory map between Drosophila and mammals" by Brooks AN, Yang L, Duff MO, Hansen KD, Park JW, Dudoit S, Brenner SE, Graveley BR, Genome Res. 2011 Feb;21(2):193-202, Epub 2010 Oct 4, PMID: 20921232. 
+ 
+It's already in our workshop folder, so we can install it from there.
+```{r, eval=F}
+install.packages("/home/ace/ace_workshop/ace_bioconductor/pasillaBamSubset_0.18.0.tar.gz", repos=NULL)
+```
+
+We will use the **Rsamtools** and **ShortRead** libraries in addition to the **pasillaBamSubset** we just installed.
+```{r}
+library(Rsamtools)
+library(ShortRead)
+library(pasillaBamSubset)
+```
+
+### Exercises
+1. Use `ScanBamParam` to create an object that restricts the information extracted from the BAM file. Restrict
+the information using `readGAlignments` to select reads that align to the plus strand (isMinusStrand=FALSE).
+`readGAlignments` inputs alignment information; also arrange to input sequence and quality information using
+what=c(’seq’, ’qual’).  You might also find this page useful: [Decoding SAM Flags](https://broadinstitute.github.io/picard/explain-flags.html)
+
+2. Input the sequences and qualities using readGAlignments, providing the file path returned by untreated1_chr4 (a
+‘convenience’ function from the **pasillaBamSubset** package) and the ScanBamParam object created in the previous
+question.
+
+3. Use `alphabetByCycle` to summarize nucleotide use by cycle; plot the relationship between cycle and use. Were
+you expecting this? What is going on?
+
+
+4. Coerce the quality scores to a matrix, and summarize the distribution of qualities across cycle. Is this expected?

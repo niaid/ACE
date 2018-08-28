@@ -1,0 +1,79 @@
+---
+title: "BAM Files Solutions"
+date: "8/27/2018"
+output: 
+  html_notebook: 
+    code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## GenomicAlignments
+The purpose of this exercise is to explore BAM files and the data they contain. We’ll extract the sequences and qualities
+of aligned reads, and draw simple plots to illustrate their properties.
+
+The dataset is actually part of an R package, [Pasilla dataset](http://bioconductor.org/packages/release/data/experiment/html/pasillaBamSubset.html).  It's already in our workshop folder, so we can install it from there.
+```{r, eval=F}
+install.packages("/home/ace/ace_workshop/ace_bioconductor/pasillaBamSubset_0.18.0.tar.gz", repos=NULL)
+```
+
+We will use the **Rsamtools** and **ShortRead** libraries in addition to the **pasillaBamSubset** we just installed.
+```{r}
+library(Rsamtools)
+library(ShortRead)
+library(pasillaBamSubset)
+```
+
+### Exercises
+1. Use `ScanBamParam` to create an object that restricts the information extracted from the BAM file. Restrict
+the information using `readGAlignments` to select reads that align to the plus strand (isMinusStrand=FALSE).
+`readGAlignments` inputs alignment information; also arrange to input sequence and quality information using
+what=c('seq', 'qual').  You might also find this page useful: [Decoding SAM Flags](https://broadinstitute.github.io/picard/explain-flags.html)
+
+```{r}
+flag <- scanBamFlag(isMinusStrand=FALSE)
+param <- ScanBamParam(what=c("seq", "qual"), flag=flag)
+```
+
+
+2. Input the sequences and qualities using `readGAlignments`, providing the file path returned by `untreated1_chr4` (a
+'convenience' function from the **pasillaBamSubset** package) and the ScanBamParam object created in the previous
+question.
+
+```{r}
+fl <- untreated1_chr4()
+res <- readGAlignments(fl, param=param)
+```
+
+
+3. Use `alphabetByCycle` to summarize nucleotide use by cycle; plot the relationship between cycle and use. Might be a little tricky!  Try examining the `res` object.  Were you expecting this? What is going on?
+```{r}
+library(magrittr)
+library(tidyr)
+library(ggplot2)
+abc <- alphabetByCycle(attr(res, "elementMetadata")$seq)
+colnames(abc) <-1:ncol(abc)
+rn <- row.names(abc)
+abc <- cbind.data.frame(nt=rn, abc)
+abc <- abc %>%
+   gather(cycle, frequency, 2:ncol(abc))
+abc$cycle <- as.numeric(abc$cycle)
+abc <- subset(abc, nt %in% c('A', 'C', 'G', 'T'))
+ggplot(abc, aes(x=cycle, y=frequency, color=nt, group=nt)) + geom_line()
+```
+
+4. Coerce the quality scores to a matrix, and summarize the distribution of qualities across cycle. Is this expected?
+```{r}
+qbc <- alphabetByCycle(attr(res, "elementMetadata")$qual)
+v <- which(rowSums(qbc) == 0)
+qbc <- qbc[-v,]
+qbc <- cbind.data.frame(qual=sapply(row.names(qbc), function(x) as.numeric(charToRaw(x))), qbc)
+qbc <- gather(qbc, cycle, frequency, 2:ncol(qbc))
+counts<-matrix(rep(qbc$qual,qbc$freq), ncol=1, byrow=TRUE)
+cycles <- matrix(rep(qbc$cycle,qbc$freq), ncol=1, byrow=TRUE)
+qbc <- cbind.data.frame(qual=counts, cycle=cycles)
+ggplot(qbc, aes(x=cycle, y=qual)) + geom_boxplot(outlier.shape=NA)
+```
+
