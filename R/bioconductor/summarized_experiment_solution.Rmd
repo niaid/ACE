@@ -15,7 +15,6 @@ knitr::opts_chunk$set(echo = TRUE, hide=TRUE)
 
 ## I. Create and Manipulate a SummarizeExperiment Object
 
-
 ```{r}
 library(GenomicRanges)
 library(SummarizedExperiment)
@@ -23,7 +22,7 @@ library(SummarizedExperiment)
 
 A Summarized Experiment object has 3 parts:
 1. Assays - matrices (or data frames) - sometimes this is count data
-2. The rows represent genomic ranges of interest
+2. The rows represent genomic regions of interest
 3. The columns represent samples
 4. (optional) metadata about the samples
 
@@ -35,7 +34,7 @@ The data for 20 genes from 9 individuals results in a matrix:
 data <- matrix(1:180, ncol=9,  byrow=TRUE)
 ```
 
-The data from the 20 genes can be represented as a GRanges object
+The data from the 20 genes can be represented as a GRanges object (we will learn about these later, if you'd like)
 
 ```{r}
 gr_20gene <-
@@ -83,8 +82,12 @@ colData(se)
 ```
 
 6. Subset the SummarizedExperiment to create a new one which contains information only about the female core team.
+**UPDATED**
 ```{r}
-femalecoreteam <- subset(se, colData(se)$sex == "Female")
+## using subset function
+se_female <- subset(se, select = sex == "Female")
+## or using `[` notation
+se_female = se[,colData(se)$sex == "Female"]
 ```
 
 7. Subset the SummarizedExperiment to create a new one containing only the first two genes.
@@ -96,11 +99,11 @@ se[1:2,]
 
 ## II. Count the Number of Reads Overlapping Genes
 
-The purpose of this exercise is to count the number of reads overlapping genes.  This is a typical first step in an RNA-seq
-differential expression analysis.
+These exercises are more advanced!
 
-Annotations (gene models) can come from different sources.  We’ll use a pre-packaged source here; a later exercise
-retrieves  similar  information  from  a  GFF  file.  We will install the package first, then load it into memory.
+The purpose of this exercise is to count the number of reads overlapping genes.  This is a typical first step in an RNA-seq differential expression analysis.
+
+Annotations (gene models) can come from different sources.  We’ll use a pre-packaged source here; a later exercise/example retrieves  similar  information from a GFF file.  We will install the package first, then load it into memory.
 
 ```{r, eval=F}
 install.packages("/home/ace/ace_workshop/ace_bioconductor/TxDb.Dmelanogaster.UCSC.dm3.ensGene_3.2.2.tar.gz", repos=NULL)
@@ -154,5 +157,4 @@ lots of variability between samples at low counts but very predictable numbers a
 
 5.  As an additional exercise, use the rtracklayer package to retrieve and parse a GFF file containing similar annotations.
 How would this source of annotation tie into the work flow we have just performed?
-
 

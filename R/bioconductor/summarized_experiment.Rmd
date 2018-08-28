@@ -71,14 +71,27 @@ Type `??RangedSummarizedExperiment` in the Console to see the help and parameter
 
 ## II. Count the Number of Reads Overlapping Genes
 
-The purpose of this exercise is to count the number of reads overlapping genes.  This is a typical first step in an RNA-seq
-differential expression analysis.
+### Preliminaries
+
+This exercise requires the **GenomicFeatures** package which is a standard part of Bioconductor.  However, it may not be installed on your computer.  To check, try loading the library in your workspace:
+```{r}
+library(GenomicFeatures)
+```
+
+If you get an error, then you will need to install it.  This may take a few minutes
+```{r}
+source("https://bioconductor.org/biocLite.R")
+biocLite("GenomicFeatures")
+```
+
+### Importing the data
+
+The purpose of this exercise is to count the number of reads overlapping genes.  This is a typical first step in an RNA-seq differential expression analysis.
 
 Annotations (gene models) can come from different sources.  We’ll use a pre-packaged source here; as well as alignments from the same Pasilla Dataset as before [PasillaBamSubset](http://bioconductor.org/packages/release/data/experiment/html/pasillaBamSubset.html)
  "Conservation of an RNA regulatory map between Drosophila and mammals" by Brooks AN, Yang L, Duff MO, Hansen KD, Park JW, Dudoit S, Brenner SE, Graveley BR, Genome Res. 2011 Feb;21(2):193-202, Epub 2010 Oct 4, PMID: 20921232. 
- 
-a later exercise
-retrieves  similar  information  from  a  GFF  file.  We will install the package first, then load it into memory.
+
+A later exercise retrieves  similar  information  from  a  GFF  file.  We will install the package first, then load it into memory.
 
 ```{r}
 install.packages("/home/ace/ace_workshop/ace_bioconductor/TxDb.Dmelanogaster.UCSC.dm3.ensGene_3.2.2.tar.gz", repos=NULL)
@@ -104,9 +117,11 @@ fls <- c(untreated1_chr4(), untreated3_chr4())
 4. Plot  the  counts  in  the  two  samples,  perhaps  transforming  the  counts  with asinh (a  log-like  transform  that deals with 0’s better).
 
 5.  As an additional exercise, use the rtracklayer package to retrieve and parse a GFF file containing similar annotations.
+
+The annotations are in a GTF file on theEnsembl web site. We download them to our local disk, then usertracklayer’simportto parse the file to a GRanges instance. We subset this to contain relevant information, then split the GRanges into a GRangesList, based on the geneid column extracted from the GFF file. This could then be used in summarizeOverlaps, as above and without further change.
+
 How would this source of annotation tie into the work flow we have just performed? (Not really an exercise - how to download and convert gff)
 
-The  annotations  are  in  a  GTF  file  on  theEnsembl  web  site.  We  download  them  to  our  local  disk,  then  usertracklayer’simportto  parse  the  file  to  aGRangesinstance.   We  subset  this  to  contain  relevant  information,  then  split  the GRanges into  a GRangesList,  based  on  the geneid column  extracted  from  the  GFF  file.  This  could  then  be  used  insummarizeOverlaps,  as  above  and  without further change.
 ```{r}
 library(rtracklayer)
 # import gff
@@ -119,4 +134,5 @@ idx <- gff0$source == "protein_coding" & gff0$type == "exon" & seqnames(gff0) ==
 gff1 <- gff0[idx]
 chr4.gff <- split(gff1, mcols(gff1)$gene_id)
 ```
+
 
