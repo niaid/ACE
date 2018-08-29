@@ -137,8 +137,6 @@ names(fls) <- sub("_chr4.bam", "", basename(fls))
 bfl <- BamFileList(fls)
 ```
 
-
-
 3.  Use `summarizeOverlaps` to  count  the  number  of  reads  in  each  region  of  interest of the BamFileList.   The  RNA-seq  protocol  was not  strand  aware,  so  choose `ignore.strand=TRUE`.  The  object  returned  by `summarizeOverlaps` is  an  instance of class `SummarizedExperiment`.  Explore it, and the counts that have been generate.
 
 ```{r}
