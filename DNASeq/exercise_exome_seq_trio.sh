@@ -21,7 +21,8 @@
 # 		The modified files are available for download here: 
 #		https://s3.amazonaws.com/ace-uganda/exome.corpas.tar.gz
 
-cp -R /path/where/share_corpas/ ~/Documents/variants_run
+mkdir ~/Documents/variants_run
+cp -R ~/ace_workshop/share_files/share_corpas/* ~/Documents/variants_run/
 
 # create directory for input reads
 cd ~/Documents/variants_run
