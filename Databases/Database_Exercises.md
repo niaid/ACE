@@ -25,7 +25,7 @@ chr7    127480532       127481699       Neg4    0       -       127480532       
 > Use NCBI's Gene Explore the annotations of gene AOAH acyloxyacil hydrolase  (This could be done with UCSC, Ensembl or NCBI gene/protein databases).  Are there any genes overlapping the same genomic region? Which are the closests gene at each extreme? ______ , ________.  Is there a protein structure available for this gene?  This protein has a metal binding domain, which one? _______________
 
 #### 3. Retrieval of short reads
->   Search [NCBI SRA](https://www.ncbi.nlm.nih.gov/sra) and [ENA](https://www.ebi.ac.uk/ena) for short reads (fastq files) for Zaire ebolavirus whole genome
+>   Search [NCBI SRA](https://www.ncbi.nlm.nih.gov/sra) and [ENA](https://www.ebi.ac.uk/ena) for short reads (fastq files) for Zaire ebolavirus whole genome.  For example, use the following experiment entry: SRX4194515
 Which database allows you to find fastq files with fewer clicks? ___________
 
 
