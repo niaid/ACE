@@ -1,6 +1,9 @@
 # Introduction to Molecular Biology Operations
 - Poorani Subramanian poorani.subramanian@nih.gov
+The data and power point presentation we used for this workshop can be downloaded here [intro_molbio.zip]( 	https://s3.amazonaws.com/ace-uganda/intro_molbio.zip)
+
 ### Links
+
 - [ViB Bioinformatics Core wiki](https://wiki.bits.vib.be/index.php/Category:Training)
 - [Benchling](https://benchling.com/)
 - [UGENE](http://ugene.net/)
