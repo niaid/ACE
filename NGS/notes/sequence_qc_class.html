@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Introduction to Sequence QC</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Poorani Subramanian" />
+    <meta name="date" content="2019-02-27" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Introduction to Sequence QC
+## Bioinformatics and Computational Biosciences Branch Seminar
+### Poorani Subramanian
+### 2019-02-27
+
+---
+
+
+
+
+
+
+
+##  BCBB Science Support
+
++ bioinformatics.niaid.nih.gov
++ More help: bioinformatics@niaid.nih.gov
+![](assets/img/image9.png)
+[bioinformatics.niaid.nih.gov](mailto:bioinformatics@niaid.nih.gov)
+[bioinformatics@niaid.nih.gov](https://bioinformatics.niaid.nih.gov/services)
+
+---
+
+##  Why is sequencing challenging? 
+
++ The point of sequencing is not adding the next base
++ The point of sequencing is to **figuring out what that next base added is**
++ **This is where the various sequencing technologies differ**
+![](assets/img/image10.png)
+
+
+---
+
+##  Short History of Sequencing 1 
+
++ First generation
++ Coulson &amp; Sanger 'plus and minus' (1975) – first DNA genome sequenced *ϕ* X174 bacteriophage
++ Maxam and Gilbert chemical cleavage (1977)
++ Sanger sequencing – chain-termination (1977)
+![](assets/img/image11.png)
+
+
+---
+
+##  Short History of Sequencing 2 
+
+**Next-generation (NGS) – short read**
+
++ 454 Life Sciences – pyrosequencing (now defunct)
+	+ Parallelization of the sequencing reactions
+	+ First high-throughput sequencing machine
++ **Solexa** **/Illumina** – SBS: sequencing by synthesis
+	+ Fluorescent reversible-terminator
+	+ Read length ~ 150-300bp
++ Other methods – ABI SOLiD (defunct) and Ion Torrent
+
+.pull-left[![](assets/img/image12.jpg)]
+
+.pull-right[![](assets/img/image13.png)]
+
+
+
+
+---
+
+##  Short History of Sequencing 3 
+
++ Third generation - long read
++ Sometimes characterized by not needing amplification – potentially sequencing entire single molecules (SMS)
++ PacBio – SMRT
+	+ Fast
+	+ ~10kb
+	+ Error rate only a little higher than short read
++ Oxford Nanopore – ION
+	+ Faster and cheaper
+	+ Error rates are higher than for short reads
+	+ 5-10kb
++ 10X Genomics
+	+ New methods of barcodes/indexing
+
+
+---
+
+#  File Formats 
+
+
+
+---
+
+##  File Formats 
+
++ Sequence Data
+	+ FASTA/QUAL
+	+ FASTQ
+	+ FAST5 - nanopore
+	+ Older formats – sff
++ Alignment Data
+	+ SAM
+	+ BAM
+	+ BED
+
+
+---
+
+##  FASTA and/or QUAL 
+
++ Sequence and quality scores are separate files – old data
++ Or FASTA only with no quality data available
+	+ Pre-processed in some way
++ Header
++ Sequence
+	+ All on one line
+	+ Or it will be truncated – 80-120 characters
+![](assets/img/image14.png)
+
+---
+
+## FASTQ
+
+- Sequence and quality in single file
+
+```
+@M03213:59:000000000-AWR6D:1:1101:12406:1145 1:N:0:NCCTGAGC+NTATTAAG
+GTGCCAGCAGCCGCGGTAATACGGAGGGTGCGAGCGTTAATCGGAATAACTGGGCGTAAAGGGCACGCAGGCGGATTTTTAAGTGAGGTNTGAAAGCCCCGGGCTTAACCTGGGAATTGCATTTCAGACTGGGAATCTAGAGTACTTTAGGGAGGGGTAGAATTCCACGTGTAGCGGTGAAATGCGTAGAGATGTGGAGGAATACCGAAGGCGAAGGCAGCCCCTTGGGAATGTACTGNCGCTCATGGTCGAACGCGTGGG
+```
+
+```
+@&lt;instrument&gt;:&lt;run number&gt;:&lt;flowcell&gt;:&lt;lane&gt;:&lt;tile&gt;:&lt;x-pos&gt;:&lt;y-pos&gt;  &lt;read&gt;:&lt;is filtered&gt;:&lt;control number&gt;:&lt;sample number&gt;
+```
+
+### Header
+- Read identifier is the beginning part (before the space)
+- The end part (after the space) is used for demuxing or PE information
+
+### Raw sequence
+- All on one line - no spaces - DNA or RNA, should be one of the IUPAC characters.
+
+
+---
+
+##  FASTQ Quality Scores
+
++ Sequence and quality in single file
+
+```
+@M03213:59:000000000-AWR6D:1:1101:12406:1145 1:N:0:NCCTGAGC+NTATTAAG
+GTGCCAGCAGCCGCGGTAATACGGAGGGTGCGAGCGTTAATCGGAATAACTGGGCGTAAAGGGCACGCAGGCGG
++
+-6,ACGGAEFGGG&lt;&lt;FFG?FC@EF8AFCFGEGGCCCBGGGGGGDGGGGGEEFA&lt;FGCE,EFDCFFFGGGGCCDG
+```
++ Quality Scores
++ Phred quality scores:  Let *p* be the the probability that the corresponding base call is incorrect, then
++ Additive constant - Q+C – encoded in ASCII
++ Usually, constant is 33 – Phred+33
++ 40 is usually highest score – very, very rarely up to 60
++ Illumina &gt; 1.8 ~2011
+.pull-left[![](assets/img/image17.png)]
+
+.pull-right[![](assets/img/image16.png)]
+[ASCII](https://www.cs.cmu.edu/~pattis/15-1XX/common/handouts/ascii.html)
+
+
+---
+
+##  Convert from FASTQ to FASTA 
+
++ FASTX-Toolkit
++ SRA-toolkit – download data and automatically convert
+
+
+---
+
+##  Sequence data 
+
++ What it looks like, types, quality
+
+---
+
+##  Anatomy of an Illumina Run 
+
++ What comes out of the sequencer?
+![](assets/img/image18.png)
+
+
+---
+
+##  Anatomy of an Illumina Run 
+
++ What comes out of the sequencer?
++ Nowadays, the sequencer can convert the basecalls to FASTQ, but can also use bcl2fastq https:// support.illumina.com /sequencing/ sequencing_software /bcl2fastq-conversion-software.html
+![](assets/img/image18.png)
+
+
+---
+
+##  Single End vs Paired End 
+
+![](assets/img/image19.jpg)
+
+
+---
+
+##  Adapters, Primers, Indexes 
+
++ Reads from a sequencer may have extra sequences on either end that we should remember are there
++ Indexes are used by the sequencer to separate data into separate sample files – **demultiplex**
+![](assets/img/image20.png)
+
+---
+
+##  Converting and Demultiplexing 
+
++ Illumina sequencer can convert &amp; demux itself
++ bcl2fastq
+	+ Converts BaseCalls to FASTQ
+	+ Demultiplexes the data
+		+ Reads that it can't figure out goes into files called "Undetermined"
+		+ Should check if the Undetermined files are unreasonably Large
+		+ Uses SampleSheet.csv to map barcodes to samples
++ Other tools
+	+ Idemp - https://github.com/yhwu/idemp , fastq -pair https:// github.com / linsalrob / fastq -pair
+[https://github.com/yhwu/idemp](https://github.com/yhwu/idemp)
+
+
+---
+
+##  How to assess data quality? 
+
++ The sequencing lab runs quality-control tests to ensure that the actual run was successful.
++ We should run our own QC prior to analysis
+	+ We should all be skeptics! To avoid misinterpretation of the data due to unexpected bias
++ QC measurements can report the following:
+	+ Percent GC in sample reads
+	+ Presence of overrepresented kmers and sequences such as adapters
+	+ Per base quality score
+	+ Distribution of nucleotide bases
++ After mapping reads to a genome, additional test could be run to determine:
+	+ Mapping error rate
+	+ Percent of possible PCR duplicates (reads with same start and end position in reference genome)
+	+ Distribution of insert size (pair ends)
+
+
+---
+
+## Sequencing QC 
+
++ **FASTQC:** https://www.bioinformatics.babraham.ac.uk/projects/fastqc/
++ http://multiqc.info/
++ BaseSpace Tips: https://blog.horizondiscovery.com/diagnostics/the-5-ngs-qc-metrics-you-should-know
++ Different types of data require different QC metrics
+	+ Example: whole genome shotgun vs amplicon
+[https://www.bioinformatics.babraham.ac.uk/projects/fastqc/](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
+[http://multiqc.info/](https://blog.horizondiscovery.com/diagnostics/the-5-ngs-qc-metrics-you-should-know)
+[ https://blog.horizondiscovery.com/diagnostics/the-5-ngs-qc-metrics-you-should-know](http://multiqc.info/)
+
+
+---
+
+#  Improving Data Quality 
+
++ Trimming and Filtering
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
