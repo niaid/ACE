@@ -1,18 +1,38 @@
 # Locus
 
-## Class Login
+## Login via ssh
 
 ```bash
-ssh username@ai-submit2.niaid.nih.gov
+ssh -X username@ai-submit2.niaid.nih.gov
 ## enter password
 ```
 
-## Copy folders from Locus to Laptop
+
+
+## Interactive session
+
+```bash
+qrsh -l h_vmem=32G
+```
+
+
+
+## Access folders via ftp
+
+- Cyberduck -> Open Connection (icon top left of the window)
+![](assets/img/cyberduck.png)
+
+
+
+
+
+## Copy folders from Locus to Laptop via command line
 
 ```bash
 ## example command: replace username with your username!
 scp -r username@ai-submit2.niaid.nih.gov:/classhome/username ~/Desktop
 ```
+
 
 
 ## More information for the curious

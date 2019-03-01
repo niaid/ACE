@@ -18,13 +18,10 @@ data.
 
 #### Tools
 - [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
-
 - MultiQC
-
-- bowtie2
-
-- bbduk
-
+- [bowtie2](http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)
+- [Geneious](https://support.geneious.com/hc/en-us) - [how to install](http://inside.niaid.nih.gov/topic/IT/support/software/Pages/geneious.aspx) (NIAID intranet)
+- [bbduk](https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/bbduk-guide/) - BBDuk is also available in Geneious -> Tools -> Plugins -> BBDuk Trimmer
 - [Nephele](https://nephele.niaid.nih.gov/)
 
   
