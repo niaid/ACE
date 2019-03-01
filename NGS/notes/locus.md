@@ -17,7 +17,7 @@ qrsh -l h_vmem=32G
 
 
 
-## Access folders via ftp
+## Access folders via sftp
 
 - Cyberduck -> Open Connection (icon top left of the window)
 ![](assets/img/cyberduck.png)
