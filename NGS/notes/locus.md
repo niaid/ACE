@@ -15,7 +15,7 @@ ssh -X username@ai-submit2.niaid.nih.gov
 qrsh -l h_vmem=32G
 ```
 
-
+- `h_vmem` is the maximum amount of memory you will be allowed to use.  You should set this parameter based on how big the files are that you will be working with.  32 gigabytes is (way?) more than enough for the datasets in this seminar.
 
 ## Access folders via sftp
 

@@ -1,0 +1,92 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700);
+
+body { font-family: 'Arial', 'Helvetica', 'sans-serif'; }
+h1, h2, h3 {
+  font-family: 'Arial', 'Helvetica', 'sans-serif';
+  font-weight: bold;
+}
+
+a, a > code {
+  color: #0F6FC6;
+}
+
+.remark-code, .remark-inline-code { 
+  font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;
+}
+
+.remark-inline-code, .remark-code-line {
+  background-color: #F6F8FA;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.titleandcontent ul {
+  background-color: white;
+}
+
+.titleandcontent {
+  background-image: url(../../assets/img/niaidslide.png);
+  background-size: contain;
+  background-position: left top;
+}
+
+.titleandcontent {
+  padding-top: 10px;
+  padding-left: 15px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+.remark-slide-content.titleandcontent img {
+  max-height: 500px;
+  object-fit: scale-down;
+}
+
+.titleandcontent > p > img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.titleandcontent > h2:first-of-type {
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+
+.remark-slide-container {
+  background-color: #666666;
+}
+
+.remark-slide-scaler {
+  box-shadow: 0 0 30px #282828;
+}
+
+.title-slide {
+  padding-right: 90px;
+  padding-left: 10px;
+  background-image: url(../../assets/img/niaid.png);
+  background-size: cover;
+  background-position: left top;
+}
+
+.section-header {
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 90px;
+  padding-bottom: 10px;
+  background-image: url(../../assets/img/niaidsection.png);
+  background-size: cover;
+  background-position: right top;
+}
+
+.inverse h1, .inverse h2, .inverse h3 {
+  color: black;
+  text-shadow: none;
+}
+
+.inverse {
+  background-color: transparent;
+}
+
+
+

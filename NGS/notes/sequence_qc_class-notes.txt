@@ -14,7 +14,16 @@ Heather, J. M., & Chain, B. (2016). The sequence of sequencers: The history of s
 
 
 ---#5
-Pyrosequencing - infer the nucleotides from light production of enzyme luciferase First HTS machine was the GS 20 Technically, Sanger and pyrosequencing are also methods of sequencing by synthesis (using dna polymerase to add nucleotides to the complementary strand of the template, but that's what solexa called their method Amplification methods differ 454 DNA molecules being clonally amplified in an emulsion PCR ( emPCR ). Adapter ligation and PCR produces DNA libraries with appropriate 5′ and 3′ ends, which can then be made single stranded and immobilized onto individual suitably oligonucleotide-tagged microbeads. Bead-DNA conjugates can then be emulsified using aqueous amplification reagents in oil, ideally producing emulsion droplets containing only one bead (illustrated in the two leftmost droplets, with different molecules indicated in different colours ). Clonal amplification then occurs during the emPCR as each template DNA is physically separate from all others, with daughter molecules remaining bound to the microbeads. This is the conceptual basis underlying sequencing in 454, Ion Torrent and polony sequencing protocols. Illumina – bridge amplification
+Pyrosequencing - infer the nucleotides from light production of enzyme luciferase
+First HTS machine was the GS 20
+Technically, Sanger and pyrosequencing are also methods of sequencing by synthesis (using dna polymerase to add nucleotides to the complementary strand of the template, but that's what solexa called their method
+
+Amplification methods differ
+454
+DNA molecules being clonally amplified in an emulsion PCR (emPCR). Adapter ligation and PCR produces DNA libraries with appropriate 5′ and 3′ ends, which can then be made single stranded and immobilized onto individual suitably oligonucleotide-tagged microbeads. Bead-DNA conjugates can then be emulsified using aqueous amplification reagents in oil, ideally producing emulsion droplets containing only one bead (illustrated in the two leftmost droplets, with different molecules indicated in different colours). Clonal amplification then occurs during the emPCR as each template DNA is physically separate from all others, with daughter molecules remaining bound to the microbeads. This is the conceptual basis underlying sequencing in 454, Ion Torrent and polony sequencing protocols.   
+
+Illumina – bridge amplification
+
 
 
 ---#6
@@ -46,6 +55,8 @@ Line 2 is raw sequence
 
 ---#13
 Line 3 is single '+' https:// www.cs.cmu.edu /~ pattis /15-1XX/common/handouts/ ascii.html Example: Look up first character '-' in ASCII table and subtract 33 Phred+33 is Sanger standard Illumina switched around different standards for a while and settled back to Phred+33
+Starting with Illumina 1.3-1.7 used Phred+64
+Illumina 1.5-1.7 if quality scores were below Q15 at end of read, were arbitrarily assigned score 2 which is B.
 
 
 ---#14

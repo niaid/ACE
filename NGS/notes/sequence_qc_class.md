@@ -1,11 +1,19 @@
 Introduction to Sequence QC
-===========================
+================
 
 Bioinformatics and Computational Biosciences Branch Seminar
 
+Poorani Subramanian, Computational Biology Specialist
+
 4 March 2019
 
-Poorani Subramanian, Computational Biology Specialist
+-   [BCBB Science Support](#bcbb-science-support)
+-   [Sequencing intro](#sequencing-intro)
+-   [Files](#files)
+-   [Sequence data](#sequence-data)
+-   [Improving Data Quality](#improving-data-quality)
+-   [Appendix 1: Short history of
+    sequencing](#appendix-1-short-history-of-sequencing)
 
 BCBB Science Support
 --------------------
@@ -16,86 +24,43 @@ BCBB Science Support
 
 ------------------------------------------------------------------------
 
-Why is sequencing challenging?
-------------------------------
+Sequencing intro
+================
 
--   The point of sequencing is not adding the next base
--   The point of sequencing is to **figuring out what that next base
+------------------------------------------------------------------------
+
+DNA polymerisation
+------------------
+
+![](assets/img/image10.png)
+
+-   In nature, during DNA replication, the purpose of DNA polymerisation
+    is to the next complementary base to the new strand.
+-   The purpose of sequencing is to **figuring out what that next base
     added is**
 -   **This is where the various sequencing technologies differ**
-    ![](assets/img/image10.png)
 
 ------------------------------------------------------------------------
 
-Short History of Sequencing 1
------------------------------
+Basic steps: Sample to data
+---------------------------
 
--   First generation
--   Coulson & Sanger ‘plus and minus’ (1975) – first DNA genome
-    sequenced *ϕ* X174 bacteriophage
--   Maxam and Gilbert chemical cleavage (1977)
--   Sanger sequencing – chain-termination (1977)
-    ![](assets/img/image11.png)
+-   Protocol depends on sample type and sequencing type.
 
-------------------------------------------------------------------------
+1.  Extract the DNA.  
+2.  Library preparation.
+    -   Fragmenting the DNA.
+    -   Adding *adapter* sequences to the ends.
+3.  Template amplication\*
+    -   Clonal amplification of the fragments to ensure a clear signal.
+4.  Sequencing\*
 
-Short History of Sequencing 2
------------------------------
-
-**Next-generation (NGS) – short read**
-
--   454 Life Sciences – pyrosequencing (now defunct)
-    -   Parallelization of the sequencing reactions
-    -   First high-throughput sequencing machine
--   **Solexa** **/Illumina** – SBS: sequencing by synthesis
-    -   Fluorescent reversible-terminator
-    -   Read length \~ 150-300bp
--   Other methods – ABI SOLiD (defunct) and Ion Torrent
-
-![](assets/img/image12.jpg)
-
-![](assets/img/image13.png)
+\*3 & 4 take place in the sequencing machine.
 
 ------------------------------------------------------------------------
 
-Short History of Sequencing 3
------------------------------
-
--   Third generation - long read
--   Sometimes characterized by not needing amplification – potentially
-    sequencing entire single molecules (SMS)
--   PacBio – SMRT
-    -   Fast
-    -   \~10kb
-    -   Error rate only a little higher than short read
--   Oxford Nanopore – ION
-    -   Faster and cheaper
-    -   Error rates are higher than for short reads
-    -   5-10kb
--   10X Genomics
-    -   New methods of barcodes/indexing
-
-------------------------------------------------------------------------
-
-File Formats
-============
-
-------------------------------------------------------------------------
-
-File Formats
-------------
-
--   Sequence Data
-    -   FASTA/QUAL
-    -   FASTQ
-    -   FAST5 - nanopore
-    -   Older formats – sff
--   Alignment Data
-    -   SAM
-    -   BAM
-    -   BED
-
-------------------------------------------------------------------------
+Files
+=====
 
 FASTA and/or QUAL
 -----------------
@@ -116,14 +81,12 @@ FASTQ
 
 -   Sequence and quality in single file
 
-<!-- -->
-
-    @M03213:59:000000000-AWR6D:1:1101:12406:1145 1:N:0:NCCTGAGC+NTATTAAG
-    GTGCCAGCAGCCGCGGTAATACGGAGGGTGCGAGCGTTAATCGGAATAACTGGGCGTAAAGGGCACGCAGGCGGATTTTTAAGTGAGGTNTGAAAGCCCCGGGCTTAACCTGGGAATTGCATTTCAGACTGGGAATCTAGAGTACTTTAGGGAGGGGTAGAATTCCACGTGTAGCGGTGAAATGCGTAGAGATGTGGAGGAATACCGAAGGCGAAGGCAGCCCCTTGGGAATGTACTGNCGCTCATGGTCGAACGCGTGGG
-
-    @<instrument>:<run number>:<flowcell>:<lane>:<tile>:<x-pos>:<y-pos>  <read>:<is filtered>:<control number>:<sample number>
+`@M03213:59:000000000-AWR6D:1:1101:12406:1145 1:N:0:NCCTGAGC+NTATTAAG`
+`GTGCCAGCAGCCGCGGTAATACGGAGGGTGCGAGCGTTAATCGGAATAACTGGGCGTAAAGGGCACGCAGGCGGATTTTTAAGTGAGGTNTGAAAGCCCCGGGCTTAACCTGGGAATTGCATTTCAGACTGGGAATCTAGAGTACTTTAGGGAGGGGTAGAATTCCACGTGTAGCGGTGAAATGCGTAGAGATGTGGAGGAATACCGAAGGCGAAGGCAGCCCCTTGGGAATGTACTGNCGCTCATGGTCGAACGCGTGGG`
 
 ### Header
+
+`@<instrument>:<run number>:<flowcell>:<lane>:<tile>:<x-pos>:<y-pos>  <read>:<is filtered>:<control number>:<sample number>`
 
 -   Read identifier is the beginning part (before the space)
 -   The end part (after the space) is used for demuxing or PE
@@ -139,7 +102,20 @@ FASTQ
 FASTQ Quality Scores
 --------------------
 
--   Sequence and quality in single file
+-   called **Phred** scores after the inventor **Ph**il Green.
+
+### How are they calculated?
+
+1.  Phred score Q: Given *p*, the probability that the corresponding
+    base call is incorrect,  
+    *Q = -log<sub>10</sub>p*.
+    -   40 is usually highest score – very, very rarely up to 60
+2.  Add constant: Q+C
+    -   usually, *C = 33* → Phred+33 format is most common
+        (Illumina &gt; 1.8 \~2011)
+3.  This value, Q+C, is encoded as an
+    [ASCII](https://www.cs.cmu.edu/~pattis/15-1XX/common/handouts/ascii.html)
+    character in the FASTQ file.
 
 <!-- -->
 
@@ -148,20 +124,22 @@ FASTQ Quality Scores
     +
     -6,ACGGAEFGGG<<FFG?FC@EF8AFCFGEGGCCCBGGGGGGDGGGGGEEFA<FGCE,EFDCFFFGGGGCCDG
 
--   Quality Scores
--   Phred quality scores: Let *p* be the the probability that the
-    corresponding base call is incorrect, then
--   Additive constant - Q+C – encoded in ASCII
--   Usually, constant is 33 – Phred+33
--   40 is usually highest score – very, very rarely up to 60
--   Illumina &gt; 1.8 \~2011
+*Example*  
+First quality character is `-` which is *45* in the ASCII table.  
+*Q = 45-33 = 12*
 
-<img src='assets/img/image17.png' height=500>
+<p float="center">
+<img src='assets/img/image16.png' width=500 align='top' /><img src='assets/img/image17.png' width=300 />
+</p>
+???
 
-![](assets/img/image16.png)
+Line 3 is single ‘+’ <https://> www.cs.cmu.edu /\~ pattis
+/15-1XX/common/handouts/ ascii.html
 
--   [ASCII table
-    reference](https://www.cs.cmu.edu/~pattis/15-1XX/common/handouts/ascii.html)
+Phred+33 is Sanger standard. Illumina switched around different
+standards for a while and settled back to Phred+33. Starting with
+Illumina 1.3-1.7 used Phred+64. Illumina 1.5-1.7 if quality scores were
+below Q15 at end of read, were arbitrarily assigned score 2 which is B.
 
 ------------------------------------------------------------------------
 
@@ -174,7 +152,7 @@ Convert from FASTQ to FASTA
 ------------------------------------------------------------------------
 
 Sequence data
--------------
+=============
 
 -   What it looks like, types, quality
 
@@ -193,7 +171,9 @@ Adapters, Primers, Indexes
 -   Reads from a sequencer may have extra sequences on either end that
     we should remember are there
 -   Indexes are used by the sequencer to separate data into separate
-    sample files – **demultiplex** ![](assets/img/image20.png)
+    sample files – **demultiplex**
+
+![](assets/img/image20.png)
 
 ------------------------------------------------------------------------
 
@@ -263,4 +243,97 @@ Sequencing QC
 Improving Data Quality
 ======================
 
--   Trimming and Filtering
+Trimming and Filtering
+
+------------------------------------------------------------------------
+
+Appendix 1: Short history of sequencing
+=======================================
+
+-   Heather, J. M., & Chain, B. (2016). The sequence of sequencers: The
+    history of sequencing DNA. *Genomics*, *107*(1), 1–8. doi:
+    [10.1016/j.ygeno.2015.11.003](https://dx.doi.org/10.1016/j.ygeno.2015.11.003)
+
+-   Ambardar, S., Gupta, R., Trakroo, D., Lal, R., & Vakhlu, J. (2016).
+    High Throughput Sequencing: An Overview of Sequencing Chemistry.
+    *Indian Journal of Microbiology*, 56(4), 394–404. doi:
+    [10.1007/s12088-016-0606-4](https://doi.org/10.1007/s12088-016-0606-4)
+
+------------------------------------------------------------------------
+
+Short History of Sequencing 1
+-----------------------------
+
+-   First generation
+-   Coulson & Sanger ‘plus and minus’ (1975) – first DNA genome
+    sequenced *ϕ* X174 bacteriophage
+-   Maxam and Gilbert chemical cleavage (1977)
+-   Sanger sequencing – chain-termination (1977)
+    ![](assets/img/image11.png)
+
+------------------------------------------------------------------------
+
+Short History of Sequencing 2
+-----------------------------
+
+**Next-generation (NGS) – short read**
+
+-   454 Life Sciences – pyrosequencing (now defunct)
+    -   Parallelization of the sequencing reactions
+    -   First high-throughput sequencing machine
+-   **Solexa** **/Illumina** – SBS: sequencing by synthesis
+    -   Fluorescent reversible-terminator
+    -   Read length \~ 150-300bp
+-   Other methods – ABI SOLiD (defunct) and Ion Torrent
+
+<img src='assets/img/image12.jpg' width=500 />
+<img src='assets/img/image13.png' width=500 />
+
+???
+
+Pyrosequencing - infer the nucleotides from light production of enzyme
+luciferase.
+
+First HTS machine was the GS 20
+
+Technically, Sanger and pyrosequencing are also methods of sequencing by
+synthesis (using dna polymer ase to add nucleotides to the complementary
+strand of the template, but that’s what solexa called the ir method
+
+Amplification methods differ
+
+454
+
+DNA molecules being clonally amplified in an emulsion PCR (emPCR).
+Adapter ligation and PCR produces DNA libraries with appropriate 5′ and
+3′ ends, which can then be made single stranded and immobilized onto
+individual suitably oligonucleotide-tagged microbeads. Bead-DNA
+conjugates can then be emulsifi ed using aqueous amplification reagents
+in oil, ideally producing emulsion droplets containing only o ne bead
+(illustrated in the two leftmost droplets, with different molecules
+indicated in different co lours). Clonal amplification then occurs
+during the emPCR as each template DNA is physically separate from all
+others, with daughter molecules remaining bound to the microbeads. This
+is the conceptual b asis underlying sequencing in 454, Ion Torrent and
+polony sequencing protocols.
+
+Illumina – bridge amplification
+
+------------------------------------------------------------------------
+
+Short History of Sequencing 3
+-----------------------------
+
+-   Third generation - long read
+-   Sometimes characterized by not needing amplification – potentially
+    sequencing entire single molecules (SMS)
+-   PacBio – SMRT
+    -   Fast
+    -   \~10kb
+    -   Error rate only a little higher than short read
+-   Oxford Nanopore – ION
+    -   Faster and cheaper
+    -   Error rates are higher than for short reads
+    -   5-10kb
+-   10X Genomics
+    -   New methods of barcodes/indexing
