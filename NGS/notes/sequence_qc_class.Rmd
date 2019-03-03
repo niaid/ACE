@@ -22,6 +22,7 @@ output:
 
 ```{r setup, include=F}
 fmt <- rmarkdown::default_output_format(knitr::current_input())$name == "md_document"
+outh <- function(moonh) { if (fmt) return(NULL) else return(moonh) }
 ```
 
 ```{r layout, results='asis', include=!fmt, echo=F}
@@ -68,6 +69,7 @@ writeLines(c("class: title-slide center middle section-header"))
 
 
 ---
+
 ```{r layout2, results='asis', include=!fmt, echo=F}
 writeLines(c("class: title-slide center middle section-header"))
 ```
@@ -76,6 +78,7 @@ writeLines(c("class: title-slide center middle section-header"))
 #  Files
 
 ---
+
 ## File Formats
 
 + Sequence Data
@@ -196,9 +199,12 @@ writeLines(c("class: title-slide center middle section-header"))
 
 ---
 
-##  Single End vs Paired End 
+##  Single End vs Paired End vs Mate-Pair
 
-![](assets/img/image19.jpg)
+```{r, out.height = outh("600px"), echo=F}
+knitr::include_graphics("assets/img/image19.svg")
+```
+
 
 
 ---
@@ -208,7 +214,9 @@ writeLines(c("class: title-slide center middle section-header"))
 + Reads from a sequencer may have extra sequences on either end that we should remember are there
 + Indexes are used by the sequencer to separate data into separate sample files – **demultiplex**
 
-![](assets/img/image20.png)
+```{r, out.height = outh("500px"), echo=F}
+knitr::include_graphics("assets/img/image20.svg")
+```
 
 ---
 

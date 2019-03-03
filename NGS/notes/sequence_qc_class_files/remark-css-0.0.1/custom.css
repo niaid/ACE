@@ -37,11 +37,6 @@ a, a > code {
   padding-bottom: 10px;
 }
 
-.remark-slide-content.titleandcontent img {
-  max-height: 500px;
-  object-fit: scale-down;
-}
-
 .titleandcontent > p > img {
   display: block;
   margin-left: auto;

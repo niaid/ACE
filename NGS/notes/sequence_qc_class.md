@@ -62,6 +62,23 @@ Basic steps: Sample to data
 Files
 =====
 
+------------------------------------------------------------------------
+
+File Formats
+------------
+
+-   Sequence Data
+    -   FASTA/QUAL
+    -   FASTQ
+    -   FAST5 - nanopore
+    -   Older formats – sff
+-   Alignment Data
+    -   SAM
+    -   BAM
+    -   BED
+
+------------------------------------------------------------------------
+
 FASTA and/or QUAL
 -----------------
 
@@ -158,10 +175,10 @@ Sequence data
 
 ------------------------------------------------------------------------
 
-Single End vs Paired End
-------------------------
+Single End vs Paired End vs Mate-Pair
+-------------------------------------
 
-![](assets/img/image19.jpg)
+![](assets/img/image19.svg)
 
 ------------------------------------------------------------------------
 
@@ -173,7 +190,7 @@ Adapters, Primers, Indexes
 -   Indexes are used by the sequencer to separate data into separate
     sample files – **demultiplex**
 
-![](assets/img/image20.png)
+<img src="assets/img/image20.svg" height="600px" />
 
 ------------------------------------------------------------------------
 
