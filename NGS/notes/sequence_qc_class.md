@@ -9,8 +9,8 @@ Poorani Subramanian, Computational Biology Specialist
 
 -   [BCBB Science Support](#bcbb-science-support)
 -   [Sequencing intro](#sequencing-intro)
--   [Files](#files)
 -   [Sequence data](#sequence-data)
+-   [Files](#files)
 -   [Improving Data Quality](#improving-data-quality)
 -   [Appendix 1: Short history of
     sequencing](#appendix-1-short-history-of-sequencing)
@@ -56,6 +56,57 @@ Basic steps: Sample to data
 4.  Sequencing\*
 
 \*3 & 4 take place in the sequencing machine.
+
+------------------------------------------------------------------------
+
+Sequence data
+=============
+
+-   What it looks like, types, quality
+
+------------------------------------------------------------------------
+
+Single End vs Paired End vs Mate-Pair
+-------------------------------------
+
+![](assets/img/image19.svg)
+
+------------------------------------------------------------------------
+
+Adapters, Primers, Indexes
+--------------------------
+
+-   Reads from a sequencer may have extra sequences on either end that
+    we should remember are there
+-   Indexes are used by the sequencer to separate data into separate
+    sample files – **demultiplex**
+
+![](assets/img/image20.svg)
+
+------------------------------------------------------------------------
+
+Anatomy of an Illumina Run
+--------------------------
+
+-   What comes out of the sequencer? ![](assets/img/image18.png)
+
+------------------------------------------------------------------------
+
+Converting and Demultiplexing
+-----------------------------
+
+-   Illumina sequencer can convert & demux itself
+-   [bcl2fastq](https://support.illumina.com/sequencing/sequencing_software/bcl2fastq-conversion-software.html)
+    -   Converts BaseCalls to FASTQ
+    -   Demultiplexes the data
+        -   Reads that it can’t figure out goes into files called
+            “Undetermined”
+        -   Should check if the Undetermined files are unreasonably
+            Large
+        -   Uses SampleSheet.csv to map barcodes to samples
+-   Other tools
+    -   Idemp - <https://github.com/yhwu/idemp>, fastq-pair
+        <https://github.com/linsalrob/fastq-pair>
 
 ------------------------------------------------------------------------
 
@@ -123,14 +174,14 @@ FASTQ Quality Scores
 
 ### How are they calculated?
 
-1.  Phred score Q: Given *p*, the probability that the corresponding
+1.  Phred score *Q*: Given *p*, the probability that the corresponding
     base call is incorrect,  
-    *Q = -log<sub>10</sub>p*.
+    *Q* = log<sub>10</sub>*p*.
     -   40 is usually highest score – very, very rarely up to 60
-2.  Add constant: Q+C
-    -   usually, *C = 33* → Phred+33 format is most common
+2.  Add constant: *Q* + *C*
+    -   usually, *C* = 33 → Phred+33 format is most common
         (Illumina &gt; 1.8 \~2011)
-3.  This value, Q+C, is encoded as an
+3.  This value, *Q* + *C*, is encoded as an
     [ASCII](https://www.cs.cmu.edu/~pattis/15-1XX/common/handouts/ascii.html)
     character in the FASTQ file.
 
@@ -143,7 +194,7 @@ FASTQ Quality Scores
 
 *Example*  
 First quality character is `-` which is *45* in the ASCII table.  
-*Q = 45-33 = 12*
+*Q* = 45 − 33 = 12
 
 <p float="center">
 <img src='assets/img/image16.png' width=500 align='top' /><img src='assets/img/image17.png' width=300 />
@@ -165,57 +216,6 @@ Convert from FASTQ to FASTA
 
 -   FASTX-Toolkit
 -   SRA-toolkit – download data and automatically convert
-
-------------------------------------------------------------------------
-
-Sequence data
-=============
-
--   What it looks like, types, quality
-
-------------------------------------------------------------------------
-
-Single End vs Paired End vs Mate-Pair
--------------------------------------
-
-![](assets/img/image19.svg)
-
-------------------------------------------------------------------------
-
-Adapters, Primers, Indexes
---------------------------
-
--   Reads from a sequencer may have extra sequences on either end that
-    we should remember are there
--   Indexes are used by the sequencer to separate data into separate
-    sample files – **demultiplex**
-
-<img src="assets/img/image20.svg" height="600px" />
-
-------------------------------------------------------------------------
-
-Anatomy of an Illumina Run
---------------------------
-
--   What comes out of the sequencer? ![](assets/img/image18.png)
-
-------------------------------------------------------------------------
-
-Converting and Demultiplexing
------------------------------
-
--   Illumina sequencer can convert & demux itself
--   [bcl2fastq](https://support.illumina.com/sequencing/sequencing_software/bcl2fastq-conversion-software.html)
-    -   Converts BaseCalls to FASTQ
-    -   Demultiplexes the data
-        -   Reads that it can’t figure out goes into files called
-            “Undetermined”
-        -   Should check if the Undetermined files are unreasonably
-            Large
-        -   Uses SampleSheet.csv to map barcodes to samples
--   Other tools
-    -   Idemp - <https://github.com/yhwu/idemp>, fastq-pair
-        <https://github.com/linsalrob/fastq-pair>
 
 ------------------------------------------------------------------------
 

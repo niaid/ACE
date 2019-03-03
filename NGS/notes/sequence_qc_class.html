@@ -67,6 +67,54 @@ class: title-slide center middle section-header
 
 
 ---
+class: title-slide center middle section-header
+
+
+#  Sequence data 
+
++ What it looks like, types, quality
+
+---
+
+##  Single End vs Paired End vs Mate-Pair
+
+&lt;img src="assets/img/image19.svg" height="600px" /&gt;
+
+
+
+---
+
+##  Adapters, Primers, Indexes 
+
++ Reads from a sequencer may have extra sequences on either end that we should remember are there
++ Indexes are used by the sequencer to separate data into separate sample files – **demultiplex**
+
+&lt;img src="assets/img/image20.svg" height="500px" /&gt;
+
+---
+
+##  Anatomy of an Illumina Run 
+
++ What comes out of the sequencer?
+![](assets/img/image18.png)
+
+---
+
+##  Converting and Demultiplexing 
+
++ Illumina sequencer can convert &amp; demux itself
++ [bcl2fastq](https://support.illumina.com/sequencing/sequencing_software/bcl2fastq-conversion-software.html)
+	+ Converts BaseCalls to FASTQ
+	+ Demultiplexes the data
+		+ Reads that it can't figure out goes into files called "Undetermined"
+		+ Should check if the Undetermined files are unreasonably Large
+		+ Uses SampleSheet.csv to map barcodes to samples
++ Other tools
+	+ Idemp - https://github.com/yhwu/idemp, fastq-pair https://github.com/linsalrob/fastq-pair
+
+
+
+---
 
 class: title-slide center middle section-header
 
@@ -129,16 +177,16 @@ class: title-slide center middle section-header
 
 
 ### How are they calculated?
-1. Phred score Q:  Given *p*, the probability that the corresponding base call is incorrect,  
-*Q = -log&lt;sub&gt;10&lt;/sub&gt;p*. 
+1. Phred score `\(Q\)`:  Given `\(p\)`, the probability that the corresponding base call is incorrect,  
+`\(Q = \log_{10} p\)`. 
     + 40 is usually highest score – very, very rarely up to 60
-2. Add constant: Q+C
-    + usually, *C = 33* &amp;rarr; Phred+33 format is most common (Illumina &gt; 1.8 ~2011)
-3. This value, Q+C, is encoded as an [ASCII](https://www.cs.cmu.edu/~pattis/15-1XX/common/handouts/ascii.html) character in the FASTQ file.
+2. Add constant: `\(Q+C\)`
+    + usually, `\(C = 33\)` &amp;rarr; Phred+33 format is most common (Illumina &gt; 1.8 ~2011)
+3. This value, `\(Q+C\)`, is encoded as an [ASCII](https://www.cs.cmu.edu/~pattis/15-1XX/common/handouts/ascii.html) character in the FASTQ file.
 
-.pull-left[![](assets/img/image17.png)]
+.pull-left[&lt;img src='assets/img/image16.png' /&gt;]
 
-.pull-right[![](assets/img/image16.png)]
+.pull-right[&lt;img src='assets/img/image17.png' /&gt;]
 
 ---
     
@@ -153,10 +201,11 @@ GTGCCAGCAGCCGCGGTAATACGGAGGGTGCGAGCGTTAATCGGAATAACTGGGCGTAAAGGGCACGCAGGCGG
 
 *Example*  
 First quality character is `-` which is *45* in the ASCII table.  
-*Q = 45-33 = 12*
-.pull-left[![](assets/img/image17.png)]
+`\(Q = 45-33 = 12\)`
 
-.pull-right[![](assets/img/image16.png)]
+.pull-left[&lt;img src='assets/img/image16.png' /&gt;]
+
+.pull-right[&lt;img src='assets/img/image17.png' height='400'/&gt;]
 
 
 
@@ -174,54 +223,6 @@ Illumina 1.5-1.7 if quality scores were below Q15 at end of read, were arbitrari
 
 + FASTX-Toolkit
 + SRA-toolkit – download data and automatically convert
-
-
----
-class: title-slide center middle section-header
-
-
-#  Sequence data 
-
-+ What it looks like, types, quality
-
----
-
-##  Single End vs Paired End vs Mate-Pair
-
-&lt;img src="assets/img/image19.svg" height="600px" /&gt;
-
-
-
----
-
-##  Adapters, Primers, Indexes 
-
-+ Reads from a sequencer may have extra sequences on either end that we should remember are there
-+ Indexes are used by the sequencer to separate data into separate sample files – **demultiplex**
-
-&lt;img src="assets/img/image20.svg" height="500px" /&gt;
-
----
-
-##  Anatomy of an Illumina Run 
-
-+ What comes out of the sequencer?
-![](assets/img/image18.png)
-
----
-
-##  Converting and Demultiplexing 
-
-+ Illumina sequencer can convert &amp; demux itself
-+ [bcl2fastq](https://support.illumina.com/sequencing/sequencing_software/bcl2fastq-conversion-software.html)
-	+ Converts BaseCalls to FASTQ
-	+ Demultiplexes the data
-		+ Reads that it can't figure out goes into files called "Undetermined"
-		+ Should check if the Undetermined files are unreasonably Large
-		+ Uses SampleSheet.csv to map barcodes to samples
-+ Other tools
-	+ Idemp - https://github.com/yhwu/idemp, fastq-pair https://github.com/linsalrob/fastq-pair
-
 
 
 ---

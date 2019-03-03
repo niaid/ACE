@@ -4,6 +4,12 @@ subtitle: 'Bioinformatics and Computational Biosciences Branch Seminar'
 author: Poorani Subramanian, Computational Biology Specialist
 date: "4 March 2019"
 output:
+  md_document:
+    variant: markdown_github-ascii_identifiers+link_attributes
+    toc: true
+    toc_depth: 1
+    pandoc_args: 
+      [ "--template", "/Users/poorani/git/ACE/NGS/notes/sequence_qc_class_files/template.md" ]
   xaringan::moon_reader:
     css: ["default", "sequence_qc_class_files/remark-css-0.0.1/custom.css"]
     lib_dir: libs
@@ -11,12 +17,6 @@ output:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
-  md_document:
-    variant: markdown_github-ascii_identifiers+link_attributes
-    toc: true
-    toc_depth: 1
-    pandoc_args: 
-      [ "--template", "/Users/poorani/git/ACE/NGS/notes/sequence_qc_class_files/template.md" ]
 ---
 
 
@@ -66,6 +66,60 @@ writeLines(c("class: title-slide center middle section-header"))
 4. Sequencing*
 
 \*3 & 4 take place in the sequencing machine.
+
+
+---
+```{r layout3, results='asis', include=!fmt, echo=F}
+writeLines(c("class: title-slide center middle section-header"))
+```
+
+
+#  Sequence data 
+
++ What it looks like, types, quality
+
+---
+
+##  Single End vs Paired End vs Mate-Pair
+
+```{r, out.height = outh("600px"), echo=F}
+knitr::include_graphics("assets/img/image19.svg")
+```
+
+
+
+---
+
+##  Adapters, Primers, Indexes 
+
++ Reads from a sequencer may have extra sequences on either end that we should remember are there
++ Indexes are used by the sequencer to separate data into separate sample files – **demultiplex**
+
+```{r, out.height = outh("500px"), echo=F}
+knitr::include_graphics("assets/img/image20.svg")
+```
+
+---
+
+##  Anatomy of an Illumina Run 
+
++ What comes out of the sequencer?
+![](assets/img/image18.png)
+
+---
+
+##  Converting and Demultiplexing 
+
++ Illumina sequencer can convert & demux itself
++ [bcl2fastq](https://support.illumina.com/sequencing/sequencing_software/bcl2fastq-conversion-software.html)
+	+ Converts BaseCalls to FASTQ
+	+ Demultiplexes the data
+		+ Reads that it can't figure out goes into files called "Undetermined"
+		+ Should check if the Undetermined files are unreasonably Large
+		+ Uses SampleSheet.csv to map barcodes to samples
++ Other tools
+	+ Idemp - https://github.com/yhwu/idemp, fastq-pair https://github.com/linsalrob/fastq-pair
+
 
 
 ---
@@ -133,17 +187,17 @@ writeLines(c("class: title-slide center middle section-header"))
 
 
 ### How are they calculated?
-1. Phred score Q:  Given *p*, the probability that the corresponding base call is incorrect,  
-*Q = -log<sub>10</sub>p*. 
+1. Phred score $Q$:  Given $p$, the probability that the corresponding base call is incorrect,  
+$Q = \log_{10} p$. 
     + 40 is usually highest score – very, very rarely up to 60
-2. Add constant: Q+C
-    + usually, *C = 33* &rarr; Phred+33 format is most common (Illumina > 1.8 ~2011)
-3. This value, Q+C, is encoded as an [ASCII](https://www.cs.cmu.edu/~pattis/15-1XX/common/handouts/ascii.html) character in the FASTQ file.
+2. Add constant: $Q+C$
+    + usually, $C = 33$ &rarr; Phred+33 format is most common (Illumina > 1.8 ~2011)
+3. This value, $Q+C$, is encoded as an [ASCII](https://www.cs.cmu.edu/~pattis/15-1XX/common/handouts/ascii.html) character in the FASTQ file.
 
 ```{r fastqbreak, results='asis', include=!fmt, echo=F}
-cat(".pull-left[![](assets/img/image17.png)]
+cat(".pull-left[<img src='assets/img/image16.png' />]
 
-.pull-right[![](assets/img/image16.png)]
+.pull-right[<img src='assets/img/image17.png' />]
 
 ---
     
@@ -159,11 +213,12 @@ GTGCCAGCAGCCGCGGTAATACGGAGGGTGCGAGCGTTAATCGGAATAACTGGGCGTAAAGGGCACGCAGGCGG
 
 *Example*  
 First quality character is `-` which is *45* in the ASCII table.  
-*Q = 45-33 = 12*
-```{r conditional_block4,  results='asis', eval=!fmt, echo=F}
-cat(".pull-left[![](assets/img/image17.png)]
+$Q = 45-33 = 12$
 
-.pull-right[![](assets/img/image16.png)]
+```{r conditional_block4,  results='asis', eval=!fmt, echo=F}
+cat(".pull-left[<img src='assets/img/image16.png' />]
+
+.pull-right[<img src='assets/img/image17.png' height='400'/>]
 ")
 ```
 
@@ -185,60 +240,6 @@ Illumina 1.5-1.7 if quality scores were below Q15 at end of read, were arbitrari
 
 + FASTX-Toolkit
 + SRA-toolkit – download data and automatically convert
-
-
----
-```{r layout3, results='asis', include=!fmt, echo=F}
-writeLines(c("class: title-slide center middle section-header"))
-```
-
-
-#  Sequence data 
-
-+ What it looks like, types, quality
-
----
-
-##  Single End vs Paired End vs Mate-Pair
-
-```{r, out.height = outh("600px"), echo=F}
-knitr::include_graphics("assets/img/image19.svg")
-```
-
-
-
----
-
-##  Adapters, Primers, Indexes 
-
-+ Reads from a sequencer may have extra sequences on either end that we should remember are there
-+ Indexes are used by the sequencer to separate data into separate sample files – **demultiplex**
-
-```{r, out.height = outh("500px"), echo=F}
-knitr::include_graphics("assets/img/image20.svg")
-```
-
----
-
-##  Anatomy of an Illumina Run 
-
-+ What comes out of the sequencer?
-![](assets/img/image18.png)
-
----
-
-##  Converting and Demultiplexing 
-
-+ Illumina sequencer can convert & demux itself
-+ [bcl2fastq](https://support.illumina.com/sequencing/sequencing_software/bcl2fastq-conversion-software.html)
-	+ Converts BaseCalls to FASTQ
-	+ Demultiplexes the data
-		+ Reads that it can't figure out goes into files called "Undetermined"
-		+ Should check if the Undetermined files are unreasonably Large
-		+ Uses SampleSheet.csv to map barcodes to samples
-+ Other tools
-	+ Idemp - https://github.com/yhwu/idemp, fastq-pair https://github.com/linsalrob/fastq-pair
-
 
 
 ---
