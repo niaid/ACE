@@ -281,8 +281,8 @@ Trimming
 Trimming Tools
 --------------
 
--   Cutadapt - <https://> cutadapt.readthedocs.io/en/stable/guide.html
--   Trimmomatic - <http://> www.usadellab.org / cms /?page= trimmomatic
+-   Cutadapt - <https://cutadapt.readthedocs.io/en/stable/guide.html>
+-   Trimmomatic - <http://> www.usadellab.org/cms/?page=trimmomatic
 -   **BBDuk** -
     <https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/bbduk-guide/>
 
@@ -323,15 +323,20 @@ Reference Genomes
 Alignment tools
 ---------------
 
-**Short Read** + **bowtie2** -
-<http://bowtie-bio.sourceforge.net/bowtie2/index.shtml> + bwa -
-<http://bio-bwa.sourceforge.net/> + map\_ngs\_basics.sh
+**Short Read**
 
-**RNA-seq** + HiSAT -
-<http://www.ccb.jhu.edu/software/hisat/manual.shtml> + STAR -
-<https://github.com/alexdobin/STAR>
+-   **bowtie2** -
+    <http://bowtie-bio.sourceforge.net/bowtie2/index.shtml>
+-   bwa - <http://bio-bwa.sourceforge.net/>
 
-**Long Reads** + minimap2 - <https://github.com/lh3/minimap2>
+**RNA-seq**
+
+-   HiSAT - <http://www.ccb.jhu.edu/software/hisat/manual.shtml>
+-   STAR - <https://github.com/alexdobin/STAR>
+
+**Long Reads**
+
+-   minimap2 - <https://github.com/lh3/minimap2>
 
 ------------------------------------------------------------------------
 

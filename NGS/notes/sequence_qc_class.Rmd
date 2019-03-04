@@ -4,6 +4,12 @@ subtitle: 'Bioinformatics and Computational Biosciences Branch Seminar'
 author: Poorani Subramanian, Computational Biology Specialist
 date: "4 March 2019"
 output:
+  md_document:
+    variant: markdown_github-ascii_identifiers+link_attributes
+    toc: true
+    toc_depth: 1
+    pandoc_args: 
+      [ "--template", "/Users/subramanianp4/git/ACE/NGS/notes/sequence_qc_class_files/template.md" ]
   xaringan::moon_reader:
     css: ["default", "sequence_qc_class_files/remark-css-0.0.1/custom.css"]
     lib_dir: libs
@@ -11,12 +17,6 @@ output:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
-  md_document:
-    variant: markdown_github-ascii_identifiers+link_attributes
-    toc: true
-    toc_depth: 1
-    pandoc_args: 
-      [ "--template", "/Users/subramanianp4/git/ACE/NGS/notes/sequence_qc_class_files/template.md" ]
 ---
 
 
@@ -301,8 +301,8 @@ Trimming and Filtering
 
 ##  Trimming Tools 
 
-+ Cutadapt - https:// cutadapt.readthedocs.io/en/stable/guide.html
-+ Trimmomatic - http:// www.usadellab.org / cms /?page= trimmomatic
++ Cutadapt - https://cutadapt.readthedocs.io/en/stable/guide.html
++ Trimmomatic - http:// www.usadellab.org/cms/?page=trimmomatic
 + **BBDuk** - https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/bbduk-guide/
 
 ---
@@ -349,15 +349,18 @@ writeLines(c("class: title-slide center middle section-header"))
 
 
 **Short Read**
+
 + **bowtie2** - http://bowtie-bio.sourceforge.net/bowtie2/index.shtml
 + bwa - http://bio-bwa.sourceforge.net/
-+ map_ngs_basics.sh
+
 
 **RNA-seq**
+
 + HiSAT - http://www.ccb.jhu.edu/software/hisat/manual.shtml
 + STAR - https://github.com/alexdobin/STAR
 
 **Long Reads**
+
 + minimap2 - https://github.com/lh3/minimap2
 
 ---
