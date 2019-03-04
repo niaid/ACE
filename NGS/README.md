@@ -24,7 +24,7 @@ data.
 - [Geneious](https://support.geneious.com/hc/en-us) - [how to install](http://inside.niaid.nih.gov/topic/IT/support/software/Pages/geneious.aspx) (NIAID intranet)
 - [bbduk](https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/bbduk-guide/) - BBDuk is also available in Geneious -> Tools -> Plugins -> BBDuk Trimmer
 - [samtools](http://www.htslib.org/doc/samtools.html)
-- [Nephele](https://nephele.niaid.nih.gov/)
+- [Nephele](https://nephele.niaid.nih.gov/) - [QC Pipeline](https://nephele.niaid.nih.gov/user_guide_pipes/#qc_pipes) will work with general datasets (even non-microbiome).  [Very detailed info](https://nephele.niaid.nih.gov/details_qc/).
 
   
 
