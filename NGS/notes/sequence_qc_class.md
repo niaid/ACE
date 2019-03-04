@@ -253,9 +253,6 @@ Sequencing QC
     <https://blog.horizondiscovery.com/diagnostics/the-5-ngs-qc-metrics-you-should-know>
 -   Different types of data require different QC metrics
     -   Example: whole genome shotgun vs amplicon
-        <https://www.bioinformatics.babraham.ac.uk/projects/fastqc/>
-        [http://multiqc.info/](https://blog.horizondiscovery.com/diagnostics/the-5-ngs-qc-metrics-you-should-know)
-        [https://blog.horizondiscovery.com/diagnostics/the-5-ngs-qc-metrics-you-should-know](http://multiqc.info/)
 
 ------------------------------------------------------------------------
 
