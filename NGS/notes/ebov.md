@@ -15,7 +15,7 @@ cp ./samfilename.sam /classhome/qc_data/
 6. View the mapping in Geneious.
 7. To find SNPs, look under Annotate and Predict for Find Variations/SNPs...
 
-![](assets/img/snpgeneious.png)
+<img src="assets/img/snpgeneious.png" height=600 />
 
 
 8. Download others' sam files from /classhome/qc_data in Cyberduck.  We can do a comparative analysis of all the Ebola samples in Geneious. Tutorial [here](https://assets.geneious.com/documentation/geneious/App+Note+-+Creating+SNP+Trees+in+Geneious.pdf).  
