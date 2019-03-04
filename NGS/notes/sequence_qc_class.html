@@ -266,6 +266,136 @@ class: title-slide center middle section-header
 
 Trimming and Filtering
 
+---
+
+##  Trimming 
+
++ Adapter/primer trimming
+	+ Remove these sequences from the ends of reads
+	+ Useful for assembly, amplicon data
++ Quality Trimming
+	+ Remove poor quality sequence from ends of reads
+	+ Filter out poor quality reads
+
+
+---
+
+##  Trimming Tools 
+
++ Cutadapt - https:// cutadapt.readthedocs.io/en/stable/guide.html
++ Trimmomatic - http:// www.usadellab.org / cms /?page= trimmomatic
++ **BBDuk** - https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/bbduk-guide/
+
+---
+
+
+class: title-slide center middle section-header
+
+
+
+#  MAPPING 
+
+
+
+---
+
+##  Why do you map reads to a reference? 
+
++ Reference guided assembly
+	+ DNA- seq – genome assembly
+	+ RNA- seq – transcriptome assembly
++ Variant calling
++ RNA- seq gene expression
++ Removing host background/contaminants
+
+---
+
+##  Reference Genomes 
+
++ Where to get them?
+	+ Assemble it yourself
+	+ Download it from NCBI – either by searching or by citation
++ Assess their quality
+	+ Very few genomes are assembled with care and finished!  We need to keep our skepticism!
+	+ Number of contigs vs number of chromosomes
+	+ Contig lengths
+	+ especially at then end of the genome fasta file
+
+
+---
+
+##  Alignment tools 
+
+
+**Short Read**
++ **bowtie2** - http://bowtie-bio.sourceforge.net/bowtie2/index.shtml
++ bwa - http://bio-bwa.sourceforge.net/
++ map_ngs_basics.sh
+
+**RNA-seq**
++ HiSAT - http://www.ccb.jhu.edu/software/hisat/manual.shtml
++ STAR - https://github.com/alexdobin/STAR
+
+**Long Reads**
++ minimap2 - https://github.com/lh3/minimap2
+
+---
+
+##  Alignment File Formats 
+
++ SAM - Sequence Alignment/Map format
++ BAM – SAM file compressed using the BGZF
++ SAM/BAM specification - https://samtools.github.io/hts-specs/SAMv1.pdf
++ BED - used to report features  - https://bedtools.readthedocs.io/en/latest/content/general-usage.html?highlight=bed%20format
+	+ gff , gbk , gbff , gff3
+
+
+---
+
+##  SAM Format 
+
++ Tab separated
++ Headers begin with "@"
+	+ First line is always @HD
+	+ Reference lines are @SQ
++ FLAGS?? https://broadinstitute.github.io/picard/explain-flags.html
+
+.pull-left-small[![](assets/img/samalignment.png)]
+
+.pull-right-big[![](assets/img/samfile.png)]
+
+
+
+![sam file format](assets/img/samformat.png)
+
+???
+
+**CIGAR string**
+
+Operator | Description
+-------- | -----------
+D |	Deletion; the nucleotide is present in the reference but not in the read
+H |	Hard Clipping; the clipped nucleotides are not present in the read.
+I |	Insertion; the nucleotide is present in the read  but not in the rference.
+M |	Match; can be either an alignment match or mismatch. The nucleotide is present in the reference.
+N |	Skipped region; a region of nucleotides is not present in the read
+P |	Padding; padded area in the read and not in the reference
+S |	Soft Clipping;  the clipped nucleotides are present in the read
+X |	Read Mismatch; the nucleotide is present in the reference
+= |	Read Match; the nucleotide is present in the reference
+
+---
+
+##  Alignment Viewing 
+
++ samtools - http://www.htslib.org/
++ bedtools - https://bedtools.readthedocs.io/en/latest/
++ picard - https://broadinstitute.github.io/picard/
++ igv - http://software.broadinstitute.org/software/igv/
++ UCSC Genome Browser - https://genome.ucsc.edu/index.html
++ Tablet - https://ics.hutton.ac.uk/tablet/
++ Geneious
+
 
 ---
 

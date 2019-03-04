@@ -12,6 +12,7 @@ Poorani Subramanian, Computational Biology Specialist
 -   [Sequence data](#sequence-data)
 -   [Files](#files)
 -   [Improving Data Quality](#improving-data-quality)
+-   [MAPPING](#mapping)
 -   [Appendix 1: Short history of
     sequencing](#appendix-1-short-history-of-sequencing)
 
@@ -199,6 +200,7 @@ First quality character is `-` which is *45* in the ASCII table.
 <p float="center">
 <img src='assets/img/image16.png' width=500 align='top' /><img src='assets/img/image17.png' width=300 />
 </p>
+
 ???
 
 Line 3 is single ‘+’ <https://> www.cs.cmu.edu /\~ pattis
@@ -261,6 +263,172 @@ Improving Data Quality
 ======================
 
 Trimming and Filtering
+
+------------------------------------------------------------------------
+
+Trimming
+--------
+
+-   Adapter/primer trimming
+    -   Remove these sequences from the ends of reads
+    -   Useful for assembly, amplicon data
+-   Quality Trimming
+    -   Remove poor quality sequence from ends of reads
+    -   Filter out poor quality reads
+
+------------------------------------------------------------------------
+
+Trimming Tools
+--------------
+
+-   Cutadapt - <https://> cutadapt.readthedocs.io/en/stable/guide.html
+-   Trimmomatic - <http://> www.usadellab.org / cms /?page= trimmomatic
+-   **BBDuk** -
+    <https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/bbduk-guide/>
+
+------------------------------------------------------------------------
+
+MAPPING
+=======
+
+------------------------------------------------------------------------
+
+Why do you map reads to a reference?
+------------------------------------
+
+-   Reference guided assembly
+    -   DNA- seq – genome assembly
+    -   RNA- seq – transcriptome assembly
+-   Variant calling
+-   RNA- seq gene expression
+-   Removing host background/contaminants
+
+------------------------------------------------------------------------
+
+Reference Genomes
+-----------------
+
+-   Where to get them?
+    -   Assemble it yourself
+    -   Download it from NCBI – either by searching or by citation
+-   Assess their quality
+    -   Very few genomes are assembled with care and finished! We need
+        to keep our skepticism!
+    -   Number of contigs vs number of chromosomes
+    -   Contig lengths
+    -   especially at then end of the genome fasta file
+
+------------------------------------------------------------------------
+
+Alignment tools
+---------------
+
+**Short Read** + **bowtie2** -
+<http://bowtie-bio.sourceforge.net/bowtie2/index.shtml> + bwa -
+<http://bio-bwa.sourceforge.net/> + map\_ngs\_basics.sh
+
+**RNA-seq** + HiSAT -
+<http://www.ccb.jhu.edu/software/hisat/manual.shtml> + STAR -
+<https://github.com/alexdobin/STAR>
+
+**Long Reads** + minimap2 - <https://github.com/lh3/minimap2>
+
+------------------------------------------------------------------------
+
+Alignment File Formats
+----------------------
+
+-   SAM - Sequence Alignment/Map format
+-   BAM – SAM file compressed using the BGZF
+-   SAM/BAM specification -
+    <https://samtools.github.io/hts-specs/SAMv1.pdf>
+-   BED - used to report features -
+    <https://bedtools.readthedocs.io/en/latest/content/general-usage.html?highlight=bed%20format>
+    -   gff , gbk , gbff , gff3
+
+------------------------------------------------------------------------
+
+SAM Format
+----------
+
+-   Tab separated
+-   Headers begin with “@”
+    -   First line is always @HD
+    -   Reference lines are @SQ
+-   FLAGS?? <https://broadinstitute.github.io/picard/explain-flags.html>
+
+![example alignment](assets/img/samalignment.png) ![example sam
+file](assets/img/samfile.png)
+
+![sam file format](assets/img/samformat.png)
+
+???
+
+**CIGAR string**
+
+<table>
+<colgroup>
+<col style="width: 42%" />
+<col style="width: 57%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Operator</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>D</td>
+<td>Deletion; the nucleotide is present in the reference but not in the read</td>
+</tr>
+<tr class="even">
+<td>H</td>
+<td>Hard Clipping; the clipped nucleotides are not present in the read.</td>
+</tr>
+<tr class="odd">
+<td>I</td>
+<td>Insertion; the nucleotide is present in the read but not in the rference.</td>
+</tr>
+<tr class="even">
+<td>M</td>
+<td>Match; can be either an alignment match or mismatch. The nucleotide is present in the reference.</td>
+</tr>
+<tr class="odd">
+<td>N</td>
+<td>Skipped region; a region of nucleotides is not present in the read</td>
+</tr>
+<tr class="even">
+<td>P</td>
+<td>Padding; padded area in the read and not in the reference</td>
+</tr>
+<tr class="odd">
+<td>S</td>
+<td>Soft Clipping; the clipped nucleotides are present in the read</td>
+</tr>
+<tr class="even">
+<td>X</td>
+<td>Read Mismatch; the nucleotide is present in the reference</td>
+</tr>
+<tr class="odd">
+<td>=</td>
+<td>Read Match; the nucleotide is present in the reference</td>
+</tr>
+</tbody>
+</table>
+
+------------------------------------------------------------------------
+
+Alignment Viewing
+-----------------
+
+-   samtools - <http://www.htslib.org/>
+-   bedtools - <https://bedtools.readthedocs.io/en/latest/>
+-   picard - <https://broadinstitute.github.io/picard/>
+-   igv - <http://software.broadinstitute.org/software/igv/>
+-   UCSC Genome Browser - <https://genome.ucsc.edu/index.html>
+-   Tablet - <https://ics.hutton.ac.uk/tablet/>
+-   Geneious
 
 ------------------------------------------------------------------------
 

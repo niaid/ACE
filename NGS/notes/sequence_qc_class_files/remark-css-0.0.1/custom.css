@@ -24,6 +24,16 @@ a, a > code {
   background-color: white;
 }
 
+.pull-left-small {
+  float: left;
+  width: 37%;
+}
+
+.pull-right-big {
+  float: right;
+  width: 60%;
+}
+
 .titleandcontent {
   background-image: url(../../assets/img/niaidslide.png);
   background-size: contain;

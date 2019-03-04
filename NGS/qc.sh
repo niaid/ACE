@@ -12,19 +12,19 @@ module load multiqc/1.5-Python-3.6.0
 mkdir fastqc_output
 
 ## run fastqc
-fastqc SRR2057563_*.fastq -o ./fastqc_output
+fastqc *.fastq -o ./fastqc_output
 cd ./fastqc_output
 multiqc .
 
 #### Trimming
 
+## primer
+bbduk.sh in=poor_16S_S1_R1_001.fastq in2=poor_16S_S1_R2_001.fastq out=poor_16S_S1_R1_trimmed.fastq out2=poor_16S_S1_R2_trimmed.fastq ktrim=l k=18 mink=4 ref=/classhome/bbmap/resources/primers.fa copyundefined=t overwrite=t threads=10 tbo
+
 
 ## adapter
 bbduk.sh in=SRR2057563_1.fastq in2=SRR2057563_2.fastq out=SRR2057563_trimmed.1.fastq out2=SRR2057563_trimmed.2.fastq ktrim=r k=27 mink=4 hdist=1 ref=/classhome/bbmap/resources/adapters.fa minlen=10 overwrite=t threads=10
 
-
-## primer
-bbduk.sh in=22057_S2_R1_subsample.fastq in2=22057_S2_R2_subsample.fastq out=22057_S2_R1_subsample_trimmed.fastq out2=22057_S2_R1_subsample_trimmed.fastq ktrim=l k=75 mink=18 ref=/home/ace/ace_workshop/primers.fa copyundefined=t minlen=60 overwrite=t threads=10
 
 ## quality - can do at the same time as adapter, just did this separately for clarity
 bbduk.sh in=SRR2057563_trimmed.1.fastq in2=SRR2057563_trimmed.2.fastq out=SRR2057563_trimmed.quality.1.fastq out2=SRR2057563_trimmed.quality.2.fastq qtrim=rl trimq=15 maq=2 minlen=60 overwrite=t threads=10
@@ -35,7 +35,7 @@ bbduk.sh in=SRR2057563_trimmed.1.fastq in2=SRR2057563_trimmed.2.fastq out=SRR205
 #### Mapping ######
 module load bowtie2/2.3.4.1
 
-## map against bos mutus
+## map against bos taurus
 bowtie2 -k 1 -p 10 --very-fast -t -x /classhome/bowtie2/bostaurus -1 SRR2057563_1.fastq -2 SRR2057563_2.fastq -S SRR2057563_bostaurus.bowtie2.sam --no-unal --un-conc SRR2057563_unmapped.fastq
 
 ## build cowpox bowtie2 index
