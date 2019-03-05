@@ -8,10 +8,11 @@ data.
 
 - Location: Bldg 10/11S235  Wolff conference room
 - Instructor: Poorani Subramanian - poorani.subramanian@nih.gov
+- [bioinformatics @NIAID](https://bioinformatics.niaid.nih.gov/) - BCBB website has training materials, links to apps that we've written, and the services we provide.
+- Email bioinformatics@niaid.nih.gov if you any questions about your particular sequence data or would like training in a specific topic.  
 
 #### Resources
 - [Notes](notes/sequence_qc_class.md)
-- [bioinformatics @NIAID](https://bioinformatics.niaid.nih.gov/) 
 - [Locus info](notes/locus.md)
 - [Geneious notes](notes/geneious.md)
 - [qc.sh](qc.sh) - script used in class
