@@ -12,11 +12,11 @@ data.
 - Email bioinformatics@niaid.nih.gov if you any questions about your particular sequence data or would like training in a specific topic.  
 
 #### Resources
-- [Notes](notes/sequence_qc_class.md)
-- [Locus info](notes/locus.md)
+- [Lecture Notes](notes/sequence_qc_class.md) 
+- [Locus info](notes/locus.md) - account, how to login and start interactive session, how to transfer data, etc.
 - [Geneious notes](notes/geneious.md)
-- [qc.sh](qc.sh) - script used in class
-- [Ebola strains exercise](notes/ebov.md) - extra exercise
+- [qc.sh](qc.sh) - script used in class; modified to add info for how to run the commands using your own Locus acct
+- [Ebola strains exercise](notes/ebov.md) - extra exercise to try on your own
 
 #### Tools
 - [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
