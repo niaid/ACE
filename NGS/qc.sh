@@ -35,15 +35,14 @@ bbduk.sh in=SRR2057563_trimmed.1.fastq in2=SRR2057563_trimmed.2.fastq out=SRR205
 #### Mapping ######
 module load bowtie2/2.3.4.1
 
-## map against bos taurus
-bowtie2 -k 1 -p 10 --very-fast -t -x /classhome/bowtie2/bostaurus -1 SRR2057563_1.fastq -2 SRR2057563_2.fastq -S SRR2057563_bostaurus.bowtie2.sam --no-unal --un-conc SRR2057563_unmapped.fastq
+## map against bos taurus to remove background host reads 
+bowtie2 -k 1 -p 10 --very-fast -t -x /classhome/bowtie2/bostaurus -1 SRR2057563_trimmed.quality.1.fastq -2 SRR2057563_trimmed.quality.2.fastq -S SRR2057563_bostaurus.bowtie2.sam --no-unal --un-conc SRR2057563_unmapped.fastq
 
 ## build cowpox bowtie2 index
 bowtie2-build ./GCF_000839185.1_ViralProj14174_genomic.fna cowpox
 
 ## inspect bowtie2 index
 bowtie2-inspect -s cowpox
-
 
 
 ## map against cowpox

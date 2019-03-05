@@ -11,11 +11,11 @@ data.
 
 #### Resources
 - [Notes](notes/sequence_qc_class.md)
-- This repo!  Has scripts/commands we use in the class along with links to other help
 - [bioinformatics @NIAID](https://bioinformatics.niaid.nih.gov/) 
 - [Locus info](notes/locus.md)
 - [Geneious notes](notes/geneious.md)
-- [Ebola strains exercise](notes/ebov.md)
+- [qc.sh](qc.sh) - script used in class
+- [Ebola strains exercise](notes/ebov.md) - extra exercise
 
 #### Tools
 - [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
