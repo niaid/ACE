@@ -34,6 +34,10 @@ multiqc .
 
 
 #### Trimming
+
+## Move back up to the qc_data directory
+cd ..
+
 ## BBDuk help https://jgi.doe.gov/data-and-tools/bbtools/bb-tools-user-guide/bbduk-guide/
 bbduk.sh -h
 
