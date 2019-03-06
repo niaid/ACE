@@ -36,8 +36,8 @@ DNA polymerisation
 ![](assets/img/image10.png)
 
 -   In nature, during DNA replication, the purpose of DNA polymerisation
-    is to the next complementary base to the new strand.
--   The purpose of sequencing is to **figuring out what that next base
+    is to add the next complementary base to the new strand.
+-   The purpose of sequencing is to **figure out what that next base
     added is**
 -   **This is where the various sequencing technologies differ**
 
@@ -150,8 +150,12 @@ FASTQ
 
 -   Sequence and quality in single file
 
-`@M03213:59:000000000-AWR6D:1:1101:12406:1145 1:N:0:NCCTGAGC+NTATTAAG`
-`GTGCCAGCAGCCGCGGTAATACGGAGGGTGCGAGCGTTAATCGGAATAACTGGGCGTAAAGGGCACGCAGGCGGATTTTTAAGTGAGGTNTGAAAGCCCCGGGCTTAACCTGGGAATTGCATTTCAGACTGGGAATCTAGAGTACTTTAGGGAGGGGTAGAATTCCACGTGTAGCGGTGAAATGCGTAGAGATGTGGAGGAATACCGAAGGCGAAGGCAGCCCCTTGGGAATGTACTGNCGCTCATGGTCGAACGCGTGGG`
+<!-- -->
+
+    @M03213:59:000000000-AWR6D:1:1101:12406:1145 1:N:0:NCCTGAGC+NTATTAAG
+    GTGCCAGCAGCCGCGGTAATACGGAGGGTGCGAGCGTTAATCGGAATAACTGGGCGTAAAGGGCACGCAGGCGG
+    +
+    -6,ACGGAEFGGG<<FFG?FC@EF8AFCFGEGGCCCBGGGGGGDGGGGGEEFA<FGCE,EFDCFFFGGGGCCDG
 
 ### Header
 
@@ -163,8 +167,8 @@ FASTQ
 
 ### Raw sequence
 
--   All on one line - no spaces - DNA or RNA, should be one of the IUPAC
-    characters.
+-   All on one line - no spaces - DNA or RNA, should be one of the
+    [IUPAC characters](https://www.bioinformatics.org/sms/iupac.html).
 
 ------------------------------------------------------------------------
 
@@ -203,13 +207,13 @@ First quality character is `-` which is *45* in the ASCII table.
 
 ???
 
-Line 3 is single ‘+’ <https://> www.cs.cmu.edu /\~ pattis
-/15-1XX/common/handouts/ ascii.html
+Line 3 is single `+`
 
 Phred+33 is Sanger standard. Illumina switched around different
 standards for a while and settled back to Phred+33. Starting with
 Illumina 1.3-1.7 used Phred+64. Illumina 1.5-1.7 if quality scores were
-below Q15 at end of read, were arbitrarily assigned score 2 which is B.
+below Q15 at end of read, were arbitrarily assigned score 2 which is
+`B`.
 
 ------------------------------------------------------------------------
 
