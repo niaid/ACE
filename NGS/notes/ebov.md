@@ -5,7 +5,7 @@ Samples from the 2014 West African outbreak collected U.S. Army Medical Research
 1. Files are located on Locus in the ebov directory.   
 
    ```bash
-   cp /hpcdata/bcbb/poorani/NGSclass/ebov .
+   cp -r /hpcdata/bcbb/poorani/NGSclass/ebov .
    cd ./ebov
    ```
 
