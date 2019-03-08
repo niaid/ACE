@@ -191,7 +191,7 @@ GTGCCAGCAGCCGCGGTAATACGGAGGGTGCGAGCGTTAATCGGAATAACTGGGCGTAAAGGGCACGCAGGCGG
 
 ### How are they calculated?
 1. Phred score $Q$:  Given $p$, the probability that the corresponding base call is incorrect,  
-$Q = \log_{10} p$. 
+$Q = -10\log_{10} p$. 
     + 40 is usually highest score – very, very rarely up to 60
 2. Add constant: $Q+C$
     + usually, $C = 33$ &rarr; Phred+33 format is most common (Illumina > 1.8 ~2011)
