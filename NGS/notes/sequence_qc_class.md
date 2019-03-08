@@ -181,7 +181,7 @@ FASTQ Quality Scores
 
 1.  Phred score *Q*: Given *p*, the probability that the corresponding
     base call is incorrect,  
-    *Q* = log<sub>10</sub>*p*.
+    *Q* = -10log<sub>10</sub>*p*.
     -   40 is usually highest score – very, very rarely up to 60
 2.  Add constant: *Q* + *C*
     -   usually, *C* = 33 → Phred+33 format is most common
