@@ -20,7 +20,7 @@ This class will introduce some basic concepts such as discrete random variable, 
 - Reading
   - Use various software for categorical data methods: http://users.stat.ufl.edu/~aa/cda/cda.html
   
-### Tools
+### Tool
 - RStudio
 
 ### References
