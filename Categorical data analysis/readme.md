@@ -16,7 +16,7 @@ This class will introduce some basic concepts such as discrete random variable, 
  
 ### Resources  
 - Lecture Notes  
-- [Programming Script] (test.md)
+- [Programming Script] (/test.md)
 - How to use R, SAS, Stata, and SPSS statistical software for categorical data analysis http://users.stat.ufl.edu/~aa/cda/cda.html
   
 ### Tool
