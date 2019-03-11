@@ -12,7 +12,7 @@ This class will introduce some basic concepts such as discrete random variable, 
  - Time: Mar 21, 2019 @ 1-4pm
  - Instructor: Jingwen Gu (jingwen.gu@nih.gov)
  - Send email to bioinformatics@niaid.nih.gov for science support
- - Check out our website https://bioinformatics.niaid.nih.gov/services for more consultation area BCBB provides
+ - Check out our website https://bioinformatics.niaid.nih.gov/services for consultation area BCBB provides
  
 ### Resources  
 - Lecture Notes  
