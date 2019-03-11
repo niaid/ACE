@@ -20,7 +20,7 @@ This class will introduce some basic concepts such as discrete random variable, 
 - Reading
   - Use various software for categorical data methods: http://users.stat.ufl.edu/~aa/cda/cda.html
 
-### Reference
+### References
 - Argesti. A (2013) Categorical data analysis (3rd Edition)
 - Sullivan, L. M. (2011) Essentials of biostatistics in public health
 - Knuiman, M.W. & Speed, T.P. (1988) Incorporating Prior Information into the Analysis of Contingency Tables. Biometrics, 44 (4), 1061–1071
