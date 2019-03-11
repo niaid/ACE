@@ -16,7 +16,7 @@ This class will introduce some basic concepts such as discrete random variable, 
  
 ### Resources  
 - Lecture Notes  
-- [Programming Script] (ACE/Categorical data analysis/CDA_training_code.R)
+- [Programming Script] (CDA_training_code.R)
 - How to use R, SAS, Stata, and SPSS statistical software for categorical data analysis http://users.stat.ufl.edu/~aa/cda/cda.html
   
 ### Tool
