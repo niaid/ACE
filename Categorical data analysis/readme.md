@@ -21,7 +21,7 @@ This class will introduce some basic concepts such as discrete random variable, 
   - Use various software for categorical data methods: http://users.stat.ufl.edu/~aa/cda/cda.html
   
 ### Tools
-- R studio
+- RStudio
 
 ### References
 - Argesti. A (2013) Categorical data analysis (3rd Edition)
