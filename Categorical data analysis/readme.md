@@ -2,7 +2,7 @@
 
 Welcome to the Training Session provided by Bioinformatics and Computational Biosciences Branch (BCBB).
 
-Categorical data analysis plays an important role in statistical analysis. It represents the type of data in categories. One of the common way to organize categorical data is by contingency table (cross tabulation table). This course will introduce methods of doing categorical data analysis. It is designed for three hours, and consists of lecture(2hrs), hands-on practice(0.5 hr) and Q&A(0.5 hr). Rstudio will be used in the hands-on component.
+Categorical data analysis plays an important role in statistical analysis. It represents the analysis to the type of data in categories. One of the common way to organize categorical data is by contingency table (cross tabulation table). This course will introduce methods of doing categorical data analysis. It is designed for three hours, and consists of lecture(2hrs), hands-on practice(0.5 hr) and Q&A(0.5 hr). Rstudio will be used in the hands-on component.
 
 
 ### Intro
