@@ -6,7 +6,7 @@ Categorical data analysis plays an important role in statistical analysis. It re
 
 
 ### Intro
-This class will introduce some basic concepts such as discrete random variable, distribution for categorical data, useful statistic in clinical trial, analyzing contingency table, statistical testing of independence and introduction to generalized linear model about categorical data.
+Basic concepts such as discrete random variable, distribution for categorical data, useful statistic in clinical trial, analyzing contingency table, statistical testing of independence and introduction to generalized linear model about categorical data will be introduced.
 
  - Location: Building 50 room 6334
  - Time: Mar 21, 2019 @ 1-4pm
