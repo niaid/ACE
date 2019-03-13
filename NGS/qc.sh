@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
 
-### copy bbmap to your own directory, and add bbduk to your path
-### you will need run these commands if you are using your own Locus acct!
-cp -r /hpcdata/bcbb/poorani/NGSclass/bbmap .
-bbmap=$(realpath ./bbmap)
-export PATH=$PATH:${bbmap}
-
 ## Class datasets can be copied to your own directory on Locus:
 cp -r /hpcdata/bcbb/poorani/NGSclass/qc_data .
 cd ./qc_data
@@ -34,6 +28,7 @@ multiqc .
 
 
 #### Trimming
+module load bbmap/38.41
 
 ## Move back up to the qc_data directory
 cd ..
