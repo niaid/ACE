@@ -1,6 +1,6 @@
 # Resources
 
-- Sean Davis notes: <https://seandavi.github.io/ITR/> 
+- Sean Davis introductory R course notes: <https://seandavi.github.io/ITR/> 
 - Lori Shepard Introduction to R and Bioconductor BioC2017 <https://github.com/Bioconductor/BiocIntro/tree/Bioc2017> 
 - 
 - example app for annotation of copy number variations: <https://github.com/gzhmat/ShinyCNV> 
