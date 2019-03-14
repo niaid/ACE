@@ -2,7 +2,7 @@
 - Poorani Subramanian poorani.subramanian@nih.gov
 The data and power point presentation we used for this workshop can be downloaded here [intro_molbio.zip]( 	https://s3.amazonaws.com/ace-uganda/intro_molbio.zip)
 
-- Mariam Quinones mariam.quinones@nih.gov .  The folder Uganda_MolBiol_demo contains the files that will be used during the demo on March 28, 2019
+- Mariam Quinones mariam.quinones@nih.gov .  The folder [cloning](https://github.com/niaid/ACE/tree/master/intro_molbio/cloning)  contains the files that will be used during the demo on March 28, 2019
 
 ### Links
 
