@@ -16,6 +16,7 @@ A Statistical test provides a mechanism for making quantitative decisions about 
 
 #### Resources
 - Lecture Notes (will be added after the workshop)
+- [Data and R codes on OneDrive](https://nih-my.sharepoint.com/:f:/g/personal/wangq13_nih_gov/EhOYZz8AZKRAs1xocmpPaKwBPh37tuPUpRkkFWoS_a1Kyw?e=csLNHv)
 
 #### Tools
 - [R](https://cran.cnr.berkeley.edu/)
