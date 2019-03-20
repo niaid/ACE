@@ -15,8 +15,8 @@ Basic concepts such as discrete random variable, distribution for categorical da
  - Check out our website https://bioinformatics.niaid.nih.gov/services for more consultation area BCBB provides
  
 ### Resources  
-- [Lecture Notes](https://nih-my.sharepoint.com/:f:/r/personal/guj3_nih_gov/Documents/Categorical%20material?csf=1&e=WI8MN2)  
-- [Programming Script](https://nih-my.sharepoint.com/:f:/r/personal/guj3_nih_gov/Documents/Categorical%20material?csf=1&e=WI8MN2) 
+- [Lecture Notes](https://nih-my.sharepoint.com/:f:/g/personal/guj3_nih_gov/EgfR5OlOr65OlaFfuYO0HTgBcRFVY8pLB1jR41GF68syWg?e=7BUifi)  
+- [Programming Script](https://nih-my.sharepoint.com/:f:/g/personal/guj3_nih_gov/EgfR5OlOr65OlaFfuYO0HTgBcRFVY8pLB1jR41GF68syWg?e=7BUifi) 
 - How to use R, SAS, Stata, and SPSS statistical software for categorical data analysis http://users.stat.ufl.edu/~aa/cda/cda.html
   
 ### Tool
