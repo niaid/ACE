@@ -7,12 +7,12 @@ A Statistical test provides a mechanism for making quantitative decisions about 
 - Application in GraphPad Prism and R 
 
 #### Workshop information
-- Location: 50 South Drive, Room 6334, Bethesda, MD, United States
-- Time: Thursday, March 21 2019, 9:00 AM - 12:00 PM [EST]
+- Location: Building 10, Wolff Conference Room 11S235, Bethesda, MD, United States
+- Time: Tuesday, April 30 2019, 12:00 PM - 3:00 PM [EST]
 - Presenter: Qinlu Wang (qinlu.wang@nih.gov)
 - [bioinformatics @NIAID](https://bioinformatics.niaid.nih.gov/) - BCBB website with training materials, apps, and the services we provide.
 - [Suggest a statistical class!](https://www.surveymonkey.com/r/N5KXX78) Fill the survey and suggest the statistical topics you would like to learn
-- Email bioinformatics@niaid.nih.gov if you any questions about your particular data or project
+- Email bioinformatics@niaid.nih.gov or me if you any questions about your particular data or project
 
 #### Resources
 - [Lecture Notes](https://nih-my.sharepoint.com/:f:/g/personal/wangq13_nih_gov/EhOYZz8AZKRAs1xocmpPaKwBPh37tuPUpRkkFWoS_a1Kyw?e=csLNHv)
