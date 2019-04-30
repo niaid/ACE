@@ -1,9 +1,10 @@
 # Statistical Testing
-A Statistical test provides a mechanism for making quantitative decisions about a process or processes. Its intent is to determine whether there is enough evidence to reject a null hypothesis or hypothesis about the process.  The course will cover designing the statistical testing process, understanding and interpreting the basic statistical concepts (p-value, confidence interval, etc.), and the most common statistical testing methods in clinical research. The course will also include a hands-on component using GraphPad Prism and R statistical language to perform common statistical tests. 
+A Statistical test provides a mechanism for making quantitative decisions about a process or processes. Its intent is to determine whether there is enough evidence to reject a null hypothesis or hypothesis about the process.  The course will cover designing the statistical testing process, data preprocessing, understanding and interpreting the basic statistical concepts (p-value, confidence interval, etc.), and the most common statistical testing methods in clinical research. The course will also include a hands-on component using GraphPad Prism and R statistical language to perform common statistical tests. 
 
 #### The detailed topics will be covered in this course: 
 - Introduction to statistical testing process 
-- Common statistical tests, including two-sample t-test, one-way ANOVA, two-way ANOVA, multiple testing, etc. 
+- Data Preprocessing 
+- Common parametric and non-parametric tests, including two-sample t-test, ANOVA, multiple comparisons, correlation, linear regression, Robust statistics, etc. 
 - Application in GraphPad Prism and R 
 
 #### Workshop information
