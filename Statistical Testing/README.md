@@ -8,7 +8,7 @@ A Statistical test provides a mechanism for making quantitative decisions about 
 
 #### Workshop information
 - Location: Building 10, Wolff Conference Room 11S235, Bethesda, MD, United States
-- Time: Tuesday, April 30 2019, 12:00 PM - 3:00 PM [EST]
+- Time: Tuesday, April 30, 2019, 12:00 PM - 3:00 PM [EST]
 - Presenter: Qinlu Wang (qinlu.wang@nih.gov)
 - [bioinformatics @NIAID](https://bioinformatics.niaid.nih.gov/) - BCBB website with training materials, apps, and the services we provide.
 - [Suggest a statistical class!](https://www.surveymonkey.com/r/N5KXX78) Fill the survey and suggest the statistical topics you would like to learn
