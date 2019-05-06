@@ -3,6 +3,90 @@
 ####### Email: qinlu.wang@nih.gov
 
 ######################################################################################
+############################### 0. Data Preprocessing ################################
+######################################################################################
+
+##### Data Transformation #####
+## 1st Method: Click from the "Files"
+transformation_data <- data.frame(transformation)
+transformation_data
+## 2nd Method: Read with read.csv
+transformation_data <- read.csv(file.choose()) # Choose the file "transformation.csv" #
+transformation_data
+# Or set the path and read the file name 
+#setwd("/Users/Desktop/desktop/Seminar/data")
+#transformation_data <- read.csv("transformation.csv")
+#transformation_data
+
+library(rcompanion)
+plotNormalHistogram(transformation_data$Turbidity)
+qqnorm(transformation_data$Turbidity, ylab="Sample Quantiles for Turbidity")
+qqline(transformation_data$Turbidity, col="red")
+
+## First, Square Root Transformation ##
+transformation_data$square_root <- sqrt(transformation_data$Turbidity)
+plotNormalHistogram(transformation_data$square_root)
+
+## Second, Cube root transformation ##
+transformation_data$cube_root = sign(transformation_data$Turbidity) * abs(transformation_data$Turbidity)^(1/3)
+plotNormalHistogram(transformation_data$cube_root)
+
+## Third, log transformation ##
+transformation_data$log = log(transformation_data$Turbidity)
+plotNormalHistogram(transformation_data$log)
+
+## Fourth, square transformation ##
+transformation_data$square = (transformation_data$Turbidity) ^ 2
+plotNormalHistogram(transformation_data$square)
+
+
+######################################################################################
+################################## 1. Correlations ###################################
+######################################################################################
+
+# Link: http://rcompanion.org/handbook/I_10.html
+
+install.packages("psych")
+install.packages("PerformanceAnalytics")
+install.packages("ggplot2")
+install.packages("rcompanion")
+
+######## Step 1: Read Data ########
+## 1st Method: Click from the "Files"
+correlation_data <- data.frame(correlation_data)
+correlation_data
+## 2nd Method: Read with read.csv
+correlation_data <- read.csv(file.choose()) # Choose the file "correlation.csv" #
+correlation_data
+# Or set the path and read the file name 
+#setwd("/Users/Desktop/desktop/Seminar/data")
+#correlation_data <- read.csv("correlation.csv")
+#correlation_data
+
+######## Step 2: Visualize correlated variables ########
+pairs(data=correlation_data, ~ Ozone + Solar.R + Wind + Temp)
+
+######## Step 3: Correlation ########
+library(psych)
+# correlation matrix, p-value matrix and confidence interval
+print(corr.test(correlation_data, 
+                use    = "pairwise",
+                method = "pearson",
+                adjust = "none"), short=FALSE)
+
+######## Step 4 (Optional): Put all results in one plot ########
+library(PerformanceAnalytics)
+chart.Correlation(correlation_data,
+                  method="pearson",
+                  histogram=TRUE,
+                  pch=16)
+# In the output, the numbers represent the correlation coefficients. 
+# The stars represent the p-value of the correlation:
+#   *   p < 0.05
+#  **   p < 0.01
+# ***   p < 0.001
+
+######################################################################################
 ################################ 1. Two-Sample T-Test ################################
 ######################################################################################
 
