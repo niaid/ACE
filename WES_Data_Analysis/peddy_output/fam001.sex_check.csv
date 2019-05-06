@@ -1,0 +1,8 @@
+error,het_count,het_ratio,hom_alt_count,hom_ref_count,ped_sex,predicted_sex,sample_id
+False,0,0,20,25,male,male,dad
+False,24,1.6,15,7,female,female,daughter1
+False,23,1.769,13,8,female,female,daughter2
+False,20,1.053,19,7,female,female,mom
+False,0,0,25,19,male,male,son1
+False,0,0,25,20,male,male,son2
+False,1,0.04,25,19,male,male,son3
