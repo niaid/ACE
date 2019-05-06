@@ -161,7 +161,7 @@ java -jar $EBROOTGATK/GenomeAnalysisTK.jar -T DepthOfCoverage \
   -R  /hpcdata/bcbb/wes_training/reference/human_g1k_v37_decoy.fasta \
   -o ./fam001_dov \
   -I fam001_bams.list \
-  -geneList:REFSEQ refSeq.sorted.txt \
+  -geneList:REFSEQ /hpcdata/bcbb/wes_training/reference/refSeq.sorted.txt \
   -ct 4 -ct 10 -ct 15 -ct 20 \
   -L /hpcdata/bcbb/wes_training/reference/exome.interval_list
 
@@ -378,7 +378,11 @@ tabix -p vcf fam001.combined_filtered.vep.vcf.gz    # create index for the norma
 VEP annotated VCF
 
 ![vep annotated VCF](./images/vep_vcf.png)
-#### **Part5: Candidate Variant Discovery**
+#### **Part6: Candidate Variant Discovery**
+
+*fam001 pedigree image*
+
+![fam001 pedigree image](./images/fam001_pedigree.png)
 
 **1) Run [gemini](https://gemini.readthedocs.io/en/latest/) load command to create gemini database**
 ```sh

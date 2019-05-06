@@ -1,0 +1,7 @@
+fam001	mom	0	0	2	1
+fam001	dad	0	0	1	1
+fam001	son3	dad	mom	1	2
+fam001	son2	dad	mom	1	2
+fam001	daughter2	dad	mom	2	1
+fam001	son1	dad	mom	1	2
+fam001	daughter1	dad	mom	2	2
