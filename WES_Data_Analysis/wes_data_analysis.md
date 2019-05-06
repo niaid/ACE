@@ -118,7 +118,7 @@ java -jar ${EBROOTPICARD}/picard.jar MarkDuplicates \
 ```
 **4) QC on the aligned BAM**
 
-**i)Basic quality control metrics for raw next generation sequencing data**
+**i)Basic quality control metrics for raw next generation sequencing data -- [FataQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)**
 ```sh
 module load FastQC
 
@@ -146,7 +146,7 @@ module unload FastQC    #unload the module to avoid package conflict in the next
 ```sh
 module load gatk/3.8.1-Java-1.8.0_92
 
-find `pwd` -name "*markdup.bam" > fam001_bams.list   #generate the input bam list
+find . -name "*markdup.bam" > fam001_bams.list   #generate the input bam list
 
 cat fam001_bams.list
 #/nethome/username/data/son1/son1.markdup.bam
@@ -194,7 +194,7 @@ $EBROOTGATK/gatk ApplyBQSR -R /hpcdata/bcbb/wes_training/reference/human_g1k_v37
 -bqsr ./${sample}/${sample}.recal_data.table \
 -O ./${sample}/${sample}.bqsr.bam
 ```
-**i) Sample contamination estimates -- verifyBamId**
+**i) Sample contamination estimates -- [verifyBamId](https://genome.sph.umich.edu/wiki/VerifyBamID)**
 ```sh
 module load verifyBamID
 verifyBamID --ignoreRG --noPhoneHome \
@@ -251,6 +251,7 @@ Raw VCF after joint calling :
 ![VCF before hard filtering](./images/vcf_before_filter.png)
 
 **QC** Familial-relationships and gender check -- peddy
+
 **i) Check the pedigree file**
 ```sh
 cat fam001.ped
@@ -263,7 +264,7 @@ cat fam001.ped
 # fam001  son3       dad  mom  1  2
 ```
 
-**ii) Run peddy**
+**ii) Run [peddy](https://github.com/brentp/peddy)**
 ```sh
 module load peddy
 
@@ -317,7 +318,7 @@ VCF file after filtering :
 
 ![VCF after filtering](./images/vcf_post_filter.png)
 
-iv) Browse variants in IGV (go to chr6:83881661)
+iv) Browse variants in [IGV](https://software.broadinstitute.org/software/igv/) (go to chr6:83881661)
 
 Download the bam file and vcf file from https://nih.box.com/s/xyzsicf1gmq3b22g49gqdeep58roc3nh , unzip the downloaded WES_Training_Material.zip file, and ran IGV on your computer as shown below:
 
@@ -342,7 +343,7 @@ igv.sh
 
 #### **Part5: Variant Annotation**
 
-Functional annotation using VEP
+Functional annotation using [VEP](https://useast.ensembl.org/info/docs/tools/vep/index.html)
 
 **1) Normalize the VCF and split the multi-allelic sites into bi-allelic site**
 ```sh
@@ -359,7 +360,7 @@ After VCF normalization
 
 ![After VCF normalization](./images/after_norm.png)
 
-**2) Run [VEP](https://useast.ensembl.org/info/docs/tools/vep/index.html) on the normalized VCF**
+**2) Run VEP on the normalized VCF**
 ```sh
 module load VEP/89-goolf-1.7.20
 
@@ -380,10 +381,6 @@ VEP annotated VCF
 ![vep annotated VCF](./images/vep_vcf.png)
 #### **Part6: Candidate Variant Discovery**
 
-*fam001 pedigree image*
-
-![fam001 pedigree image](./images/fam001_pedigree.png)
-
 **1) Run [gemini](https://gemini.readthedocs.io/en/latest/) load command to create gemini database**
 ```sh
 module load GEMINI
@@ -392,6 +389,11 @@ gemini load -v fam001.combined_filtered.vep.vcf.gz \
 -t VEP -p fam001.ped --cores 4 --tempdir /hpcdata/scratch/  \
 fam001.db
 ```
+
+*fam001 pedigree image*
+
+![fam001 pedigree image](./images/fam001_pedigree.png)
+
 **2) Run built-in genetic models in gemini**
 
 i) Run autosomal_recessive (i.e., homozygous recessive)
