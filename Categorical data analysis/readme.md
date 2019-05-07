@@ -2,21 +2,22 @@
 
 Welcome to the Training Session provided by Bioinformatics and Computational Biosciences Branch (BCBB).
 
-Categorical data analysis plays an important role in statistical analysis. It represents the analysis to the type of data in categories. One of the common way to organize categorical data is by contingency table (cross tabulation table). This course will introduce methods of doing categorical data analysis. It is designed for three hours, and consists of lecture(2hrs), hands-on practice(0.5 hr) and Q&A(0.5 hr). Rstudio will be used in the hands-on component.
+Categorical data is the data type consisting of categorical variables or of data converted into categories or groups. Categorical data analysis is vital and useful statistical analysis in clinical research since categorical data occupies a large portion of the data we collect and use. This course will start from basis introducing different types of categorical data and characteristics, contingency table, probability distribution, to learn how to calculate and interpret some useful statistic such as odds ratio and relative risk. The last section is about different types of statistical testing for categorical data by cases. Each example will include a hands-on part of using Rstudio to perform the analysis. 
+
+This course is designed for beginner/intermediate level. 
 
 
 ### Intro
-Basic concepts such as discrete random variable, distribution for categorical data, useful statistic in clinical trial, analyzing contingency table, statistical testing of independence and introduction to generalized linear model about categorical data will be introduced.
+Topics including analyzing contingency table, statistic for measuring strength of association and statistical testing of independence will be introduced.
 
- - Location: Building 50 room 6334
- - Time: Mar 21, 2019 @ 1-4pm
+ - Location: Building 40, Room 1207
+ - Time: May 20, 2019 @ 9am-12pm
  - Instructor: Jingwen Gu (jingwen.gu@nih.gov)
  - Send email to bioinformatics@niaid.nih.gov for science support
  - Check out our website https://bioinformatics.niaid.nih.gov/services for more consultation area BCBB provides
  
 ### Resources  
-- [Lecture Notes](https://nih-my.sharepoint.com/:f:/g/personal/guj3_nih_gov/EgfR5OlOr65OlaFfuYO0HTgBcRFVY8pLB1jR41GF68syWg?e=7BUifi)  
-- [Programming Script](https://nih-my.sharepoint.com/:f:/g/personal/guj3_nih_gov/EgfR5OlOr65OlaFfuYO0HTgBcRFVY8pLB1jR41GF68syWg?e=7BUifi) 
+- [Lecture Notes, Programming Script and Prism manual](https://nih-my.sharepoint.com/:f:/g/personal/guj3_nih_gov/EklJh9Ye9GdPuecThEwRlLEB0vHb-JJatws1gErL1b2ofw?e=igtVed) 
 - How to use R, SAS, Stata, and SPSS statistical software for categorical data analysis http://users.stat.ufl.edu/~aa/cda/cda.html
   
 ### Tool
