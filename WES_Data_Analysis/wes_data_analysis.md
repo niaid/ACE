@@ -250,7 +250,7 @@ Raw VCF after joint calling :
 
 ![VCF before hard filtering](./images/vcf_before_filter.png)
 
-**QC** Familial-relationships and gender check -- peddy
+**QC** Familial-relationships and gender check -- [peddy](https://github.com/brentp/peddy)
 
 **i) Check the pedigree file**
 ```sh
@@ -264,7 +264,7 @@ cat fam001.ped
 # fam001  son3       dad  mom  1  2
 ```
 
-**ii) Run [peddy](https://github.com/brentp/peddy)**
+**ii) Run peddy**
 ```sh
 module load peddy
 
@@ -320,7 +320,7 @@ VCF file after filtering :
 
 iv) Browse variants in [IGV](https://software.broadinstitute.org/software/igv/) (go to chr6:83881661)
 
-Download the bam file and vcf file from https://nih.box.com/s/xyzsicf1gmq3b22g49gqdeep58roc3nh , unzip the downloaded WES_Training_Material.zip file, and ran IGV on your computer as shown below:
+Download the bam file and vcf file from https://nih.box.com/s/1sk4o50uy8w5nott5b4j9jc6738o2qsn , unzip the downloaded WES_Training_Material.zip file, and ran IGV on your computer as shown below:
 
 Download the BAMs and VCF:
 ![IGV_bam_download](./images/download_bam.png)
