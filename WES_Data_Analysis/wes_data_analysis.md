@@ -29,7 +29,7 @@ cp -r /hpcdata/bcbb/wes_training/data .
 cd data
 
 ls
-#dad  daughter1  daughter2  exome.interval_list  fam001.ped  mom  refSeq.sorted.txt  son1  son2  son3
+#dad  daughter1  daughter2  fam001.ped  mom  refSeq.sorted.txt  son1  son2  son3
 
 ls son1
 #son1.R1.fq  son1.R2.fq
@@ -217,7 +217,7 @@ module unload verifyBamID
 $EBROOTGATK/gatk HaplotypeCaller -R /hpcdata/bcbb/wes_training/reference/human_g1k_v37_decoy.fasta \
 -I ./${sample}/${sample}.bqsr.bam -O ./${sample}/${sample}.g.vcf.gz \
 -stand-call-conf 20.0 --dbsnp /hpcdata/bcbb/wes_training/reference/dbsnp_138.b37.vcf.gz \
--L exome.interval_list -ERC GVCF
+-L /hpcdata/bcbb/wes_training/reference/exome.interval_list -ERC GVCF
 ```
 
 **2) Make joint calling VCF**
