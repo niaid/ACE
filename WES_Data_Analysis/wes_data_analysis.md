@@ -19,6 +19,9 @@ If planning to run _X-Windows_ applications, use `ssh -X username@ai-submit1.nia
 ```  
   qrsh -pe threaded 4
 ```
+
+*Please refer to [LOCUS Userportal](https://locus.niaid.nih.gov/userportal/documentation.php#Getting-Started/HPC-Basics) on how to customize computing resources such as threads and memory.*
+
 :file_folder: copy the practice data to your home folder
 
 ```sh
