@@ -146,6 +146,7 @@ module unload FastQC    #unload the module to avoid package conflict in the next
 **password:**
 ![GATK bundle](./images/gatk_resource.png)
 
+*As the DepthOfCoverage module is not ported in GATK4 yet, we'll use GATK3 for this step.*
 ```sh
 module load gatk/3.8.1-Java-1.8.0_92
 
