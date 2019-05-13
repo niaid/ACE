@@ -246,6 +246,8 @@ $EBROOTGATK/gatk GenotypeGVCFs -R /hpcdata/bcbb/wes_training/reference/human_g1k
 $EBROOTGATK/gatk SortVcf -I fam001.joint.vcf.gz \
 -O fam001.joint.sorted.vcf.gz
 ```
+:notebook:NOTE: It's safe to ignore the Warning messages such as '*No valid combination operation found for INFO field DS*' when running the GenomicDBImport module. For more information, please refer to [here](https://github.com/broadinstitute/gatk/issues/2689).
+
 Raw VCF after joint calling :
 
 ![VCF before hard filtering](./images/vcf_before_filter.png)
@@ -347,6 +349,8 @@ Functional annotation using [VEP](https://useast.ensembl.org/info/docs/tools/vep
 
 **1) Normalize the VCF and split the multi-allelic sites into bi-allelic site**
 ```sh
+module load bcftools
+
 bcftools norm -m -any --threads 4 -Oz -o fam001.combined_filtered.norm.vcf.gz fam001.combined_filtered.vcf.gz
 
 tabix -p vcf fam001.combined_filtered.norm.vcf.gz    # create index for the normalized VCF
