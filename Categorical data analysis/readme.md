@@ -23,6 +23,9 @@ Topics including analyzing contingency table, statistic for measuring strength o
 ### Tool
 - RStudio
 
+### Class Survey
+- [Link](https://www.surveymonkey.com/r/HY6SLSC)
+
 ### References
 - Argesti. A (2013) Categorical data analysis (3rd Edition)
 - Sullivan, L. M. (2011) Essentials of biostatistics in public health
