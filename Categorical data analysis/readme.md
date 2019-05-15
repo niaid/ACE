@@ -18,7 +18,7 @@ Topics including analyzing contingency table, statistic for measuring strength o
  
 ### Resources  
 - [Lecture Notes, Programming Script and Prism manual](https://nih-my.sharepoint.com/:f:/g/personal/guj3_nih_gov/EklJh9Ye9GdPuecThEwRlLEB0vHb-JJatws1gErL1b2ofw?e=igtVed) 
-- How to use R, SAS, Stata, and SPSS statistical software for categorical data analysis http://users.stat.ufl.edu/~aa/cda/cda.html
+- [How to use R, SAS, Stata, and SPSS statistical software for categorical data analysis](http://users.stat.ufl.edu/~aa/cda/cda.html)
   
 ### Tool
 - RStudio
