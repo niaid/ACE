@@ -1,6 +1,22 @@
 
 ### Exercise for Exome Sequencing Data Analysis training class - June 13<sup>rd</sup>, 2019
 
+
+##### FAQs
+1. Why does the below error pop up when I load a module?
+```sh
+module load FastQC
+Java/1.8.0_45(13):ERROR:150: Module 'Java/1.8.0_45' conflicts with the currently loaded module(s) 'Java/1.8.0_92'
+Java/1.8.0_45(13):ERROR:102: Tcl command execution failed: conflict Java  
+```
+**A:** This is a frequently observed issue when multiple modules are loaded successively. On LOCUS, whenever a module is loaded, it's dependencies will be automatically loaded as well. The error message above indicates that there is another module that depends on 'Java/1.8.0_92' was loaded before FastQC which depends on a different version of Java. Usually, this kind of error can be safely ignored as long as it doesn't hamper your modules' functinality. Otherwise, you can fix it by loading you module after the unwanted version of dependencies is removed manually:
+```sh
+module unload Java/1.8.0_92
+module load FastQC
+```
+
+
+
 **Instructions:** Copy the text from the gray boxes into the terminal when indicated.
 
 #### **Part 1: Log into the Locus cluster**
@@ -63,21 +79,15 @@ module load GEMINI
 
 #### **Part 2: Preprocessing (alignment and BQSR) & QC**
 
-**Alignment**
+**1) Align the short reads in fastq files using BWA**
+
+For bwa-mem -R parameter: RG=read group, ID=id, LB=library, SM=Sample, PL=platform (sequencer)
 ```sh
 pwd
 #/nethome/username/data
 
 module load bwa
-```
-:bulb:Already done due to time limit -- If reference index file not available, create index for reference first.
-```sh
-bwa index /hpcdata/bcbb/wes_training/reference/human_g1k_v37_decoy.fasta
-```
-**1) Align the short reads in fastq files using BWA**
 
-For bwa-mem -R parameter: RG=read group, ID=id, LB=library, SM=Sample, PL=platform (sequencer)
-```sh
 bwa mem  ##shows options
 sample='son1' ##assign value for the sample variable
 
@@ -89,6 +99,17 @@ bwa mem -t 4 -M -R "@RG\tID:${sample}\tLB:${sample}\tSM:${sample}\tPL:ILLUMINA" 
 ls son1
 #son1.R1.fq  son1.R2.fq  son1.sam
 
+```
+:bulb:**Already done due to time limit** -- If reference index file not available, you will see the below error message as you run the above `bwa mem` command.
+```
+[E::bwa_idx_load_from_disk] fail to locate the index files
+```
+Create index for reference.
+*The following commands are for practice only.*
+```sh
+cp /hpcdata/bcbb/wes_training/reference/ref_bk/human_1kg_decoy.fa .
+
+bwa index human_1kg_decoy.fa
 ```
 
 **2) Sort the sam file and convert it to bam file using samtools**
@@ -169,14 +190,14 @@ java -jar $EBROOTGATK/GenomeAnalysisTK.jar -T DepthOfCoverage \
   -ct 4 -ct 10 -ct 15 -ct 20 \
   -L /hpcdata/bcbb/wes_training/reference/exome.interval_list
 
-ls son1 |grep "son1.sample_"
-#  son1.sample_cumulative_coverage_counts
-#  son1.sample_cumulative_coverage_proportions
-#  son1.sample_gene_summary
-#  son1.sample_interval_statistics
-#  son1.sample_interval_summary
-#  son1.sample_statistics
-#  son1.sample_summary
+ls |grep "fam001_dov.sample_*"
+#fam001_dov.sample_cumulative_coverage_counts
+#fam001_dov.sample_cumulative_coverage_proportions
+#fam001_dov.sample_gene_summary
+#fam001_dov.sample_interval_statistics
+#fam001_dov.sample_interval_summary
+#fam001_dov.sample_statistics
+#fam001_dov.sample_summary
 
 module unload gatk/3.8.1-Java-1.8.0_92
 ```
@@ -325,6 +346,35 @@ VCF file after filtering :
 ![VCF after filtering](./images/vcf_post_filter.png)
 
 iv) Browse variants in [IGV](https://software.broadinstitute.org/software/igv/) (go to chr6:83881661)
+
+:loudspeaker:**(Optional)** IGV installation (requires [Java 11](https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html))
+
+Run `java --version` in command line terminal to make sure you have java 11 installed.
+
+```sh
+java --version
+#java 11.0.2 2019-01-15 LTS
+#Java(TM) SE Runtime Environment 18.9 (build 11.0.2+9-LTS)
+#Java HotSpot(TM) 64-Bit Server VM 18.9 (build 11.0.2+9-LTS, mixed mode)
+```
+
+Go to IGV download page and [download](https://software.broadinstitute.org/software/igv/download) the 'all platform' version
+
+![IGV download](./images/igv_download.png)
+
+unzip the downloaded file to a directory of your choice.
+
+In command line terminal, change the work folder to the unzipped folder and run `./igv.sh`
+
+For Mac users:
+```sh
+cd ~/Downloads/IGV_2.5.2
+
+./igv.sh    #You might have to make the script executable (chmod a+x igv.sh)
+```   
+
+
+
 
 Download the bam file and vcf file from https://nih.box.com/s/1sk4o50uy8w5nott5b4j9jc6738o2qsn , unzip the downloaded WES_Training_Material.zip file, and ran IGV on your computer as shown below:
 
