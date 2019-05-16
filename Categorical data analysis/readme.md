@@ -31,3 +31,4 @@ Topics including analyzing contingency table, statistic for measuring strength o
 - Sullivan, L. M. (2011) Essentials of biostatistics in public health
 - Knuiman, M.W. & Speed, T.P. (1988) Incorporating Prior Information into the Analysis of Contingency Tables. Biometrics, 44 (4), 1061–1071
 
+[Test link](ftp://helix.nih.gov/pub/poorani/biobakery_PipelineResults.05857711c201.tar.gz)
