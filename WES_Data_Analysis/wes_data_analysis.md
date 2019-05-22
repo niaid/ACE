@@ -352,9 +352,9 @@ iv) Browse variants in [IGV](https://software.broadinstitute.org/software/igv/)
 
 :loudspeaker:**(Optional)** IGV installation
 
-For Mac user, go to IGV [download](https://software.broadinstitute.org/software/igv/download) page, download 'IGV Mac App' and follow the instructions to install.
+Go to IGV [download page](https://software.broadinstitute.org/software/igv/download), download the version corresponding to your OS and follow the instructions to install.
 
-Otherwise, download the 'all platforms' version (requires [Java 11](https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html)).
+For the 'all platforms' version (requires [Java 11](https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html)).
 
 Run `java --version` in command line terminal to make sure you have java 11 installed.
 ```sh
