@@ -348,7 +348,7 @@ VCF file after filtering :
 
 ![VCF after filtering](./images/vcf_post_filter.png)
 
-iv) Browse variants in [IGV](https://software.broadinstitute.org/software/igv/) (go to chr6:83881661)
+iv) Browse variants in [IGV](https://software.broadinstitute.org/software/igv/)
 
 :loudspeaker:**(Optional)** IGV installation
 
@@ -376,7 +376,7 @@ Load the BAMs and VCF:
 
 ![IGV_data_load](./images/data_load.png)
 
-View the BAMs and VCF in IGV:
+View the BAMs and VCF in IGV (for example, go to chr6:83881662):
 
 ![IGV_result](./images/igv_result.png)
 
