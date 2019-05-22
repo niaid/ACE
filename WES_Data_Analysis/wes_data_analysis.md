@@ -100,12 +100,11 @@ ls son1
 #son1.R1.fq  son1.R2.fq  son1.sam
 
 ```
-:bulb:**Already done due to time limit** -- If reference index file not available, you will see the below error message as you run the above `bwa mem` command.
+:bulb:**Already done due to time limit** -- If reference index file not available, you will see the below error message when you run the above `bwa mem` command.
 ```
 [E::bwa_idx_load_from_disk] fail to locate the index files
 ```
-Create index for reference.
-*The following commands are for practice only.*
+Create index for reference (*The following commands are for practice only.*)
 ```sh
 cp /hpcdata/bcbb/wes_training/reference/ref_bk/human_1kg_decoy.fa .
 
@@ -229,7 +228,7 @@ verifyBamID --ignoreRG --noPhoneHome \
 
 cat son1/son1.selfSM.selfSM
 ##SEQ_ID  RG   CHIP_ID  #SNPS  #READS  AVG_DP  FREEMIX  FREELK1  FREELK0  FREE_RH  FREE_RA  CHIPMIX  CHIPLK1  CHIPLK0  CHIP_RH  CHIP_RA  DPREF  RDPHET  RDPALT
-#son1     ALL  NA       13     1673    128.69  0.00033  647.96   647.97   NA       NA       NA       NA       NA       NA       NA       NA     NA      NA
+#son1     ALL  NA       11     926    84.18  0.00425  549.67   549.99   NA       NA       NA       NA       NA       NA       NA       NA     NA      NA
 
 #When genotype data is not available but allele-frequency-based estimates of [FREEMIX] >= 0.03 and [FREELK1]-[FREELK0] is large, then it is possible that the sample is contaminated with other sample.
 module unload verifyBamID
@@ -272,6 +271,8 @@ $EBROOTGATK/gatk SortVcf -I fam001.joint.vcf.gz \
 -O fam001.joint.sorted.vcf.gz
 ```
 :notebook:NOTE: It's safe to ignore the Warning messages such as '*No valid combination operation found for INFO field DS*' when running the GenomicDBImport module. For more information, please refer to [here](https://github.com/broadinstitute/gatk/issues/2689).
+
+To view the Raw VCF after joint calling, run `less fam001.joint.sorted.vcf.gz`. Press space bar to see variant details.
 
 Raw VCF after joint calling :
 
@@ -341,42 +342,32 @@ $EBROOTGATK/gatk MergeVcfs -I fam001.snps_filtered.vcf.gz \
 -I fam001.nonsnps_filtered.vcf.gz \
 -O fam001.combined_filtered.vcf.gz
 ```
+To view the VCF file after filtering, run `less fam001.combined_filtered.vcf.gz`.
+
 VCF file after filtering :
 
 ![VCF after filtering](./images/vcf_post_filter.png)
 
 iv) Browse variants in [IGV](https://software.broadinstitute.org/software/igv/) (go to chr6:83881661)
 
-:loudspeaker:**(Optional)** IGV installation (requires [Java 11](https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html))
+:loudspeaker:**(Optional)** IGV installation
+
+For Mac user, go to IGV [download](https://software.broadinstitute.org/software/igv/download) page, download 'IGV Mac App' and follow the instructions to install.
+
+Otherwise, download the 'all platforms' version (requires [Java 11](https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html)).
 
 Run `java --version` in command line terminal to make sure you have java 11 installed.
-
 ```sh
 java --version
 #java 11.0.2 2019-01-15 LTS
 #Java(TM) SE Runtime Environment 18.9 (build 11.0.2+9-LTS)
 #Java HotSpot(TM) 64-Bit Server VM 18.9 (build 11.0.2+9-LTS, mixed mode)
 ```
-
-Go to IGV download page and [download](https://software.broadinstitute.org/software/igv/download) the 'all platform' version
-
 ![IGV download](./images/igv_download.png)
 
-unzip the downloaded file to a directory of your choice.
+unzip the downloaded file to a directory of your choice. See the downloaded readme.txt and igvtools_readme.txt for further instructions.
 
-In command line terminal, change the work folder to the unzipped folder and run `./igv.sh`
-
-For Mac users:
-```sh
-cd ~/Downloads/IGV_2.5.2
-
-./igv.sh    #You might have to make the script executable (chmod a+x igv.sh)
-```   
-
-
-
-
-Download the bam file and vcf file from https://nih.box.com/s/1sk4o50uy8w5nott5b4j9jc6738o2qsn , unzip the downloaded WES_Training_Material.zip file, and ran IGV on your computer as shown below:
+[Download](https://nih.box.com/s/1sk4o50uy8w5nott5b4j9jc6738o2qsn) the bam file and vcf file, unzip the downloaded WES_Training_Material.zip file, and ran IGV on your computer as shown below:
 
 Download the BAMs and VCF:
 ![IGV_bam_download](./images/download_bam.png)
