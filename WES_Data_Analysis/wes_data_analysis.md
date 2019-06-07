@@ -54,7 +54,7 @@ ls son1
 #son1.R1.fq  son1.R2.fq
 
 ```
-If you need to deal with ILLUMINA BCL files, CASAVA can be used for demultiplexing which convert the BCL files to fastq files.
+If you need to deal with ILLUMINA BCL files, [bcl2fastq2](http://emea.support.illumina.com/sequencing/sequencing_software/bcl2fastq-conversion-software.html?langsel=/ch/) can be used for demultiplexing which convert the BCL files to fastq files.
 
 :information_source: As we work, we will load modules, programs that we will use
 
