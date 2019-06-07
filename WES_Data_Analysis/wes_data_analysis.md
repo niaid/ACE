@@ -31,7 +31,7 @@ If planning to run _X-Windows_ applications, use `ssh -X username@ai-submit1.nia
 
   2. For Windows, you will need to install a client like **Xwin32** or **Xceed**.
 
-:rocket: Start an interactive session
+:rocket: Start an interactive session. When asked for password, input the same password you just used to log into LOCUS.
 ```  
   qrsh -pe threaded 4
 ```
@@ -54,6 +54,7 @@ ls son1
 #son1.R1.fq  son1.R2.fq
 
 ```
+If you need to deal with ILLUMINA BCL files, CASAVA can be used for demultiplexing which convert the BCL files to fastq files.
 
 :information_source: As we work, we will load modules, programs that we will use
 
@@ -151,6 +152,12 @@ ls son1
 #son1.bwa.markdup.log  son1.markdup.bam          son1.markdup_fastqc.zip  son1.R2.fq  son1.sorted.bai
 #son1.markdup.bai      son1.markdup_fastqc.html  son1.R1.fq               son1.sam    son1.sorted.bam
 ```
+Press 'cmd + t' to open a new command line terminal and copy the fastQC output to local.
+```sh
+scp usrname@ai-submit1.niaid.nih.gov:~/data/son1/son1.markdup_fastqc.html .
+```
+
+
 ```sh
 module unload FastQC    #unload the module to avoid package conflict in the next steps  
 ```
