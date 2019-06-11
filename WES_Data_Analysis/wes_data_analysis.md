@@ -33,7 +33,7 @@ If planning to run _X-Windows_ applications, use `ssh -X username@ai-submit1.nia
 
 :rocket: Start an interactive session. When asked for password, input the same password you just used to log into LOCUS.
 ```  
-  qrsh -pe threaded 4
+  qrsh -pe threaded 8
 ```
 
 *Please refer to [LOCUS Userportal](https://locus.niaid.nih.gov/userportal/documentation.php#Getting-Started/HPC-Basics) on how to customize computing resources such as threads and memory.*
@@ -43,9 +43,11 @@ If planning to run _X-Windows_ applications, use `ssh -X username@ai-submit1.nia
 ```sh
 cd #switch to home folder
 
-cp -r /hpcdata/bcbb/wes_training/data .
+mkdir WES_Tutorial
 
-cd data
+cd WES_Tutorial
+
+cp -r /hpcdata/bcbb/wes_training/data/* .
 
 ls
 #dad  daughter1  daughter2  fam001.ped  mom  refSeq.sorted.txt  son1  son2  son3
@@ -77,6 +79,15 @@ module load GEMINI
  : this will display modules that are currently loaded
 
 :loudspeaker: Copy the code below into the terminal one step at a time
+
+**_[GATK resource  bundles](https://software.broadinstitute.org/gatk/download/bundle):_**
+
+**location:** ftp.broadinstitute.org/bundle
+
+**username:** gsapubftp-anonymous
+
+**password:**
+![GATK bundle](./images/gatk_resource.png)
 
 #### **Part 2: Preprocessing (alignment and BQSR) & QC**
 
@@ -163,15 +174,6 @@ module unload FastQC    #unload the module to avoid package conflict in the next
 ```
 
 **ii) Sample Coverage**
-
-**_[GATK resource  bundles](https://software.broadinstitute.org/gatk/download/bundle):_**
-
-**location:** ftp.broadinstitute.org/bundle
-
-**username:** gsapubftp-anonymous
-
-**password:**
-![GATK bundle](./images/gatk_resource.png)
 
 *As the DepthOfCoverage module is not ported in GATK4 yet, we'll use GATK3 for this step.*
 ```sh
@@ -303,7 +305,7 @@ cat fam001.ped
 ```sh
 module load peddy
 
-python -m peddy -p 4 --prefix fam001 --plot fam001.joint.vcf.gz fam001.ped
+python -m peddy -p 8 --prefix fam001 --plot fam001.joint.vcf.gz fam001.ped
 ```
 
 **3) Split the joint genotyping VCF by variant type**
@@ -403,7 +405,7 @@ Functional annotation using [VEP](https://useast.ensembl.org/info/docs/tools/vep
 ```sh
 module load bcftools
 
-bcftools norm -m -any --threads 4 -Oz -o fam001.combined_filtered.norm.vcf.gz fam001.combined_filtered.vcf.gz
+bcftools norm -m -any --threads 8 -Oz -o fam001.combined_filtered.norm.vcf.gz fam001.combined_filtered.vcf.gz
 
 tabix -p vcf fam001.combined_filtered.norm.vcf.gz    # create index for the normalized VCF
 ```
@@ -423,7 +425,7 @@ module load VEP/89-goolf-1.7.20
 dbNSFP_dir="/sysapps/cluster/software/VEP/84-goolf-1.7.20/.vep/dbNSFP/2.9.3"
 
 #Annotate the VCF using VEP (https://useast.ensembl.org/info/docs/tools/vep/index.html)
-$EBROOTVEP/vep --fork 4 --dir $EBROOTVEP/.vep  --assembly GRCh37 --merged \
+$EBROOTVEP/vep --fork 8 --dir $EBROOTVEP/.vep  --assembly GRCh37 --merged \
    --everything --vcf --allele_number --no_stats --cache --offline --force_overwrite --compress_output bgzip \
    --plugin dbNSFP,${dbNSFP_dir}/dbNSFP.gz,Polyphen2_HVAR_pred,CADD_phred,SIFT_pred,FATHMM_pred,MutationTaster_pred,MetaSVM_score,MetaSVM_pred,MetaLR_score,MetaLR_pred,Reliability_index \
    --plugin LoF,human_ancestor_fa:$EBROOTVEP/.vep/Plugins/loftee/human_ancestor.fa.gz,filter_position:0.05,min_intron_size:15 \
@@ -442,7 +444,7 @@ VEP annotated VCF
 module load GEMINI
 
 gemini load -v fam001.combined_filtered.vep.vcf.gz \
--t VEP -p fam001.ped --cores 4 --tempdir /hpcdata/scratch/  \
+-t VEP -p fam001.ped --cores 8 --tempdir /hpcdata/scratch/  \
 fam001.db
 ```
 
