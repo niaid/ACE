@@ -78,8 +78,6 @@ module load GEMINI
 `
  : this will display modules that are currently loaded
 
-:loudspeaker: Copy the code below into the terminal one step at a time
-
 **_[GATK resource  bundles](https://software.broadinstitute.org/gatk/download/bundle):_**
 
 **location:** ftp.broadinstitute.org/bundle
@@ -88,6 +86,8 @@ module load GEMINI
 
 **password:**
 ![GATK bundle](./images/gatk_resource.png)
+
+:loudspeaker: Copy the code below into the terminal one step at a time
 
 #### **Part 2: Preprocessing (alignment and BQSR) & QC**
 
