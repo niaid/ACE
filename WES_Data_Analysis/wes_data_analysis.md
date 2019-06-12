@@ -103,7 +103,7 @@ module load bwa
 bwa mem  ##shows options
 sample='son1' ##assign value for the sample variable
 
-bwa mem -t 4 -M -R "@RG\tID:${sample}\tLB:${sample}\tSM:${sample}\tPL:ILLUMINA" \
+bwa mem -t 8 -M -R "@RG\tID:${sample}\tLB:${sample}\tSM:${sample}\tPL:ILLUMINA" \
  /hpcdata/bcbb/wes_training/reference/human_g1k_v37_decoy.fasta \
  ./${sample}/${sample}.R1.fq ./${sample}/${sample}.R2.fq \
  -o ./${sample}/${sample}.sam
