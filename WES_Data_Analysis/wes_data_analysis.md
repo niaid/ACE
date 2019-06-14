@@ -165,7 +165,7 @@ ls son1
 ```
 Press 'cmd + t' to open a new command line terminal and copy the fastQC output to local.
 ```sh
-scp usrname@ai-submit1.niaid.nih.gov:~/data/son1/son1.markdup_fastqc.html .
+scp usrname@ai-submit1.niaid.nih.gov:~/WES_Tutorial/son1/son1.markdup_fastqc.html .
 ```
 
 
