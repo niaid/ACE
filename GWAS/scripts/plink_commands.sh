@@ -4,7 +4,14 @@
 
 ##initial data filtering
 base_dir="/etc/ace-data/ace-training/karlins.eric/GWAS_lecture_Sept2019"
-cd $base_dir
+#in a clean directory
+cp -r $base_dir .
+cd GWAS_lecture_Sept2019
+ls -r *
+#it's mostly empty directories
+
+##start by checking counts of individuals and SNPs using "wc -l " and R for Ca/Co counts
+
 plink --bfile plink_start/TB_GWAS --mind 0.05 --geno 0.05 --maf 0.05 --hwe 0.0001 --allow-no-sex --make-bed --out qc1/TB_GWAS
 
 #check counts of snps and individuals after filtering
