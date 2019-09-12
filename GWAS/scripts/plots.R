@@ -38,7 +38,7 @@ abline(v = 0.008)
 
 #subset to just PC1 > 0.008
 
-keep_data <- subset(data, PC1 > 0.009, select=c(FID, IID))
+keep_data <- subset(data, PC1 > 0.008, select=c(FID, IID))
 write.table(keep_data, "ancestry_filt1/samples_to_keep.txt", quote = F, row.names = F, col.names = F)
 
 # go back to plink script to subset
