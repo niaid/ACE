@@ -1,4 +1,4 @@
-##GWAS data
+## GWAS data
 
 I downloaded some example data from dbGaP. These data were for running through methods only and do not represent a valid GWAS comparison. Here are the commands I used do download these data.
 
