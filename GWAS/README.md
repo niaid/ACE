@@ -17,7 +17,7 @@ wget ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE69nnn/GSE69664/suppl/GSE69664_GPL2
 I then converted all data to plink binary format, mapped to reference strand, and merged keeping only SNPs in the intersection of all data sets.
 The merged datasets are in the directory `plink_start`.
 
-##GWAS Tutorial
+## GWAS Tutorial
 
 Let's start by checking the files in `plink_start`.
 
