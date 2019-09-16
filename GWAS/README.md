@@ -96,6 +96,14 @@ min(data$P)
 require(qqman)
 #The minimum p value is used to determine the top of the ylim
 manhattan(data, col = c("orange", "blue"), ylim = c(0, 95))
+```
+
+You should see a manhattan plot that looks like this:
+
+![](plots/assoc1.manhattan.png)
+
+
+```sh
 #make qq plot also
 qq(data$P)
 ```
