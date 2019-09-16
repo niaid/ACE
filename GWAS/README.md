@@ -183,3 +183,28 @@ head(data2[,1:2])
 write.table(data2[,1:2], "ancestry_filt2/samples_to_keep.txt", quote = F, row.names = F, col.names = F)
 ```
 
+Now I can subset to this list of ancestry matched cases and controls using PLINK. And repeat the association test on the subset data.
+
+```sh
+plink --bfile ancestry_filt1/TB_GWAS --keep ancestry_filt2/samples_to_keep.txt --make-bed --out ancestry_filt2/TB_GWAS
+plink --bfile ancestry_filt2/TB_GWAS --assoc fisher --adjust --allow-no-sex --out assoc3/TB_GWAS
+```
+
+The lambda value looks good now in the PLINK output. Now let's make the manhattan and QQ plots from `assoc3` in R.
+
+```R
+data <- read.table("assoc3/TB_GWAS.assoc.fisher", head = T)
+names(data)
+summary(data$P)
+min(data$P)
+#if this returns 0 can do. looks like it was 2.787e-42
+min(data$P[data$P != 0])
+
+require(qqman)
+manhattan(data, col = c("green3", "gold", "red2"), ylim = c(0, 45))
+
+#make qq plot also
+qq(data$P)
+```
+
+Those plots look much better and have some association signals worth following up on.
