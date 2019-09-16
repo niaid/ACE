@@ -114,7 +114,7 @@ And a QQ plot that looks like this:
 There seems to be some major genomic inflation in these data. It's clear that something wasn't controlled for correctly. You can also see this with the "lambda" value that's in the output from the PLINK `--assoc` command above. The lambda value should be close to 1.0. This lambda is extremely high. Can you think of something that would cause this?
 
 
-Before we ran the association test we should make sure that the cases and controls are matched by ancestry. There are other software programs that we can use to check ancestry from SNP chip data. On is called SNPWEIGHTS: https://www.hsph.harvard.edu/alkes-price/software/. We won't use that software in this tutorial, but we'll be able to get an idea of ancestry by running pca using PLINK.
+Before we ran the association test we should make sure that the cases and controls are matched by ancestry. There are other software programs that we can use to check ancestry from SNP chip data. One is called SNPWEIGHTS: https://www.hsph.harvard.edu/alkes-price/software/. We won't use that software in this tutorial, but we'll be able to get an idea of ancestry by running pca using PLINK.
 
 ```sh
 plink --bfile qc1/TB_GWAS --pca 6 header --allow-no-sex --out pca1/TB_GWAS
