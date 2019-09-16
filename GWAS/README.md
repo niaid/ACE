@@ -10,12 +10,16 @@ wget ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE83nnn/GSE83397/suppl/GSE83397_proj
 wget ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/supporting/hd_genotype_chip/ALL.chip.omni_broad_sanger_combined.20140818.snps.genotypes.vcf.gz
 wget ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/supporting/hd_genotype_chip/ALL.chip.omni_broad_sanger_combined.20140818.snps.genotypes.vcf.gz.tbi
 #download some additional data from Chinese population run on the same chip as TB cases to use as controls
-wget ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE69nnn/GSE69664/suppl/GSE69664_GPL19864_processed_data.txt.gz
+lwget ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE69nnn/GSE69664/suppl/GSE69664_GPL19864_processed_data.txt.gz
 wget ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE69nnn/GSE69664/suppl/GSE69664_GPL20166_processed_data.txt.gz
 ```
 
 I then converted all data to plink binary format, mapped to reference strand, and merged keeping only SNPs in the intersection of all data sets.
-The merged datasets are in the directory `plink_start`.
+The merged datasets are in the directory `plink_start`. You can download the files from here (using wget):
+
+https://proj-bip-prod-publicread.s3.amazonaws.com/training/GWAS_tutorial/plink_start.zip
+
+Or they are available on biocompace.icermali.org.
 
 ## GWAS Tutorial
 
@@ -154,7 +158,7 @@ pheno <- read.table("ancestry_filt1/TB_GWAS.fam")
 names(pheno) <- c("fam", "ind", "father", "mother", "sex", "affected")
 case <- pheno$affected == 2
 control <- pheno$affected == 1
-plot(data$PC1, data$PC2, type = "n", xlab = "PC1", ylab = "PC2", main = "TB pca after ancestry filtering")
+plot(data$PC1, data$PC2, type = "n", xlab = "PC1", ylab = "PC2", main = "TB pca after initial ancestry filtering")
 points(data$PC1[control], data$PC2[control], col = rgb(0,0,1, 0.3), pch = 20)
 points(data$PC1[case], data$PC2[case], col = rgb(1,0,0, 0.3), pch = 20)
 
@@ -172,7 +176,7 @@ table(data2$CaCo)
 #plot after matching
 case <- data2$CaCo == 1
 control <- data2$CaCo == 0
-plot(data2$PC1, data2$PC2, type = "n", xlab = "PC1", ylab = "PC2", main = "TB pca after matching")
+plot(data2$PC1, data2$PC2, type = "n", xlab = "PC1", ylab = "PC2", main = "TB pca after optmatch")
 points(data2$PC1[control], data2$PC2[control], col = rgb(0,0,1, 0.3), pch = 20)
 points(data2$PC1[case], data2$PC2[case], col = rgb(1,0,0, 0.3), pch = 20)
 
@@ -197,8 +201,6 @@ data <- read.table("assoc3/TB_GWAS.assoc.fisher", head = T)
 names(data)
 summary(data$P)
 min(data$P)
-#if this returns 0 can do. looks like it was 2.787e-42
-min(data$P[data$P != 0])
 
 require(qqman)
 manhattan(data, col = c("green3", "gold", "red2"), ylim = c(0, 45))
