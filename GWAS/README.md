@@ -107,6 +107,10 @@ You should see a manhattan plot that looks like this:
 #make qq plot also
 qq(data$P)
 ```
+And a QQ plot that looks like this:
+
+![](plots/assoc1.qq.png)
+
 There seems to be some major genomic inflation in these data. It's clear that something wasn't controlled for correctly. You can also see this with the "lambda" value that's in the output from the PLINK `--assoc` command above. The lambda value should be close to 1.0. This lambda is extremely high. Can you think of something that would cause this?
 
 
@@ -144,6 +148,11 @@ keep_data <- subset(data, PC1 > 0.008, select=c(FID, IID))
 write.table(keep_data, "ancestry_filt1/samples_to_keep.txt", quote = F, row.names = F, col.names = F)
 ```
 
+The PCA plot should look like this:
+
+![](plots/pca1.png)
+
+
 Now we can use PLINK to subset the data to the cases and controls that seem to be ancestry matched from pca and repeat association test.
 
 ```sh
@@ -169,9 +178,13 @@ control <- pheno$affected == 1
 plot(data$PC1, data$PC2, type = "n", xlab = "PC1", ylab = "PC2", main = "TB pca after initial ancestry filtering")
 points(data$PC1[control], data$PC2[control], col = rgb(0,0,1, 0.3), pch = 20)
 points(data$PC1[case], data$PC2[case], col = rgb(1,0,0, 0.3), pch = 20)
+```
+![](plots/pca2.initial.png)
 
-## still substructure in pca plot. Now try 1:1 match using optmatch
 
+There is still substructure in the data. We will use the R package `optmatch` to better match controls to cases.
+
+```sh
 # optmatch requires 0 for control and 1 for cases
 data$CaCo <- pheno$affected - 1
 table(data$CaCo)
@@ -194,6 +207,7 @@ head(data2[,1:2])
 
 write.table(data2[,1:2], "ancestry_filt2/samples_to_keep.txt", quote = F, row.names = F, col.names = F)
 ```
+![](plots/pca2.optmatch.png)
 
 Now I can subset to this list of ancestry matched cases and controls using PLINK. And repeat the association test on the subset data.
 
@@ -212,9 +226,12 @@ min(data$P)
 
 require(qqman)
 manhattan(data, col = c("green3", "gold", "red2"), ylim = c(0, 45))
-
+```
+![](plots/assoc3.manhattan.png)
+```sh
 #make qq plot also
 qq(data$P)
 ```
+![](plots/assoc3.qq.png)
 
 Those plots look much better and have some association signals worth following up on.
