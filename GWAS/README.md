@@ -23,6 +23,8 @@ Or they are available on biocompace.icermali.org.
 
 ## GWAS Tutorial
 
+This tutorial was tested using PLINK v1.90b4 and R version 3.6.1.
+
 Let's start by checking the files in `plink_start`.
 
 ```sh
