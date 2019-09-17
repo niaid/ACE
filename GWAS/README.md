@@ -1,8 +1,16 @@
 ## GWAS data
 
-I downloaded some example data from dbGaP. These data were for running through methods only and do not represent a valid GWAS comparison. Here are the commands I used do download these data.
+If you are running this tuturial on biocompace.icermali.org skip to the "GWAS Tutorial" section below. Commands used to download files from dbGaP are included for reproducibility purposes but are not needed for this tutorial. For the tutorial you can download the the starting files here:
+
+https://proj-bip-prod-publicread.s3.amazonaws.com/training/GWAS_tutorial/plink_start.zip
+
+Or they are available on biocompace.icermali.org.
+
+
+Here is some background on where these data came from. I downloaded the example data from dbGaP. These data were for running through methods only and do not represent a valid GWAS comparison. Here are the commands I used do download these data.
 
 ```sh
+#you do not need to run these commands for the tutorial
 # download ped and map for 1008 TB cases
 wget ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE83nnn/GSE83397/suppl/GSE83397_project1008s.ped.gz
 wget ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE83nnn/GSE83397/suppl/GSE83397_project1008s.map.gz
@@ -15,11 +23,7 @@ wget ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE69nnn/GSE69664/suppl/GSE69664_GPL2
 ```
 
 I then converted all data to plink binary format, mapped to reference strand, and merged keeping only SNPs in the intersection of all data sets.
-The merged datasets are in the directory `plink_start`. You can download the files from here (using wget):
-
-https://proj-bip-prod-publicread.s3.amazonaws.com/training/GWAS_tutorial/plink_start.zip
-
-Or they are available on biocompace.icermali.org.
+The merged datasets are in the directory `plink_start`. 
 
 ## GWAS Tutorial
 
